@@ -27,11 +27,11 @@ public class HealthSystem
         set { MaxHealth = Math.Max(1, Math.Min(100, value)); }
     }
 
-    private int Attack;
-    public int attack
+    private int BaseAttack;
+    public int baseAttack
     {
-        get { return Attack; }
-        set { Attack = Math.Max(0, value); }
+        get { return BaseAttack; }
+        set { BaseAttack = Math.Max(0, value); }
     }
 
     private int Shield;
@@ -124,6 +124,12 @@ public class HealthSystem
     {
         // Set the max HP
         maxHealth = _maxhp;
+    }
+
+    public void setAttack(int _attack) 
+    {
+        // Set base attack
+        baseAttack = _attack; 
     }
 
     public void setMaxShield(int _maxshield)

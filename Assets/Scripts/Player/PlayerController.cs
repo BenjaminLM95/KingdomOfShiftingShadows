@@ -1,7 +1,15 @@
 using UnityEngine;
 
+public enum PlayerState 
+{
+    Walk,
+    Attack,
+
+}
+
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private PlayerState playerState;
 
     [Header("Player Movement Variables")]
     private float horizontal;
@@ -9,11 +17,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speedMov = 3f;
     [SerializeField] private float sprintSpeed = 5;
 
-    public Rigidbody2D body;
+    private Rigidbody2D body;
 
     [Header("Attack movements")]
     public GameObject sword; 
     public bool isAttacking = false;
+    public int swordPower = 3; 
      
 
 
@@ -26,7 +35,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         sword.gameObject.SetActive(false);
-        
+        body = GetComponent<Rigidbody2D>();
+        playerState = PlayerState.Walk;
     }
 
     // Update is called once per frame
@@ -35,7 +45,7 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.R)) 
+        if (Input.GetKeyDown(KeyCode.R) && playerState != PlayerState.Attack) 
         {
             Attack(); 
         }
@@ -51,6 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canAttack)
         {
+            playerState = PlayerState.Attack;
             isAttacking = true;
             sword.gameObject.SetActive(true);           
             canAttack = false;
@@ -61,7 +72,8 @@ public class PlayerController : MonoBehaviour
     public void SaveSword() 
     {        
         sword.gameObject.SetActive(false);
-        canAttack = true; 
+        canAttack = true;
+        playerState = PlayerState.Walk; 
     }
 
 }
