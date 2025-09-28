@@ -10,7 +10,8 @@ public class LevelManager : MonoBehaviour
         Gameplay,
         MainMenu,
         TitleScreen,
-        TestScene
+        TestScene,
+        UpgradeScene
     }
 
     private SceneNames _sceneName;  // Don't think I will need it
@@ -46,6 +47,12 @@ public class LevelManager : MonoBehaviour
     public void ChangeToPause() 
     {
         gameStateManager.ChangeState(GameStateManager.GameState.Paused); 
+    }
+
+    public void ChangeToUpgrade() 
+    {
+        ChangeScene(SceneNames.UpgradeScene); 
+        gameStateManager.ChangeState(GameStateManager.GameState.Upgrade); 
     }
 
 

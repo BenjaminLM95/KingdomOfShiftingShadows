@@ -10,6 +10,7 @@ public class GameStateManager : MonoBehaviour
         Menu_State,
         Gameplay_State,
         Paused,
+        Upgrade,
         None
     }
     // Property to store the current game state, accessible publicly but modifiable only within this class
@@ -66,6 +67,11 @@ public class GameStateManager : MonoBehaviour
                 Debug.Log("Switch to Pause State");
                 uiManager.EnablePauseUI();
                 Time.timeScale = 0f;  // The game paused, so the time stops
+                break;
+            case GameState.Upgrade:
+                Debug.Log("Switch to Upgrade State");
+                uiManager.EnableUpgradeUI();
+                Time.timeScale = 0f;
                 break; 
 
         }
