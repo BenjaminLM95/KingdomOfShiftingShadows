@@ -22,9 +22,8 @@ public class PlayerController : MonoBehaviour
     [Header("Attack movements")]
     public GameObject sword; 
     public bool isAttacking = false;
-    public int swordPower = 3; 
-     
-
+    public int swordPower = 3;
+      
 
     [Header("Abilities")]
     [SerializeField] private bool canMove = true;

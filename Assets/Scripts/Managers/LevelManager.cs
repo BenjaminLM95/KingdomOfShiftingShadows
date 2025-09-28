@@ -15,6 +15,11 @@ public class LevelManager : MonoBehaviour
 
     private SceneNames _sceneName;  // Don't think I will need it
 
+    private void Start()
+    {
+        ChangeToTitleScreen(); 
+    }
+
     public void ChangeToTitleScreen() 
     {
         SceneManager.LoadScene(SceneNames.TitleScreen.ToString());
@@ -31,6 +36,16 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneNames.TestScene.ToString());
         gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State); 
+    }
+
+    public void ResumeGamePlay() 
+    {
+        gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State); 
+    }
+
+    public void ChangeToPause() 
+    {
+        gameStateManager.ChangeState(GameStateManager.GameState.Paused); 
     }
 
 

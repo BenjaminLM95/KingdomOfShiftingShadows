@@ -288,6 +288,7 @@ MonoBehaviour:
   kingdomsGate: {fileID: 0}
   hpText: {fileID: 5604340312610121977}
   enemyState: 0
+  enemyAnimator: {fileID: 0}
   invincibility: 0
 --- !u!61 &7260923006866466129
 BoxCollider2D:
@@ -343,7 +344,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3819979465790774841}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

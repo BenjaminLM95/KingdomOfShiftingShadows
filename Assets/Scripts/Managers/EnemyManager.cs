@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviour
 
 
     [Header("Setting")]
-    [SerializeField] private float timeSpawn = 5.0f;
+    [SerializeField] private float timeSpawn = 4.0f;
 
     private float timer = 0f; 
 
@@ -17,13 +17,15 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject spawnPoint1; 
     [SerializeField] private GameObject spawnPoint2;
     [SerializeField] private GameObject spawnPoint3;
+    [SerializeField] private GameObject spawnPoint4;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         spawnPoint1 = GameObject.Find("SpawnPointA");
         spawnPoint2 = GameObject.Find("SpawnPointB");
-        spawnPoint3 = GameObject.Find("SpawnPointC"); 
+        spawnPoint3 = GameObject.Find("SpawnPointC");
+        spawnPoint4 = GameObject.Find("SpawnPointD"); 
     }
 
     // Update is called once per frame
@@ -48,7 +50,7 @@ public class EnemyManager : MonoBehaviour
 
     private Vector3 GetRandomSpawnPosition() 
     {
-        int randomNum = Random.Range(1, 4);
+        int randomNum = Random.Range(1, 5);
         Vector3 spawnPosition; 
 
         switch (randomNum) 
@@ -61,6 +63,9 @@ public class EnemyManager : MonoBehaviour
                 break;
             case 3:     
                 spawnPosition = spawnPoint3.transform.position;
+                break;
+            case 4: 
+                spawnPosition = spawnPoint4.transform.position;
                 break;
             default: 
                 spawnPosition = spawnPoint1.transform.position;
