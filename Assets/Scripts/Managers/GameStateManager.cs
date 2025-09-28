@@ -55,7 +55,7 @@ public class GameStateManager : MonoBehaviour
             case GameState.Menu_State:
                 Debug.Log("Switched to MainMenu State");
                 uiManager.EnableMenuUI();
-                Time.timeScale = 0f;  // <= Check this later 
+                Time.timeScale = 1f;  // <= Check this later 
                 break;
             case GameState.Gameplay_State:
                 Debug.Log("Switch to Gameplay State");

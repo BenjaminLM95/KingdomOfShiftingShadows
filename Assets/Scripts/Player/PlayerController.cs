@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
             isAttacking = true;
             sword.gameObject.SetActive(true);           
             canAttack = false;
-            Invoke("SaveSword", 2f);
+            Invoke("SaveSword", 1f);
         }
     }
 

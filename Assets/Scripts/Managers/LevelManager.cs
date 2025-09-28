@@ -9,7 +9,8 @@ public class LevelManager : MonoBehaviour
     {
         Gameplay,
         MainMenu,
-        TitleScreen
+        TitleScreen,
+        TestScene
     }
 
     private SceneNames _sceneName;  // Don't think I will need it
@@ -28,7 +29,7 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeToGameplay() 
     {
-        SceneManager.LoadScene(SceneNames.Gameplay.ToString());
+        SceneManager.LoadScene(SceneNames.TestScene.ToString());
         gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State); 
     }
 
@@ -37,6 +38,11 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(nameScene.ToString()); 
         
+    }
+
+    public void ExitGame() 
+    {
+        Application.Quit();
     }
 
 
