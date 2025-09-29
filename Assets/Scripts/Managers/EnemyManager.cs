@@ -1,9 +1,12 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour
 {
     [Header("Enemy List")]
     public GameObject enemyTypeOne;
+    [SerializeField] private List<Enemy> enemyList = new List<Enemy>();
+    [SerializeField] private int enemyDeployed = 0; 
 
 
     [Header("Setting")]
@@ -44,8 +47,10 @@ public class EnemyManager : MonoBehaviour
     private void SpawnEnemy() 
     {
         GameObject newEnemy = Instantiate(enemyTypeOne, GetRandomSpawnPosition(), Quaternion.identity);
+        enemyList.Add(newEnemy.GetComponent<Enemy>());
+        enemyDeployed++; 
         timer = Time.time + timeSpawn;
-        Debug.Log(Time.time + "  " + timer);
+        //Debug.Log(Time.time + "  " + timer);
     }
 
     private Vector3 GetRandomSpawnPosition() 
@@ -75,5 +80,10 @@ public class EnemyManager : MonoBehaviour
         return spawnPosition;
     }
 
+
+    public void RemoveEnemyOnList(Enemy enemyDefeated) 
+    {
+        enemyList.RemoveAt(enemyList.IndexOf(enemyDefeated)); 
+    }
 
 }

@@ -23,12 +23,15 @@ public class PlayerController : MonoBehaviour
     public GameObject sword; 
     public bool isAttacking = false;
     public int swordPower = 3;
+
       
 
     [Header("Abilities")]
     [SerializeField] private bool canMove = true;
     [SerializeField] private bool canSprint = true;
     [SerializeField] private bool canAttack = true;
+
+    public int numKill = 0; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -73,6 +76,11 @@ public class PlayerController : MonoBehaviour
         sword.gameObject.SetActive(false);
         canAttack = true;
         playerState = PlayerState.Walk; 
+    }
+
+    public void getOneKill() 
+    {
+        numKill++; 
     }
 
 }

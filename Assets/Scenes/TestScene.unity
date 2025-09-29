@@ -228,6 +228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTypeOne: {fileID: 3819979465790774841, guid: 8df59a8f093e91a448a9987d3c1f1406, type: 3}
+  enemyList: []
+  enemyDeployed: 0
   timeSpawn: 5
   _kingdomGate: {fileID: 578204449}
   spawnPoint1: {fileID: 0}
@@ -1086,6 +1088,7 @@ MonoBehaviour:
   canMove: 1
   canSprint: 1
   canAttack: 1
+  numKill: 0
 --- !u!114 &1083000864
 MonoBehaviour:
   m_ObjectHideFlags: 0

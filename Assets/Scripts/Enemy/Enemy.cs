@@ -5,7 +5,7 @@ using TMPro;
 public enum EnemyState 
 {
     Running,
-    Attacking,
+    Agressive,
     None
 }
 
@@ -18,13 +18,15 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int hp;
     [SerializeField] private int atk;
     [SerializeField] private float speed = 1.5f;
-    [SerializeField] private Vector2 velocity; 
+    [SerializeField] private Vector2 velocity;
 
 
     [Header("Reference")]
+    [SerializeField] GameObject _player; 
     [SerializeField] PlayerController playerController;
     [SerializeField] GameObject kingdomsGate;
-    public TextMeshPro hpText; 
+    public TextMeshPro hpText;
+    [SerializeField] EnemyManager enemyManager; 
 
 
     [Header("Behavior")]
@@ -33,6 +35,8 @@ public class Enemy : MonoBehaviour
 
     [Header("Other variables")]
     public bool invincibility = false;
+    public float agressiveStateCooldown = 4f;
+    public float stateCount = 0f;
 
 
     private void Awake()
@@ -40,6 +44,7 @@ public class Enemy : MonoBehaviour
         playerController = FindFirstObjectByType<PlayerController>();
         kingdomsGate = GameObject.Find("KingdomGate");
         enemyAnimator = GetComponent<Animator>();
+        enemyManager = GetComponent<EnemyManager>(); 
     }
 
 
@@ -60,22 +65,28 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RunningThroughKingdomGates();
-        enemyMove(); 
+        EnemyAction();
+
+        
     }
 
     private void LateUpdate()
     {
         if (hp != healthSystem.health)
         {
-            Debug.Log(healthSystem.health); 
+            //Debug.Log(healthSystem.health); 
             hp = healthSystem.health;
             hpText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
 
         }
 
-        if(healthSystem.health <= 0)
+        if (healthSystem.health <= 0)
+        {
+            playerController.getOneKill();
+            Debug.Log(playerController.numKill);            
             this.gameObject.SetActive(false);
+           
+        }
     }
 
     public void SetStats() 
@@ -89,14 +100,15 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision");
+        //Debug.Log("Collision");
         if (collision.gameObject.CompareTag("Sword") && !invincibility) 
         {
-            Debug.Log("Collision with sword");
+            //Debug.Log("Collision with sword");
             healthSystem.TakeDamage(playerController.swordPower);
-            Debug.Log(healthSystem.health);
+            //Debug.Log(healthSystem.health);
             invincibility = true;
-            enemyAnimator.SetBool("isDamaged", true); 
+            enemyAnimator.SetBool("isDamaged", true);
+            SetAgressiveMode();           
             Invoke("vulnerability", 1f);
         }
 
@@ -109,17 +121,77 @@ public class Enemy : MonoBehaviour
         enemyAnimator.SetBool("isDamaged", false);
     }
 
-    private void enemyMove() 
+    private void EnemyMove() 
     {
         transform.position += new Vector3(velocity.x, velocity.y, 0f) * speed * Time.deltaTime; 
+    }
+
+    private void EnemyAction() 
+    {
+        switch (enemyState) 
+        {
+            case EnemyState.Running:
+                RunningThroughKingdomGates();                
+                break;
+            case EnemyState.Agressive:
+                AttackingPlayer();
+                stateCount += Time.deltaTime;
+                //Debug.Log(stateCount);
+                SetRunningMode();
+                break;
+            default:
+                RunningThroughKingdomGates();
+                break; 
+        }
+
+    }
+
+    private void SetAgressiveMode() 
+    {
+        if (enemyState != EnemyState.Agressive)
+        {
+            enemyState = EnemyState.Agressive;
+
+            stateCount = 0;
+            //Debug.Log("Start chasing player"); 
+            //Debug.Log("Time: " + Time.time + "StateCount" + stateCount); 
+        }
+    }
+
+    private void SetRunningMode() 
+    {
+        if(stateCount > agressiveStateCooldown) 
+        {
+            enemyState = EnemyState.Running;
+            stateCount = 0;
+            //Debug.Log("To Running"); 
+            //Debug.Log("Time: " + stateCount + " , " + Time.time); 
+        }
     }
 
 
     private void RunningThroughKingdomGates() 
     {
-        velocity = (kingdomsGate.transform.position - transform.position).normalized; 
+        velocity = (kingdomsGate.transform.position - transform.position).normalized;
+        EnemyMove(); 
     }
     
-    
+    private void AttackingPlayer() 
+    {
+        if (_player == null)
+            _player = GameObject.Find("Player");
+
+        float distanceWithPlayer = Vector2.Distance(transform.position, _player.transform.position); 
+
+        if(distanceWithPlayer > 0f) 
+        {
+            velocity = (_player.transform.position - transform.position).normalized;
+            EnemyMove(); 
+        }
+        else 
+        {
+            //Debug.Log("Attack"); 
+        }
+    }
 
 }

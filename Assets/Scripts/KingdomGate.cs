@@ -6,13 +6,15 @@ public class KingdomGate : MonoBehaviour
     public GameObject gameOverText;
 
     [Header("Reference")]
-    private PlayerHealth playerHealth; 
+    private PlayerHealth playerHealth;
+    private PlayerController playerController;
 
 
     private void Awake()
     {
         gameOver = false; 
         playerHealth = FindFirstObjectByType<PlayerHealth>();
+        playerController = FindFirstObjectByType<PlayerController>(); 
     }
 
     private void Update()
