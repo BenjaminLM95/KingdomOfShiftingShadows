@@ -62,8 +62,7 @@ public class EnemyManager : MonoBehaviour
         GameObject newEnemy = Instantiate(currentEnemyType, GetRandomSpawnPosition(), Quaternion.identity);
         enemyList.Add(newEnemy.GetComponent<Enemy>());
         enemyDeployed++; 
-        timer = Time.time + timeSpawn;
-        //Debug.Log(Time.time + "  " + timer);
+        timer = Time.time + timeSpawn;        
 
         currentEnemyType = null; 
     }
@@ -108,7 +107,8 @@ public class EnemyManager : MonoBehaviour
         {
             if (enemyList[i].enemyType == EnemyType.NightEnemy) 
             {
-                enemyList[i].alive = false;                 
+                enemyList[i].alive = false;
+                
             }
         }
     }

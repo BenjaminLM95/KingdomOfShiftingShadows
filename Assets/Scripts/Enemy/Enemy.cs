@@ -6,6 +6,7 @@ public enum EnemyState
 {
     Running,
     Agressive,
+    Collapse,
     None
 }
 
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
     public HealthSystem healthSystem = new HealthSystem();
 
     [Header("Base Stats")]
+    [SerializeField] private int baseHP;
     [SerializeField] private int hp;
     [SerializeField] private int atk;
     [SerializeField] private float speed = 1.5f;
@@ -61,13 +63,13 @@ public class Enemy : MonoBehaviour
     {        
 
         enemyState = EnemyState.Running;   //The enemy start running to the kingdom gates direction
-        velocity = new Vector2(-1, 0); 
+        velocity = new Vector2(-1, 0);
 
-        hp = 4;
+        baseHP = 4;        
         atk = 2; 
         SetStats();
 
-        hpText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth; 
+        UpdateHPText(); 
     }
 
     // Update is called once per frame
@@ -88,21 +90,26 @@ public class Enemy : MonoBehaviour
         {
             //Debug.Log(healthSystem.health); 
             hp = healthSystem.health;
-            hpText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
+            UpdateHPText();
 
         }
 
         if (healthSystem.health <= 0)
         {
-            playerController.getOneKill();
-            Debug.Log(playerController.numKill);
+            if (enemyType == EnemyType.DayEnemy)
+            {
+                playerController.getOneKill();
+                Debug.Log(playerController.numKill);
+            }
+                        
             DeathBehavior();
         }
     }
 
     public void SetStats() 
     {
-        healthSystem.setMaxHP(hp);
+        healthSystem.setMaxHP(baseHP);
+        hp = healthSystem.maxHealth; 
         healthSystem.health = healthSystem.maxHealth; 
         healthSystem.setAttack(atk); 
 
@@ -116,7 +123,7 @@ public class Enemy : MonoBehaviour
         {
             //Debug.Log("Collision with sword");
             healthSystem.TakeDamage(playerController.swordPower);
-            //Debug.Log(healthSystem.health);
+            Debug.Log(healthSystem.health);
             invincibility = true;
             enemyAnimator.SetBool("isDamaged", true);
             SetAgressiveMode();           
@@ -125,6 +132,11 @@ public class Enemy : MonoBehaviour
 
        
     }       
+
+    private void UpdateHPText() 
+    {
+        hpText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
+    }
 
     private void vulnerability() 
     {
@@ -146,10 +158,13 @@ public class Enemy : MonoBehaviour
                 break;
             case EnemyState.Agressive:
                 AttackingPlayer();
-                stateCount += Time.deltaTime;
-                //Debug.Log(stateCount);
+                stateCount += Time.deltaTime;               
                 SetRunningMode();
                 break;
+            case EnemyState.Collapse:
+                invincibility = true;
+                speed = 0f;
+                break; 
             default:
                 RunningThroughKingdomGates();
                 break; 
@@ -164,8 +179,7 @@ public class Enemy : MonoBehaviour
             enemyState = EnemyState.Agressive;
 
             stateCount = 0;
-            //Debug.Log("Start chasing player"); 
-            //Debug.Log("Time: " + Time.time + "StateCount" + stateCount); 
+             
         }
     }
 
@@ -213,8 +227,7 @@ public class Enemy : MonoBehaviour
                 this.gameObject.SetActive(false);
                 break; 
             case EnemyType.NightEnemy:
-                invincibility = true;
-                speed = 0f;
+                enemyState = EnemyState.Collapse; 
                 Invoke("ReviveEnemy", 5f);
                 break;
             default:
@@ -229,7 +242,8 @@ public class Enemy : MonoBehaviour
         SetStats();
         invincibility = false;
         speed = 1.5f;
-        this.gameObject.SetActive(true); 
+        enemyState = EnemyState.Running;
+        UpdateHPText();
     }
 
 }

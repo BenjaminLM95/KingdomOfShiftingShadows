@@ -8,13 +8,15 @@ public class KingdomGate : MonoBehaviour
     [Header("Reference")]
     private PlayerHealth playerHealth;
     private PlayerController playerController;
+    private ResultInformation resultInfo; 
 
 
     private void Awake()
     {
         gameOver = false; 
         playerHealth = FindFirstObjectByType<PlayerHealth>();
-        playerController = FindFirstObjectByType<PlayerController>(); 
+        playerController = FindFirstObjectByType<PlayerController>();
+        resultInfo = FindFirstObjectByType<ResultInformation>(); 
     }
 
     private void Update()
@@ -38,8 +40,14 @@ public class KingdomGate : MonoBehaviour
 
     private void SetGameOver() 
     {
+        Debug.Log("Game Over"); 
         gameOver = true;
         gameOverText.gameObject.SetActive(true);
+
+        if(resultInfo == null)
+            resultInfo = FindFirstObjectByType<ResultInformation>();
+
+        resultInfo.DisplayResult(); 
         Time.timeScale = 0f;
     }
 

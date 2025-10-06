@@ -34,7 +34,7 @@ public class TimeDisplay : MonoBehaviour
         if (dayNightManager != null) 
         {
             cycleText = dayNightManager.cycle.ToString();
-            
+            dayCount = dayNightManager.dayCount; 
         }
 
         timeDisplayClock.text = cycleText + " - " + "Day: " + dayCount + " - " + dayNightManager.GetTimeString(); 

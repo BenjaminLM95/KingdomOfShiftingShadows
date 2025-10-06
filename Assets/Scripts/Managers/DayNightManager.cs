@@ -15,11 +15,16 @@ public class DayNightManager : MonoBehaviour
     public float currentTime;    
     private int timeSpeed;
     private int initialHour;
-    [SerializeField] private float dayDuration = 30f; 
+    public int dayCount; 
+    [SerializeField] private float dayDuration = 30f;
+    [SerializeField] private float minuteDuration = 60f;
 
     [Header("Day and Night System")]
     public bool isDay;
     public DiurnalCycle cycle;
+    [SerializeField] private int currentHour;
+    [SerializeField] private int previousHour;
+    private bool nextDay = false; 
 
 
     [Header("Day and Night Background Images")]
@@ -33,26 +38,44 @@ public class DayNightManager : MonoBehaviour
     private void Awake()
     {
         enemyManager = FindFirstObjectByType<EnemyManager>();
-        InitialDaySetup();     
-         
+        InitialDaySetup();
+        currentHour = (int)GetHour(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        totalTime += Time.deltaTime;
+        totalTime += Time.deltaTime * 0.5f;
 
         currentTime = (initialHour + totalTime) % dayDuration;
-
-        //Debug.Log(currentTime); 
+        
         
         CycleChange(); 
-        
+
+        if(currentHour != (int)GetHour()) 
+        {
+            previousHour = currentHour;
+            currentHour = (int)GetHour(); 
+        }
+
+        if(previousHour == 23 && currentHour == 0 && !nextDay) 
+        {          
+                dayCount++;
+                nextDay = true;           
+            
+        }
+
+        if (previousHour != 23 && currentHour != 0 && nextDay)
+            nextDay = false; 
+
+
+
     }
 
     public void InitialDaySetup() 
     {
-        initialHour = 8;         
+        initialHour = 8;
+        dayCount = 1; 
         cycle = DiurnalCycle.Day;
         isDay = true;
         setDayImg();
@@ -61,8 +84,7 @@ public class DayNightManager : MonoBehaviour
     public void CycleChange() 
     {
         if(GetHour() >= 6 && GetHour() < 18 && !isDay) 
-        {
-            //Debug.Log(GetHour());
+        {            
             isDay = true;
             cycle = DiurnalCycle.Day;
             setDayImg();
@@ -84,7 +106,7 @@ public class DayNightManager : MonoBehaviour
 
     public float GetMinutes() 
     {
-        return (currentTime * 24 * 60 / dayDuration) % 60; 
+        return (currentTime * 24 * minuteDuration / dayDuration) % 60; 
     }
 
     public string GetTimeString() 
