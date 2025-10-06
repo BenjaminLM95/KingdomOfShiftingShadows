@@ -24,25 +24,19 @@ public class TimeDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dayCount != dayNightManager.dayCount || hourCount != dayNightManager.hourCount || minuteCount != dayNightManager.minuteCount || cycleText != dayNightManager.cycle.ToString()) 
-        {
-            DisplayInfo(); 
-        }
         
+        DisplayInfo();
+
     }
 
     public void DisplayInfo() 
     {
         if (dayNightManager != null) 
         {
-            dayCount = dayNightManager.dayCount;
-            hourCount = dayNightManager.hourCount;
-            minuteCount = dayNightManager.minuteCount;
             cycleText = dayNightManager.cycle.ToString();
-
-            Debug.Log(hourCount); 
+            
         }
 
-        timeDisplayClock.text = cycleText + " - " + "Day: " + dayCount + "  HH" + hourCount + " MM" + minuteCount; 
+        timeDisplayClock.text = cycleText + " - " + "Day: " + dayCount + " - " + dayNightManager.GetTimeString(); 
     }
 }

@@ -9,6 +9,11 @@ public enum EnemyState
     None
 }
 
+public enum EnemyType 
+{
+    DayEnemy,
+    NightEnemy
+}
 
 public class Enemy : MonoBehaviour
 {
@@ -19,6 +24,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int atk;
     [SerializeField] private float speed = 1.5f;
     [SerializeField] private Vector2 velocity;
+    public bool alive = true; 
 
 
     [Header("Reference")]
@@ -32,11 +38,13 @@ public class Enemy : MonoBehaviour
     [Header("Behavior")]
     [SerializeField] EnemyState enemyState;
     [SerializeField] private Animator enemyAnimator; 
+    public EnemyType enemyType;
 
     [Header("Other variables")]
     public bool invincibility = false;
     public float agressiveStateCooldown = 4f;
     public float stateCount = 0f;
+  
 
 
     private void Awake()
@@ -67,7 +75,11 @@ public class Enemy : MonoBehaviour
     {
         EnemyAction();
 
-        
+        if (!alive) 
+        {
+            gameObject.SetActive(false);
+        }
+                
     }
 
     private void LateUpdate()
@@ -83,9 +95,8 @@ public class Enemy : MonoBehaviour
         if (healthSystem.health <= 0)
         {
             playerController.getOneKill();
-            Debug.Log(playerController.numKill);            
-            this.gameObject.SetActive(false);
-           
+            Debug.Log(playerController.numKill);
+            DeathBehavior();
         }
     }
 
@@ -192,6 +203,33 @@ public class Enemy : MonoBehaviour
         {
             //Debug.Log("Attack"); 
         }
+    }
+
+    private void DeathBehavior() 
+    {
+        switch (enemyType) 
+        {
+            case EnemyType.DayEnemy:
+                this.gameObject.SetActive(false);
+                break; 
+            case EnemyType.NightEnemy:
+                invincibility = true;
+                speed = 0f;
+                Invoke("ReviveEnemy", 5f);
+                break;
+            default:
+                this.gameObject.SetActive(false);
+                break;
+
+        }
+    }
+
+    public void ReviveEnemy() 
+    {
+        SetStats();
+        invincibility = false;
+        speed = 1.5f;
+        this.gameObject.SetActive(true); 
     }
 
 }

@@ -5,6 +5,8 @@ public class EnemyManager : MonoBehaviour
 {
     [Header("Enemy List")]
     public GameObject enemyTypeOne;
+    public GameObject enemyTypeTwo;
+    public GameObject currentEnemyType = null;
     [SerializeField] private List<Enemy> enemyList = new List<Enemy>();
     [SerializeField] private int enemyDeployed = 0; 
 
@@ -21,6 +23,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject spawnPoint2;
     [SerializeField] private GameObject spawnPoint3;
     [SerializeField] private GameObject spawnPoint4;
+    private DayNightManager dayNightManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -29,6 +32,7 @@ public class EnemyManager : MonoBehaviour
         spawnPoint2 = GameObject.Find("SpawnPointB");
         spawnPoint3 = GameObject.Find("SpawnPointC");
         spawnPoint4 = GameObject.Find("SpawnPointD"); 
+        dayNightManager = FindFirstObjectByType<DayNightManager>();
     }
 
     // Update is called once per frame
@@ -46,11 +50,22 @@ public class EnemyManager : MonoBehaviour
 
     private void SpawnEnemy() 
     {
-        GameObject newEnemy = Instantiate(enemyTypeOne, GetRandomSpawnPosition(), Quaternion.identity);
+        if (dayNightManager.isDay) 
+        {
+            currentEnemyType = enemyTypeOne; 
+        }
+        else 
+        {
+            currentEnemyType = enemyTypeTwo;
+        }
+
+        GameObject newEnemy = Instantiate(currentEnemyType, GetRandomSpawnPosition(), Quaternion.identity);
         enemyList.Add(newEnemy.GetComponent<Enemy>());
         enemyDeployed++; 
         timer = Time.time + timeSpawn;
         //Debug.Log(Time.time + "  " + timer);
+
+        currentEnemyType = null; 
     }
 
     private Vector3 GetRandomSpawnPosition() 
@@ -84,6 +99,18 @@ public class EnemyManager : MonoBehaviour
     public void RemoveEnemyOnList(Enemy enemyDefeated) 
     {
         enemyList.RemoveAt(enemyList.IndexOf(enemyDefeated)); 
+    }
+
+
+    public void DestroyNightEnemies() 
+    {
+        for(int i = 0; i < enemyList.Count; i++) 
+        {
+            if (enemyList[i].enemyType == EnemyType.NightEnemy) 
+            {
+                enemyList[i].alive = false;                 
+            }
+        }
     }
 
 }

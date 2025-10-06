@@ -11,64 +11,103 @@ public class DayNightManager : MonoBehaviour
 {
 
     [Header("Time Management")]
-    public float currentTime;
-    public int dayCount;
-    public int hourCount;
-    public int minuteCount;
+    public float totalTime;
+    public float currentTime;    
     private int timeSpeed;
+    private int initialHour;
+    [SerializeField] private float dayDuration = 30f; 
 
     [Header("Day and Night System")]
     public bool isDay;
-    public DiurnalCycle cycle; 
+    public DiurnalCycle cycle;
+
+
+    [Header("Day and Night Background Images")]
+    public GameObject dayImg;
+    public GameObject nightImg; 
+
+    private EnemyManager enemyManager;
     
 
 
     private void Awake()
     {
-        InitialDaySetup();
-        Debug.Log(hourCount); 
+        enemyManager = FindFirstObjectByType<EnemyManager>();
+        InitialDaySetup();     
+         
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentTime += Time.deltaTime * timeSpeed;
+        totalTime += Time.deltaTime;
 
-        hourCount = (int)(currentTime / 3600f);
-        minuteCount = (int)(currentTime % 60f); 
+        currentTime = (initialHour + totalTime) % dayDuration;
 
-        if(hourCount >= 24) 
-        {
-            dayCount++; 
-            currentTime = 0;
-        }
-
+        //Debug.Log(currentTime); 
+        
         CycleChange(); 
         
     }
 
     public void InitialDaySetup() 
     {
-        currentTime = 0;
-        timeSpeed = 60;
-        dayCount = 1;
-        hourCount = 6;
-        minuteCount = 0;
+        initialHour = 8;         
         cycle = DiurnalCycle.Day;
         isDay = true;
+        setDayImg();
     }
 
     public void CycleChange() 
     {
-        if(hourCount >= 6 && hourCount < 18 && !isDay) 
+        if(GetHour() >= 6 && GetHour() < 18 && !isDay) 
         {
+            //Debug.Log(GetHour());
             isDay = true;
-            cycle = DiurnalCycle.Day; 
+            cycle = DiurnalCycle.Day;
+            setDayImg();
+            enemyManager.DestroyNightEnemies();
         }
-        else if(hourCount >= 18 && hourCount < 6 && isDay) 
+        else if(GetHour() >= 18 && isDay) 
         {
+            Debug.Log("Is Night"); 
             isDay = false;
             cycle = DiurnalCycle.Night; 
+            setNightImg();
         }
+    }
+
+    public float GetHour() 
+    {
+        return currentTime * 24 / dayDuration;
+    }
+
+    public float GetMinutes() 
+    {
+        return (currentTime * 24 * 60 / dayDuration) % 60; 
+    }
+
+    public string GetTimeString() 
+    {
+        return Mathf.FloorToInt(GetHour()).ToString("00") + " : " + Mathf.FloorToInt(GetMinutes()).ToString("00"); 
+    }
+
+
+    public void DisableImages() 
+    {
+        dayImg.gameObject.SetActive(false);
+        nightImg.gameObject.SetActive(false);
+    }
+
+    public void setDayImg() 
+    {
+        DisableImages();
+        dayImg.gameObject.SetActive(true);
+    }
+
+    public void setNightImg() 
+    {
+        DisableImages();
+        nightImg.gameObject.SetActive(true);
     }
 }

@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 2828626037115954620}
   - component: {fileID: 3140251166688963363}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: NightEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -258,7 +258,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.0852927, g: 1, b: 0.015723169, a: 1}
+  m_Color: {r: 0.18074857, g: 0.0052608266, b: 0.23899364, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
   enemyManager: {fileID: 0}
   enemyState: 0
   enemyAnimator: {fileID: 0}
-  enemyType: 0
+  enemyType: 1
   invincibility: 0
   agressiveStateCooldown: 4
   stateCount: 0
