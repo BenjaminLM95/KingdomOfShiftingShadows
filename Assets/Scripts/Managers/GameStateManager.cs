@@ -11,6 +11,7 @@ public class GameStateManager : MonoBehaviour
         Gameplay_State,
         Paused,
         Upgrade,
+        Settings,
         None
     }
     // Property to store the current game state, accessible publicly but modifiable only within this class

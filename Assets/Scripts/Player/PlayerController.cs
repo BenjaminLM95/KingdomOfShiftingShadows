@@ -31,7 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canSprint = true;
     [SerializeField] private bool canAttack = true;
 
-    public int numKill = 0; 
+    public int numKill = 0;
+    public int currency = 0; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -77,10 +78,6 @@ public class PlayerController : MonoBehaviour
         canAttack = true;
         playerState = PlayerState.Walk; 
     }
-
-    public void getOneKill() 
-    {
-        numKill++; 
-    }
+        
 
 }
