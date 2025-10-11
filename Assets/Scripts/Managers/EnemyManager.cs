@@ -60,7 +60,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         GameObject newEnemy = Instantiate(currentEnemyType, GetRandomSpawnPosition(), Quaternion.identity);
-        enemyList.Add(newEnemy.GetComponent<Enemy>());
+        enemyList.Add(newEnemy.GetComponent<Enemy>());     
         enemyDeployed++; 
         timer = Time.time + timeSpawn;        
 

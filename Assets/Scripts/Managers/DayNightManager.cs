@@ -32,12 +32,16 @@ public class DayNightManager : MonoBehaviour
     public GameObject nightImg; 
 
     private EnemyManager enemyManager;
-    
+
+    [Header("References")]
+    [SerializeField] private LevelManager levelManager; 
+
 
 
     private void Awake()
     {
         enemyManager = FindFirstObjectByType<EnemyManager>();
+        levelManager = FindFirstObjectByType<LevelManager>();
         InitialDaySetup();
         currentHour = (int)GetHour(); 
     }
@@ -66,7 +70,19 @@ public class DayNightManager : MonoBehaviour
         }
 
         if (previousHour != 23 && currentHour != 0 && nextDay)
-            nextDay = false; 
+            nextDay = false;
+
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            if(levelManager.gameStateManager.currentGameState == GameStateManager.GameState.Gameplay_State) 
+            {
+                levelManager.ChangeToPause(); 
+            }
+            else if(levelManager.gameStateManager.currentGameState == GameStateManager.GameState.Paused) 
+            {
+                levelManager.ResumeGamePlay(); 
+            }
+        }
 
 
 

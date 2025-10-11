@@ -73,6 +73,11 @@ public class GameStateManager : MonoBehaviour
                 Debug.Log("Switch to Upgrade State");
                 uiManager.EnableUpgradeUI();
                 Time.timeScale = 0f;
+                break;
+            case GameState.Settings:
+                Debug.Log("Switch to Settings State");
+                uiManager.EnableSettingsUI();
+                Time.timeScale = 0f;
                 break; 
 
         }

@@ -21,7 +21,13 @@ public class Enemy : MonoBehaviour
     public HealthSystem healthSystem = new HealthSystem();
 
     [Header("Base Stats")]
-    [SerializeField] private int baseHP;
+    [SerializeField] private int baseMaxHP;    
+    [SerializeField] private int baseAtk;
+    [SerializeField] private float baseSpeed; 
+
+
+    [Header("Current Stats")]
+    [SerializeField] private int maxHP;
     [SerializeField] private int hp;
     [SerializeField] private int atk;
     [SerializeField] private float speed = 0;
@@ -34,11 +40,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] PlayerController playerController;
     [SerializeField] GameObject kingdomsGate;
     public TextMeshPro hpText;
-    [SerializeField] EnemyManager enemyManager; 
+    [SerializeField] DayNightManager dayNightManager;
 
 
     [Header("Behavior")]
-    [SerializeField] EnemyState enemyState;
+    public EnemyState enemyState { get; private set; }
     [SerializeField] private Animator enemyAnimator; 
     public EnemyType enemyType;
 
@@ -56,7 +62,19 @@ public class Enemy : MonoBehaviour
         playerController = FindFirstObjectByType<PlayerController>();
         kingdomsGate = GameObject.Find("KingdomGate");
         enemyAnimator = GetComponent<Animator>();
-        enemyManager = GetComponent<EnemyManager>(); 
+        dayNightManager = FindFirstObjectByType<DayNightManager>();
+
+        int nDay = dayNightManager.dayCount;
+
+        if (enemyType == EnemyType.DayEnemy)
+        {
+            SetBaseStats(4 + nDay * 2, 2 + nDay, 1.5f + (nDay / 4), 10 * nDay);
+        }
+        else if (enemyType == EnemyType.NightEnemy)
+        {
+            SetBaseStats(2 + (nDay * 2 - 1), 2 + nDay, 0.8f + (nDay / 8), 0);
+        }
+
     }
 
 
@@ -67,6 +85,7 @@ public class Enemy : MonoBehaviour
         enemyState = EnemyState.Running;   //The enemy start running to the kingdom gates direction
         velocity = new Vector2(-1, 0);
                 
+
         SetStats();
 
         UpdateHPText(); 
@@ -100,25 +119,25 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void SetBaseStats(int bMaxHp, int bAtk, float bSpeed, int bMoneyValue) 
+    {
+        baseMaxHP = bMaxHp;      
+        baseAtk = bAtk;
+        baseSpeed = bSpeed;
+        moneyValue = bMoneyValue; 
+
+    }
+
+
     public void SetStats() 
     {
-        if(enemyType == EnemyType.DayEnemy) 
-        {
-            baseHP = 4;
-            atk = 2;
-            speed = 1.5f;
-            moneyValue = 10;
-        }
-        else if(enemyType == EnemyType.NightEnemy) 
-        {
-            baseHP = 3;
-            atk = 2;
-            speed = 0.85f;
-            moneyValue = 0;
-        }
+        maxHP = baseMaxHP;
+        hp = maxHP;
+        atk = baseAtk;
+        speed = baseSpeed;        
 
 
-            healthSystem.setMaxHP(baseHP);
+        healthSystem.setMaxHP(maxHP);
         hp = healthSystem.maxHealth; 
         healthSystem.health = healthSystem.maxHealth; 
         healthSystem.setAttack(atk); 

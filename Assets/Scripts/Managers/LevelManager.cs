@@ -11,7 +11,9 @@ public class LevelManager : MonoBehaviour
         MainMenu,
         TitleScreen,
         TestScene,
-        UpgradeScene
+        UpgradeScene,
+        Settings
+           
     }
 
     private SceneNames _sceneName;  // Don't think I will need it
@@ -54,6 +56,13 @@ public class LevelManager : MonoBehaviour
         ChangeScene(SceneNames.UpgradeScene); 
         gameStateManager.ChangeState(GameStateManager.GameState.Upgrade); 
     }
+
+    public void GoToSettings() 
+    {
+        ChangeScene(SceneNames.Settings);
+        gameStateManager.ChangeState(GameStateManager.GameState.Settings); 
+    }
+        
 
 
     public void ChangeScene(SceneNames nameScene) 

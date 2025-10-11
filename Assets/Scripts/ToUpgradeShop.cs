@@ -11,7 +11,10 @@ public class ToUpgradeShop : MonoBehaviour
         levelManager = FindFirstObjectByType<LevelManager>();
     }
 
-    
+    public void goToMainMenu() 
+    {
+        levelManager.ChangeToMainMenu(); 
+    }
 
     public void goToUpgradeShop() 
     {
