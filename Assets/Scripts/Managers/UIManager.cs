@@ -7,7 +7,8 @@ public class UIManager : MonoBehaviour
     public GameObject gameplayUI;
     public GameObject pauseUI;
     public GameObject upgradeUI;
-    public GameObject settingsUI; 
+    public GameObject settingsUI;
+    public GameObject introductionUI;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     public void EnableTitleScreenUI() 
@@ -46,6 +47,12 @@ public class UIManager : MonoBehaviour
         settingsUI.gameObject.SetActive(true); 
     }
 
+    public void EnableIntroductionUI() 
+    {
+        DisableAllUI();
+        introductionUI.gameObject.SetActive(true);
+    }
+
 
     public void DisableAllUI() 
     {
@@ -55,5 +62,6 @@ public class UIManager : MonoBehaviour
         pauseUI.gameObject.SetActive(false);
         upgradeUI.gameObject.SetActive(false);
         settingsUI.gameObject.SetActive(false); 
+        introductionUI.gameObject.SetActive(false);
     }
 }

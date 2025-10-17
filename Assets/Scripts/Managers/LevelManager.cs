@@ -12,14 +12,20 @@ public class LevelManager : MonoBehaviour
         TitleScreen,
         TestScene,
         UpgradeScene,
-        Settings
-           
+        Settings,
+        Introduction
+
+
     }
 
     private SceneNames _sceneName;  // Don't think I will need it
 
+    [Header("Reference")]
+    [SerializeField] private MusicManager _musicManager;
+
     private void Start()
     {
+        _musicManager = FindFirstObjectByType<MusicManager>();
         ChangeToTitleScreen(); 
     }
 
@@ -33,12 +39,14 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneNames.MainMenu.ToString());
         gameStateManager.ChangeState(GameStateManager.GameState.Menu_State);
+        _musicManager.PlayMusic(true, "mainmenu"); 
     }
 
     public void ChangeToGameplay() 
     {
         SceneManager.LoadScene(SceneNames.TestScene.ToString());
-        gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State); 
+        gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State);
+        _musicManager.PlayMusic(true, "Gameplay");
     }
 
     public void ResumeGamePlay() 
@@ -54,13 +62,21 @@ public class LevelManager : MonoBehaviour
     public void ChangeToUpgrade() 
     {
         ChangeScene(SceneNames.UpgradeScene); 
-        gameStateManager.ChangeState(GameStateManager.GameState.Upgrade); 
+        gameStateManager.ChangeState(GameStateManager.GameState.Upgrade);
+       
     }
 
     public void GoToSettings() 
     {
         ChangeScene(SceneNames.Settings);
         gameStateManager.ChangeState(GameStateManager.GameState.Settings); 
+    }
+
+    public void GoToIntroduction() 
+    {
+        ChangeScene(SceneNames.Introduction);
+        gameStateManager.ChangeState(GameStateManager.GameState.Introduction);
+        
     }
         
 

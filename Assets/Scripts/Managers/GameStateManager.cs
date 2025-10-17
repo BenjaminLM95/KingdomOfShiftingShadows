@@ -12,6 +12,7 @@ public class GameStateManager : MonoBehaviour
         Paused,
         Upgrade,
         Settings,
+        Introduction,
         None
     }
     // Property to store the current game state, accessible publicly but modifiable only within this class
@@ -77,6 +78,11 @@ public class GameStateManager : MonoBehaviour
             case GameState.Settings:
                 Debug.Log("Switch to Settings State");
                 uiManager.EnableSettingsUI();
+                Time.timeScale = 0f;
+                break;
+            case GameState.Introduction:
+                Debug.Log("Switch to Introduction");
+                uiManager.EnableIntroductionUI();
                 Time.timeScale = 0f;
                 break; 
 
