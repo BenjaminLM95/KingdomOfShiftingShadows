@@ -13,7 +13,8 @@ public class Upgrades
 {
     public List<Upgrade> swordUpgrades = new List<Upgrade>();
     public List<Upgrade> healthUpgrades = new List<Upgrade>();
-    public List<Upgrade> speedUpgrades = new List<Upgrade>();   
+    public List<Upgrade> speedUpgrades = new List<Upgrade>();
+        
 
 
     // Upgrades for swords

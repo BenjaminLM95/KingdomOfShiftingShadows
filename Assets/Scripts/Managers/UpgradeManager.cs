@@ -3,47 +3,49 @@ using UnityEngine;
 public class UpgradeManager : MonoBehaviour
 {
     public Upgrades gameUpgrades;
-    public PlayerController playerController;
+    
 
-    public Upgrade currentSwordUpgrade;
-    public Upgrade currentHealthUpgrade;
-    public Upgrade currentSpeedUpgrade; 
+    public Upgrade nextSwordUpgrade;
+    public Upgrade nextHealthUpgrade;
+    public Upgrade nextSpeedUpgrade;
+
+    public Upgrade currentSwordUpgrade = null;
+    public Upgrade currentHealthUpgrade = null;
+    public Upgrade currentSpeedUpgrade = null;
+
+    public bool isSwordUpgrade;
+    public bool isHealthUpgrade;
+    public bool isSpeedUpgrade;
+
+    public int playerCurrency {  get; private set; }     
+
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         gameUpgrades = new Upgrades();
-        playerController = FindFirstObjectByType<PlayerController>();
+       
 
         SetAllUpgrades(); 
 
-        currentSwordUpgrade = gameUpgrades.swordUpgrades[0]; 
-        currentHealthUpgrade = gameUpgrades.healthUpgrades[0];
-        currentSpeedUpgrade = gameUpgrades.speedUpgrades[0];
+        nextSwordUpgrade = gameUpgrades.swordUpgrades[0]; 
+        nextHealthUpgrade = gameUpgrades.healthUpgrades[0];
+        nextSpeedUpgrade = gameUpgrades.speedUpgrades[0];
 
-        Debug.Log(currentSwordUpgrade.description + " , " + currentSwordUpgrade.cost + " , " + currentSwordUpgrade.value);
-        Debug.Log(currentHealthUpgrade.description + " , " + currentHealthUpgrade.cost + " , " + currentHealthUpgrade.value);
-        Debug.Log(currentSpeedUpgrade.description + " , " + currentSpeedUpgrade.cost + " , " + currentSpeedUpgrade.value);
+        Debug.Log(nextSwordUpgrade.description + " , " + nextSwordUpgrade.cost + " , " + nextSwordUpgrade.value);
+        Debug.Log(nextHealthUpgrade.description + " , " + nextHealthUpgrade.cost + " , " + nextHealthUpgrade.value);
+        Debug.Log(nextSpeedUpgrade.description + " , " + nextSpeedUpgrade.cost + " , " + nextSpeedUpgrade.value);
+
+        isSwordUpgrade = false;
+        isHealthUpgrade = false;
+        isSpeedUpgrade = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B)) 
-        {
-            currentSwordUpgrade = ChangeTier(gameUpgrades, currentSwordUpgrade);
-            Debug.Log(currentSwordUpgrade.description + " , " + currentSwordUpgrade.cost + " , " + currentSwordUpgrade.value);
-        }
-        if (Input.GetKeyDown(KeyCode.N)) 
-        {
-            currentHealthUpgrade = ChangeTier(gameUpgrades, currentHealthUpgrade);
-            Debug.Log(currentHealthUpgrade.description + " , " + currentHealthUpgrade.cost + " , " + currentHealthUpgrade.value);
-        }
-        if (Input.GetKeyDown(KeyCode.M)) 
-        {
-            currentSpeedUpgrade =  ChangeTier(gameUpgrades, currentSpeedUpgrade);
-            Debug.Log(currentSpeedUpgrade.description + " , " + currentSpeedUpgrade.cost + " , " + currentSpeedUpgrade.value);
-        }
+        
 
     }
 
@@ -55,23 +57,25 @@ public class UpgradeManager : MonoBehaviour
 
     }
 
-    public Upgrade ChangeTier(Upgrades listUpgrades, Upgrade currentUpgrade) 
+    public Upgrade ChangeTier(Upgrades listUpgrades, Upgrade nextUpgrade) 
     {
-        int currentTier = currentUpgrade.tier;
+        int currentTier = nextUpgrade.tier;
 
-        switch (currentUpgrade.type) 
+        switch (nextUpgrade.type) 
         {
             case typeUpgrade.Sword:
                 if (currentTier < listUpgrades.swordUpgrades.Count) 
                 {
-                    currentUpgrade = listUpgrades.swordUpgrades[currentTier++];                    
+                    currentSwordUpgrade = listUpgrades.swordUpgrades[currentTier];
+                    nextUpgrade = listUpgrades.swordUpgrades[currentTier++];                    
                 }
                 
                 break; 
             case typeUpgrade.Health:
                 if (currentTier < listUpgrades.healthUpgrades.Count)
                 {
-                    currentUpgrade = listUpgrades.healthUpgrades[currentTier++];
+                    currentHealthUpgrade = listUpgrades.healthUpgrades[currentTier];
+                    nextUpgrade = listUpgrades.healthUpgrades[currentTier++];
                 }
                 
                 break; 
@@ -79,7 +83,8 @@ public class UpgradeManager : MonoBehaviour
                 {
                     if (currentTier < listUpgrades.speedUpgrades.Count)
                     {
-                        currentUpgrade = listUpgrades.speedUpgrades[currentTier++];
+                        currentSpeedUpgrade = listUpgrades.speedUpgrades[currentTier];
+                        nextUpgrade = listUpgrades.speedUpgrades[currentTier++];
                     }
                 }
                 
@@ -87,27 +92,63 @@ public class UpgradeManager : MonoBehaviour
 
         }
 
-        return currentUpgrade; 
+        return nextUpgrade; 
     }
+
+        
 
     public void GetSwordUpgrade() 
     {
-        currentSwordUpgrade = ChangeTier(gameUpgrades, currentSwordUpgrade);
-        Debug.Log(currentSwordUpgrade.description + " , " + currentSwordUpgrade.cost + " , " + currentSwordUpgrade.value);
+        if (playerCurrency >= nextSwordUpgrade.cost)
+        {
+            playerCurrency -= nextSwordUpgrade.cost;
+
+            if (!isSwordUpgrade)
+                isSwordUpgrade = true;
+
+
+
+            nextSwordUpgrade = ChangeTier(gameUpgrades, nextSwordUpgrade);
+            Debug.Log(nextSwordUpgrade.description + " , " + nextSwordUpgrade.cost + " , " + nextSwordUpgrade.value);
+        }
     }
 
     public void GetHealthUpgrade() 
     {
-        currentHealthUpgrade = ChangeTier(gameUpgrades, currentHealthUpgrade);
-        Debug.Log(currentHealthUpgrade.description + " , " + currentHealthUpgrade.cost + " , " + currentHealthUpgrade.value);
+        if (playerCurrency >= nextHealthUpgrade.cost)
+        {
+            playerCurrency -= nextHealthUpgrade.cost;
+
+            if (!isHealthUpgrade)
+                isHealthUpgrade = true;
+
+
+            nextHealthUpgrade = ChangeTier(gameUpgrades, nextHealthUpgrade);
+            Debug.Log(nextHealthUpgrade.description + " , " + nextHealthUpgrade.cost + " , " + nextHealthUpgrade.value);
+        }
     }
 
     public void GetSpeedUpgrade() 
     {
-        currentSpeedUpgrade = ChangeTier(gameUpgrades, currentSpeedUpgrade);
-        Debug.Log(currentSpeedUpgrade.description + " , " + currentSpeedUpgrade.cost + " , " + currentSpeedUpgrade.value);
+        if (playerCurrency >= nextSpeedUpgrade.cost)
+        {
+            playerCurrency -= nextSpeedUpgrade.cost;
+
+            if (!isSpeedUpgrade)
+                isSpeedUpgrade = true;
+
+
+            nextSpeedUpgrade = ChangeTier(gameUpgrades, nextSpeedUpgrade);
+            Debug.Log(nextSpeedUpgrade.description + " , " + nextSpeedUpgrade.cost + " , " + nextSpeedUpgrade.value);
+        }
+    }
+
+    public void UpdatePlayerCurrency(int num) 
+    {
+        playerCurrency = num;
     }
 
 
+       
 
 }

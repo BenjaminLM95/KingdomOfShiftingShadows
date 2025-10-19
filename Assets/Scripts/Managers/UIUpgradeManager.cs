@@ -21,6 +21,8 @@ public class UIUpgradeManager : MonoBehaviour
     public TextMeshProUGUI speedUpgradeCost;
     private int currentSpeedTier;
 
+    public TextMeshProUGUI currencyText; 
+
     [Header("Upgrade Manager Reference")]
     [SerializeField] private UpgradeManager upgradeManager;
 
@@ -36,13 +38,14 @@ public class UIUpgradeManager : MonoBehaviour
     private void Update()
     {        
         
-        if(currentSwordTier != upgradeManager.currentSwordUpgrade.tier || currentHealthTier != upgradeManager.currentHealthUpgrade.tier ||
-            currentSpeedTier != upgradeManager.currentSpeedUpgrade.tier) 
+        if(currentSwordTier != upgradeManager.nextSwordUpgrade.tier || currentHealthTier != upgradeManager.nextHealthUpgrade.tier ||
+            currentSpeedTier != upgradeManager.nextSpeedUpgrade.tier) 
         {
             UpdateUpgradeUI();
             SettingTiers(); 
         }
 
+        currencyText.text = upgradeManager.playerCurrency.ToString(); 
 
     }
 
@@ -50,12 +53,12 @@ public class UIUpgradeManager : MonoBehaviour
     {
         // For sword Upgrade
 
-        swordUpgradeName.text = upgradeManager.currentSwordUpgrade.name;
-        swordUpgradeDescription.text = upgradeManager.currentSwordUpgrade.description;
+        swordUpgradeName.text = upgradeManager.nextSwordUpgrade.name;
+        swordUpgradeDescription.text = upgradeManager.nextSwordUpgrade.description;
 
-        if (upgradeManager.currentSwordUpgrade.tier < 5)
+        if (upgradeManager.nextSwordUpgrade.tier < 5)
         {
-            swordUpgradeCost.text = "Cost: " + (upgradeManager.currentSwordUpgrade.cost).ToString();
+            swordUpgradeCost.text = "Cost: " + (upgradeManager.nextSwordUpgrade.cost).ToString();
         }
         else
             swordUpgradeCost.text = " - "; 
@@ -64,24 +67,24 @@ public class UIUpgradeManager : MonoBehaviour
 
             // For health upgrade
 
-        healthUpgradeName.text = upgradeManager.currentHealthUpgrade.name;
-        healthUpgradeDescription.text = upgradeManager.currentHealthUpgrade.description;
+        healthUpgradeName.text = upgradeManager.nextHealthUpgrade.name;
+        healthUpgradeDescription.text = upgradeManager.nextHealthUpgrade.description;
 
-        if (upgradeManager.currentHealthUpgrade.tier < 5)
+        if (upgradeManager.nextHealthUpgrade.tier < 5)
         {
-            healthUpgradeCost.text = "Cost: " + (upgradeManager.currentHealthUpgrade.cost).ToString();
+            healthUpgradeCost.text = "Cost: " + (upgradeManager.nextHealthUpgrade.cost).ToString();
         }
         else
             healthUpgradeCost.text = " - ";
 
             // For speed upgrade
 
-        speedUpgradeName.text = upgradeManager.currentSpeedUpgrade.name;
-        speedUpgradeDescription.text = upgradeManager.currentSpeedUpgrade.description;
+        speedUpgradeName.text = upgradeManager.nextSpeedUpgrade.name;
+        speedUpgradeDescription.text = upgradeManager.nextSpeedUpgrade.description;
 
-        if (upgradeManager.currentSpeedUpgrade.tier < 5)
+        if (upgradeManager.nextSpeedUpgrade.tier < 5)
         {
-            speedUpgradeCost.text = "Cost: " + (upgradeManager.currentSpeedUpgrade).cost.ToString();
+            speedUpgradeCost.text = "Cost: " + (upgradeManager.nextSpeedUpgrade).cost.ToString();
         }
         else
             speedUpgradeCost.text = " - ";
@@ -90,9 +93,9 @@ public class UIUpgradeManager : MonoBehaviour
 
     public void SettingTiers() 
     {
-        currentSwordTier = upgradeManager.currentSwordUpgrade.tier;
-        currentHealthTier = upgradeManager.currentHealthUpgrade.tier;
-        currentSpeedTier = upgradeManager.currentSpeedUpgrade.tier;
+        currentSwordTier = upgradeManager.nextSwordUpgrade.tier;
+        currentHealthTier = upgradeManager.nextHealthUpgrade.tier;
+        currentSpeedTier = upgradeManager.nextSpeedUpgrade.tier;
     }
 
 

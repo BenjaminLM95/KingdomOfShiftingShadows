@@ -255,6 +255,7 @@ public class Enemy : MonoBehaviour
             case EnemyType.DayEnemy:
                 playerController.numKill++;
                 playerController.currency += moneyValue;
+                playerController.UpdateOnUpgradeManager(playerController.currency); 
                 isDefeat = true; 
                 this.gameObject.SetActive(false);
                 break; 

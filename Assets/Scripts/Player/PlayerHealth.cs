@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int playerHealth;
     [SerializeField] private bool invincibility = false;
     [SerializeField] private float vulnerabilityCooldown = 1.5f; 
-    public TextMeshPro healthText;
+    public TextMeshProUGUI healthText;
 
 
 
@@ -22,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
         playerHealth = 15;
         SettingHealth();
         healthText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth; 
+
     }
 
     // Update is called once per frame
