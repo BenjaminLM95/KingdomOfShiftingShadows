@@ -5,9 +5,9 @@ public class UpgradeManager : MonoBehaviour
     public Upgrades gameUpgrades;
     public PlayerController playerController;
 
-    [SerializeField] private Upgrade currentSwordUpgrade;
-    [SerializeField] private Upgrade currentHealthUpgrade;
-    [SerializeField] private Upgrade currentSpeedUpgrade; 
+    public Upgrade currentSwordUpgrade;
+    public Upgrade currentHealthUpgrade;
+    public Upgrade currentSpeedUpgrade; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -89,5 +89,25 @@ public class UpgradeManager : MonoBehaviour
 
         return currentUpgrade; 
     }
+
+    public void GetSwordUpgrade() 
+    {
+        currentSwordUpgrade = ChangeTier(gameUpgrades, currentSwordUpgrade);
+        Debug.Log(currentSwordUpgrade.description + " , " + currentSwordUpgrade.cost + " , " + currentSwordUpgrade.value);
+    }
+
+    public void GetHealthUpgrade() 
+    {
+        currentHealthUpgrade = ChangeTier(gameUpgrades, currentHealthUpgrade);
+        Debug.Log(currentHealthUpgrade.description + " , " + currentHealthUpgrade.cost + " , " + currentHealthUpgrade.value);
+    }
+
+    public void GetSpeedUpgrade() 
+    {
+        currentSpeedUpgrade = ChangeTier(gameUpgrades, currentSpeedUpgrade);
+        Debug.Log(currentSpeedUpgrade.description + " , " + currentSpeedUpgrade.cost + " , " + currentSpeedUpgrade.value);
+    }
+
+
 
 }
