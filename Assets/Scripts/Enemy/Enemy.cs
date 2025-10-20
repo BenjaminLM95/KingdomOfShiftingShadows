@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject kingdomsGate;
     public TextMeshPro hpText;
     [SerializeField] DayNightManager dayNightManager;
+    public Rigidbody2D rb2; 
 
 
     [Header("Behavior")]
@@ -53,7 +54,8 @@ public class Enemy : MonoBehaviour
     public float agressiveStateCooldown = 4f;
     public float stateCount = 0f;
     public int moneyValue = 0;
-    public bool isDefeat = false; 
+    public bool isDefeat = false;
+    public bool isHit = false; 
   
 
 
@@ -63,6 +65,7 @@ public class Enemy : MonoBehaviour
         kingdomsGate = GameObject.Find("KingdomGate");
         enemyAnimator = GetComponent<Animator>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
+        rb2 = GetComponent<Rigidbody2D>(); 
 
         int nDay = dayNightManager.dayCount;
 
@@ -150,12 +153,15 @@ public class Enemy : MonoBehaviour
         //Debug.Log("Collision");
         if (collision.gameObject.CompareTag("Sword") && !invincibility) 
         {
+            isHit = true;
             //Debug.Log("Collision with sword");
             healthSystem.TakeDamage(playerController.swordPower);
             Debug.Log(healthSystem.health);
             invincibility = true;
             enemyAnimator.SetBool("isDamaged", true);
-            SetAgressiveMode();           
+            rb2.linearVelocity = Vector2.zero;
+            rb2.AddForceX(1f, ForceMode2D.Impulse);
+            SetAgressiveMode();
             Invoke("vulnerability", 1f);
         }
 
@@ -171,11 +177,14 @@ public class Enemy : MonoBehaviour
     {
         invincibility = false;
         enemyAnimator.SetBool("isDamaged", false);
+        isHit = false;
     }
 
     private void EnemyMove() 
     {
-        transform.position += new Vector3(velocity.x, velocity.y, 0f) * speed * Time.deltaTime; 
+        if(!isHit)       
+            rb2.MovePosition(rb2.position + velocity * speed * Time.fixedDeltaTime);
+            //transform.position += new Vector3(velocity.x, velocity.y, 0f) * speed * Time.deltaTime; 
     }
 
     private void EnemyAction() 
