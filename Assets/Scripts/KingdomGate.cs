@@ -5,11 +5,11 @@ public class KingdomGate : MonoBehaviour
     public bool gameOver { get; private set; }
     public GameObject gameOverText;
     public GameObject gameWinText;
-    [SerializeField] private int dayMax; 
+    [SerializeField] private int dayMax;
 
 
     [Header("Reference")]
-    [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private PlayerController playerController;
     [SerializeField] private ResultInformation resultInfo;
     [SerializeField] private DayNightManager dayNightManager;
 
@@ -17,7 +17,7 @@ public class KingdomGate : MonoBehaviour
     private void Awake()
     {
         gameOver = false; 
-        playerHealth = FindFirstObjectByType<PlayerHealth>();        
+        playerController = FindFirstObjectByType<PlayerController>();        
         resultInfo = FindFirstObjectByType<ResultInformation>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         dayMax = 10; 
@@ -25,7 +25,7 @@ public class KingdomGate : MonoBehaviour
 
     private void Update()
     {
-        if(!gameOver && playerHealth.healthSystem.health <= 0) 
+        if(!gameOver && playerController.isDead) 
         {
             SetGameOver();
         }

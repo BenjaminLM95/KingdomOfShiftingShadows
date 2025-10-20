@@ -114,7 +114,7 @@ public class HealthSystem
             life = 0;
     }
 
-    private void resetStats()
+    public void resetStats()
     {
         health = maxHealth;
         shield -= maxShield;

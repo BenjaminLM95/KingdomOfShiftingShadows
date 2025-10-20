@@ -39,7 +39,7 @@ public class MenuTransition : MonoBehaviour
         }
 
         timerCount += Time.deltaTime;
-        Debug.Log(timerCount + " , " + Time.deltaTime);
+        
     }
 
     void SetDayMenuImage() 

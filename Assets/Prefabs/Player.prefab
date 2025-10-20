@@ -189,6 +189,8 @@ MonoBehaviour:
   sprintSpeed: 5
   sword: {fileID: 6757053921615204007}
   isAttacking: 0
+  baseSwordPower: 3
+  upgradeSwordPower: 0
   swordPower: 3
   playerAnimator: {fileID: 0}
   canMove: 1
@@ -196,6 +198,9 @@ MonoBehaviour:
   canAttack: 1
   numKill: 0
   currency: 0
+  isDead: 0
+  upgradeManager: {fileID: 0}
+  playerHealth: {fileID: 4576890133481530474}
 --- !u!114 &4576890133481530474
 MonoBehaviour:
   m_ObjectHideFlags: 0

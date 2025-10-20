@@ -2911,6 +2911,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6149845486616369812, guid: c986269dd60704549b334c86b649d1f8, type: 3}
   m_PrefabInstance: {fileID: 923641066}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &923641072 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4576890133481530474, guid: c986269dd60704549b334c86b649d1f8, type: 3}
+  m_PrefabInstance: {fileID: 923641066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb170b1458401045bd63741cf330196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &923641073 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8776361553925642626, guid: c986269dd60704549b334c86b649d1f8, type: 3}
+  m_PrefabInstance: {fileID: 923641066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2738862d4bd8718409383e87f5381b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &953652901
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,6 +5314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameStateManager: {fileID: 1277368567}
+  playerHealth: {fileID: 923641072}
+  playerController: {fileID: 923641073}
   _musicManager: {fileID: 0}
 --- !u!1 &1637075210
 GameObject:

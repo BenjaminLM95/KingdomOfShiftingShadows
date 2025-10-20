@@ -1,10 +1,12 @@
+using UnityEditor;
 using UnityEngine;
 
 public enum PlayerState 
 {
     Walk,
     Attack,
-    Idle
+    Idle,
+    Death
 
 }
 
@@ -17,7 +19,8 @@ public class PlayerController : MonoBehaviour
     private float vertical;
     [SerializeField] private float speedMov = 3f;
     [SerializeField] private float sprintSpeed = 5;
-    private Vector3 initialPos = new Vector3(-6f, -0.5f); 
+    private Vector3 initialPos = new Vector3(-6f, -0.5f);
+    
 
     private Rigidbody2D body;
 
@@ -37,10 +40,13 @@ public class PlayerController : MonoBehaviour
 
     public int numKill = 0;
     public int currency = 0;
+    public bool isDead = false; 
    
 
     [Header("References")]
-    [SerializeField] private UpgradeManager upgradeManager; 
+    [SerializeField] private UpgradeManager upgradeManager;
+    public PlayerHealth playerHealth; 
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -53,6 +59,8 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         UpdatingSwordMight();
         
+       
+
     }
 
     // Update is called once per frame
@@ -75,12 +83,54 @@ public class PlayerController : MonoBehaviour
                 UpdatingSwordMight(); 
             }
         }
+
+        if(playerHealth.healthSystem.health <= 0)
+        {
+            playerState = PlayerState.Death;
+            sword.gameObject.SetActive(false);
+            canAttack = true;
+            playerAnimator.SetBool("isAttacking", false);
+            isDead = true; 
+
+        }
     }
 
     private void FixedUpdate()
     {
+        
+
+
         if (canMove)
         body.linearVelocity = new Vector2(horizontal * speedMov, vertical * speedMov); 
+
+        if(body.linearVelocity.magnitude > 0) 
+        {
+            if (playerState != PlayerState.Attack)
+            {
+                if (isAttacking)
+                    isAttacking = false; 
+
+                playerState = PlayerState.Walk;
+                playerAnimator.SetBool("isWalking", true);
+            }
+
+            if (body.linearVelocityX > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+                
+            }
+            else if(body.linearVelocityX < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+                
+            }
+            
+        }
+        else 
+        {
+            playerState = PlayerState.Idle;
+            playerAnimator.SetBool("isWalking", false);
+        }
     }
 
     public void Attack() 
@@ -121,5 +171,14 @@ public class PlayerController : MonoBehaviour
             currency = upgradeManager.playerCurrency;
         }
     }
+
+    public void SetStartingPosition() 
+    {
+        transform.position = initialPos;
+        transform.localScale = new Vector3(1, 1, 1);
+        isDead = false; 
+    }
+
+    
 
 }

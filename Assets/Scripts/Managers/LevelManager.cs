@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public GameStateManager gameStateManager;
+    public PlayerHealth playerHealth;
+    public PlayerController playerController; 
 
     public enum SceneNames 
     {
@@ -46,6 +48,8 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneNames.TestScene.ToString());
         gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State);
+        playerHealth.healthSystem.resetStats();
+        playerController.SetStartingPosition(); 
         _musicManager.PlayMusic(true, "Gameplay");
     }
 
