@@ -13,7 +13,9 @@ public class PlayerHealth : MonoBehaviour
 
 
     [Header("Reference")]
-    [SerializeField] private Enemy attackingEnemy = null; 
+    [SerializeField] private Enemy attackingEnemy = null;
+    [SerializeField] private UpgradeManager upgradeManager;
+    private int upgradeHealhValue; 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,8 +23,8 @@ public class PlayerHealth : MonoBehaviour
     {
         playerHealth = 15;
         SettingHealth();
-        healthText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth; 
-
+        healthText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
+        upgradeManager = FindFirstObjectByType<UpgradeManager>(); 
     }
 
     // Update is called once per frame
@@ -34,7 +36,17 @@ public class PlayerHealth : MonoBehaviour
             playerHealth = healthSystem.health;
         }
 
-        
+        if (upgradeManager.isHealthUpgrade && upgradeManager.currentHealthUpgrade != null)
+        {
+            if (upgradeHealhValue != upgradeManager.currentHealthUpgrade.value)
+            {
+                upgradeHealhValue = upgradeManager.currentHealthUpgrade.value;
+                Debug.Log(upgradeHealhValue);
+                UpdatingHealthUpgrade(); 
+            }
+        }
+
+
     }
 
     private void SettingHealth() 
@@ -62,6 +74,14 @@ public class PlayerHealth : MonoBehaviour
     private void vulnerability() 
     {
         invincibility = false; 
+    }
+
+
+    public void UpdatingHealthUpgrade() 
+    {
+        healthSystem.setMaxHP(15 + upgradeHealhValue);
+        healthSystem.health = healthSystem.maxHealth;
+        Debug.Log("Health upgraded  " + healthSystem.maxHealth); 
     }
 
 }

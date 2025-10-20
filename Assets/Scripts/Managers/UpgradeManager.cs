@@ -17,6 +17,8 @@ public class UpgradeManager : MonoBehaviour
     public bool isHealthUpgrade;
     public bool isSpeedUpgrade;
 
+    public int index = 0; 
+
     public int playerCurrency {  get; private set; }     
 
     
@@ -29,9 +31,9 @@ public class UpgradeManager : MonoBehaviour
 
         SetAllUpgrades(); 
 
-        nextSwordUpgrade = gameUpgrades.swordUpgrades[0]; 
-        nextHealthUpgrade = gameUpgrades.healthUpgrades[0];
-        nextSpeedUpgrade = gameUpgrades.speedUpgrades[0];
+        nextSwordUpgrade = gameUpgrades.swordUpgrades[index]; 
+        nextHealthUpgrade = gameUpgrades.healthUpgrades[index];
+        nextSpeedUpgrade = gameUpgrades.speedUpgrades[index];
 
         Debug.Log(nextSwordUpgrade.description + " , " + nextSwordUpgrade.cost + " , " + nextSwordUpgrade.value);
         Debug.Log(nextHealthUpgrade.description + " , " + nextHealthUpgrade.cost + " , " + nextHealthUpgrade.value);
@@ -57,34 +59,36 @@ public class UpgradeManager : MonoBehaviour
 
     }
 
-    public Upgrade ChangeTier(Upgrades listUpgrades, Upgrade nextUpgrade) 
-    {
-        int currentTier = nextUpgrade.tier;
+    public Upgrade ChangeTier(Upgrades listUpgrades, Upgrade _upgrade) 
+    {        
 
-        switch (nextUpgrade.type) 
+        switch (_upgrade.type) 
         {
             case typeUpgrade.Sword:
-                if (currentTier < listUpgrades.swordUpgrades.Count) 
-                {
-                    currentSwordUpgrade = listUpgrades.swordUpgrades[currentTier];
-                    nextUpgrade = listUpgrades.swordUpgrades[currentTier++];                    
+                if (index < listUpgrades.swordUpgrades.Count) 
+                {                    
+                    currentSwordUpgrade = listUpgrades.swordUpgrades[index];
+                    index++;
+                    _upgrade = listUpgrades.swordUpgrades[index];                    
                 }
                 
                 break; 
             case typeUpgrade.Health:
-                if (currentTier < listUpgrades.healthUpgrades.Count)
+                if (index < listUpgrades.healthUpgrades.Count)
                 {
-                    currentHealthUpgrade = listUpgrades.healthUpgrades[currentTier];
-                    nextUpgrade = listUpgrades.healthUpgrades[currentTier++];
+                    currentHealthUpgrade = listUpgrades.healthUpgrades[index];
+                    index++;
+                    _upgrade = listUpgrades.healthUpgrades[index];
                 }
                 
                 break; 
             case typeUpgrade.Speed: 
                 {
-                    if (currentTier < listUpgrades.speedUpgrades.Count)
+                    if (index < listUpgrades.speedUpgrades.Count)
                     {
-                        currentSpeedUpgrade = listUpgrades.speedUpgrades[currentTier];
-                        nextUpgrade = listUpgrades.speedUpgrades[currentTier++];
+                        currentSpeedUpgrade = listUpgrades.speedUpgrades[index];
+                        index++;
+                        _upgrade = listUpgrades.speedUpgrades[index];
                     }
                 }
                 
@@ -92,7 +96,7 @@ public class UpgradeManager : MonoBehaviour
 
         }
 
-        return nextUpgrade; 
+        return _upgrade; 
     }
 
         
@@ -123,7 +127,7 @@ public class UpgradeManager : MonoBehaviour
                 isHealthUpgrade = true;
 
 
-            nextHealthUpgrade = ChangeTier(gameUpgrades, nextHealthUpgrade);
+            nextHealthUpgrade = ChangeTier(gameUpgrades, nextHealthUpgrade);            
             Debug.Log(nextHealthUpgrade.description + " , " + nextHealthUpgrade.cost + " , " + nextHealthUpgrade.value);
         }
     }

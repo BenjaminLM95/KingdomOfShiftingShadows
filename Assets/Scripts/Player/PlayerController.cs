@@ -80,9 +80,13 @@ public class PlayerController : MonoBehaviour
             if(upgradeSwordPower != upgradeManager.currentSwordUpgrade.value) 
             {
                 upgradeSwordPower = upgradeManager.currentSwordUpgrade.value;
+                Debug.Log(upgradeSwordPower); 
                 UpdatingSwordMight(); 
             }
         }
+
+        
+
 
         if(playerHealth.healthSystem.health <= 0)
         {
