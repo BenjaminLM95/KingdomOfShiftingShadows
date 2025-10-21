@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6e4eaf1b3368b8e43b148068a5b3188e
+guid: aafe0c8cb71261240894f9b3f9f82b54
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -112,12 +112,12 @@ TextureImporter:
       name: PlayerWalkSpriteSheet_0
       rect:
         serializedVersion: 2
-        x: 100
-        y: 75
-        width: 143
-        height: 185
+        x: 59
+        y: 45
+        width: 88
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -134,12 +134,12 @@ TextureImporter:
       name: PlayerWalkSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 493
-        y: 73
-        width: 138
-        height: 187
+        x: 296
+        y: 43
+        width: 83
+        height: 114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -156,12 +156,12 @@ TextureImporter:
       name: PlayerWalkSpriteSheet_2
       rect:
         serializedVersion: 2
-        x: 900
-        y: 75
-        width: 143
-        height: 185
+        x: 539
+        y: 45
+        width: 88
+        height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -178,12 +178,12 @@ TextureImporter:
       name: PlayerWalkSpriteSheet_3
       rect:
         serializedVersion: 2
-        x: 1300
-        y: 74
-        width: 183
-        height: 188
+        x: 779
+        y: 44
+        width: 112
+        height: 114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: abd0b1ef6ede90f4fa32b5ed40c040cc
     internalID: 0
     vertices: []
     indices: 
