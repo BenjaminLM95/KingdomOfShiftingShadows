@@ -302,6 +302,7 @@ MonoBehaviour:
   stateCount: 0
   moneyValue: 0
   isDefeat: 0
+  isHit: 0
 --- !u!61 &7260923006866466129
 BoxCollider2D:
   m_ObjectHideFlags: 0

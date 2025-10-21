@@ -29,7 +29,7 @@ public class ResultInformation : MonoBehaviour
         resultText.text = "Enemies killed: " + playerController.numKill + "\n" +
             "Days: " + daynightManager.dayCount + "\n" +
             "Time: " + daynightManager.GetTimeString() + "\n" +
-            "Currency: " + playerController.currency; 
+            "Currency: " + playerController.upgradeManager.playerCurrency; 
     }
 
     public void CheckForNullReference() 

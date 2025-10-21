@@ -5,7 +5,9 @@ public class LevelManager : MonoBehaviour
 {
     public GameStateManager gameStateManager;
     public PlayerHealth playerHealth;
-    public PlayerController playerController; 
+    public PlayerController playerController;
+
+    public int playerCurrency; 
 
     public enum SceneNames 
     {
@@ -28,7 +30,8 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         _musicManager = FindFirstObjectByType<MusicManager>();
-        ChangeToTitleScreen(); 
+        ChangeToTitleScreen();
+        
     }
 
     public void ChangeToTitleScreen() 
@@ -56,6 +59,7 @@ public class LevelManager : MonoBehaviour
     public void ResumeGamePlay() 
     {
         gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State); 
+        
     }
 
     public void ChangeToPause() 

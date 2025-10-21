@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
 
         if (!alive) 
         {
-            gameObject.SetActive(false);
+            gameObject.SetActive(false);            
         }
                 
     }
@@ -154,6 +154,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Sword") && !invincibility) 
         {
             isHit = true;
+            rb2.bodyType = RigidbodyType2D.Dynamic; 
             //Debug.Log("Collision with sword");
             healthSystem.TakeDamage(playerController.swordPower);
             Debug.Log(healthSystem.health);
@@ -178,6 +179,7 @@ public class Enemy : MonoBehaviour
         invincibility = false;
         enemyAnimator.SetBool("isDamaged", false);
         isHit = false;
+        rb2.bodyType = RigidbodyType2D.Kinematic;
     }
 
     private void EnemyMove() 
@@ -200,7 +202,7 @@ public class Enemy : MonoBehaviour
                 SetRunningMode();
                 break;
             case EnemyState.Collapse:
-                invincibility = true;
+                invincibility = true;                
                 speed = 0f;
                 break; 
             default:
@@ -263,8 +265,7 @@ public class Enemy : MonoBehaviour
         {
             case EnemyType.DayEnemy:
                 playerController.numKill++;
-                playerController.currency += moneyValue;
-                playerController.UpdateOnUpgradeManager(playerController.currency); 
+                playerController.upgradeManager.ObtainingMoneyReward(moneyValue);                 
                 isDefeat = true; 
                 this.gameObject.SetActive(false);
                 break; 
@@ -272,7 +273,7 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Colapse"); 
                 enemyState = EnemyState.Collapse;
                 isDefeat = true;
-                Invoke("ReviveEnemy", 5f);
+                Invoke("ReviveEnemy", 5f);                
                 break;
             default:
                 this.gameObject.SetActive(false);

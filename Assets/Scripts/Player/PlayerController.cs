@@ -1,12 +1,14 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public enum PlayerState 
 {
     Walk,
     Attack,
     Idle,
-    Death
+    Death,
+    Still
 
 }
 
@@ -17,7 +19,9 @@ public class PlayerController : MonoBehaviour
     [Header("Player Movement Variables")]
     private float horizontal;
     private float vertical;
-    [SerializeField] private float speedMov = 3f;
+    [SerializeField] private float baseSpeedMove = 3f;
+    [SerializeField] private float speedMove = 0;
+    private float upgradeSpeedMove = 1; 
     [SerializeField] private float sprintSpeed = 5;
     private Vector3 initialPos = new Vector3(-6f, -0.5f);
     
@@ -38,13 +42,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canSprint = true;
     [SerializeField] private bool canAttack = true;
 
-    public int numKill = 0;
-    public int currency = 0;
-    public bool isDead = false; 
+    public int numKill = 0;    
+    public bool isDead = false;
+    public bool isStill = false;
+    public float stillCoolDown = 1f;
+    public float stillCount = 0;
    
 
     [Header("References")]
-    [SerializeField] private UpgradeManager upgradeManager;
+    public UpgradeManager upgradeManager;
     public PlayerHealth playerHealth; 
     
 
@@ -58,7 +64,7 @@ public class PlayerController : MonoBehaviour
         playerState = PlayerState.Walk;
         playerAnimator = GetComponent<Animator>();
         UpdatingSwordMight();
-        
+        UpdatingSpeed(); 
        
 
     }
@@ -85,7 +91,15 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        
+        if (upgradeManager.isSpeedUpgrade && upgradeManager.currentSpeedUpgrade != null) 
+        {
+            if(upgradeSpeedMove != upgradeManager.currentSpeedUpgrade.value) 
+            {
+                upgradeSpeedMove = upgradeManager.currentSpeedUpgrade.value;
+                Debug.Log(upgradeSpeedMove);
+                UpdatingSpeed(); 
+            }
+        }
 
 
         if(playerHealth.healthSystem.health <= 0)
@@ -97,6 +111,8 @@ public class PlayerController : MonoBehaviour
             isDead = true; 
 
         }
+
+        
     }
 
     private void FixedUpdate()
@@ -105,7 +121,7 @@ public class PlayerController : MonoBehaviour
 
 
         if (canMove)
-        body.linearVelocity = new Vector2(horizontal * speedMov, vertical * speedMov); 
+        body.linearVelocity = new Vector2(horizontal * speedMove, vertical * speedMove); 
 
         if(body.linearVelocity.magnitude > 0) 
         {
@@ -132,9 +148,31 @@ public class PlayerController : MonoBehaviour
         }
         else 
         {
-            playerState = PlayerState.Idle;
+            playerState = PlayerState.Still;
             playerAnimator.SetBool("isWalking", false);
         }
+
+        /*
+        if (playerState == PlayerState.Still)
+        {
+            isStill = true;
+        }
+
+        if (isStill) 
+        {
+            stillCount += Time.deltaTime;
+            if(stillCount > stillCoolDown) 
+            {
+                playerState = PlayerState.Idle; 
+            }
+            Debug.Log(stillCount); 
+        }
+        else 
+        {
+            stillCount = 0; 
+        }*/
+
+        
     }
 
     public void Attack() 
@@ -162,20 +200,12 @@ public class PlayerController : MonoBehaviour
     {
         swordPower = baseSwordPower + upgradeSwordPower;
     }
-        
-    public void UpdateOnUpgradeManager(int _num) 
-    {
-        upgradeManager.UpdatePlayerCurrency(_num); 
-    }
 
-    public void UpdateCurrency() 
+    public void UpdatingSpeed() 
     {
-        if(currency != upgradeManager.playerCurrency) 
-        {
-            currency = upgradeManager.playerCurrency;
-        }
-    }
-
+        speedMove = baseSpeedMove + upgradeSpeedMove; 
+    }       
+    
     public void SetStartingPosition() 
     {
         transform.position = initialPos;
