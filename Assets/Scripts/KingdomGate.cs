@@ -13,6 +13,7 @@ public class KingdomGate : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private ResultInformation resultInfo;
     [SerializeField] private DayNightManager dayNightManager;
+    [SerializeField] private MusicManager musicManager;
 
 
     private void Awake()
@@ -22,6 +23,7 @@ public class KingdomGate : MonoBehaviour
         playerController = FindFirstObjectByType<PlayerController>();        
         resultInfo = FindFirstObjectByType<ResultInformation>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
+        musicManager = FindFirstObjectByType<MusicManager>();
         dayMax = 5; 
     }
 
@@ -54,6 +56,7 @@ public class KingdomGate : MonoBehaviour
         Debug.Log("Game Over"); 
         gameOver = true;
         gameOverText.gameObject.SetActive(true);
+        musicManager.PlayMusic(true, "Result"); 
 
         if(resultInfo == null)
             resultInfo = FindFirstObjectByType<ResultInformation>();

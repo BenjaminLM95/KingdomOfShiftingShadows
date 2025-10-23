@@ -210,13 +210,15 @@ public class Enemy : MonoBehaviour
                 RunningThroughKingdomGates();                
                 break;
             case EnemyState.Agressive:
-                AttackingPlayer();
+                AttackingPlayer();                
                 stateCount += Time.deltaTime;               
                 SetRunningMode();
                 break;
             case EnemyState.Collapse:
                 invincibility = true;                
                 speed = 0f;
+                rb2.linearVelocity = Vector2.zero;
+                //rb2.linearVelocity = new Vector2(0,0); 
                 break; 
             default:
                 RunningThroughKingdomGates();

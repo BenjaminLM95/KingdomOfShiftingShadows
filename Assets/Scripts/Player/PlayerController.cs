@@ -52,13 +52,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("References")]
     public UpgradeManager upgradeManager;
-    public PlayerHealth playerHealth; 
+    public PlayerHealth playerHealth;
+    [SerializeField] private SoundsManager soundManager;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         upgradeManager = FindFirstObjectByType<UpgradeManager>();
+        soundManager = FindFirstObjectByType<SoundsManager>();
         transform.position = initialPos;    
         sword.gameObject.SetActive(false);
         body = GetComponent<Rigidbody2D>();
@@ -179,6 +181,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canAttack)
         {
+            soundManager.PlaySound("SlashSword");
             playerState = PlayerState.Attack;
             isAttacking = true;
             sword.gameObject.SetActive(true);
