@@ -278,9 +278,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerState: 0
-  speedMov: 3
+  baseSpeedMove: 3
+  speedMove: 0
   sprintSpeed: 5
   sword: {fileID: 6757053921615204007}
+  slashCollider: {fileID: 5705028957381102069}
   isAttacking: 0
   baseSwordPower: 3
   upgradeSwordPower: 0
@@ -290,8 +292,10 @@ MonoBehaviour:
   canSprint: 1
   canAttack: 1
   numKill: 0
-  currency: 0
   isDead: 0
+  isStill: 0
+  stillCoolDown: 1
+  stillCount: 0
   upgradeManager: {fileID: 0}
   playerHealth: {fileID: 4576890133481530474}
 --- !u!114 &4576890133481530474

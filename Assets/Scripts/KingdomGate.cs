@@ -3,6 +3,7 @@ using UnityEngine;
 public class KingdomGate : MonoBehaviour
 {
     public bool gameOver { get; private set; }
+    public bool gameWin { get; private set; }
     public GameObject gameOverText;
     public GameObject gameWinText;
     [SerializeField] private int dayMax;
@@ -17,20 +18,21 @@ public class KingdomGate : MonoBehaviour
     private void Awake()
     {
         gameOver = false; 
+        gameWin = false;
         playerController = FindFirstObjectByType<PlayerController>();        
         resultInfo = FindFirstObjectByType<ResultInformation>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
-        dayMax = 10; 
+        dayMax = 5; 
     }
 
     private void Update()
     {
-        if(!gameOver && playerController.isDead) 
+        if(!gameOver && playerController.isDead && !gameWin) 
         {
             SetGameOver();
         }
 
-        if(dayNightManager.dayCount >= dayMax) 
+        if(dayNightManager.dayCount >= dayMax && dayNightManager.GetHour() >= 6 && !gameOver && !gameWin) 
         {
             SetGameWin(); 
         }
@@ -62,6 +64,7 @@ public class KingdomGate : MonoBehaviour
 
     private void SetGameWin() 
     {
+        gameWin = true;
         Debug.Log("Game Win");
         gameWinText.gameObject.SetActive(true);
         Time.timeScale = 0f;

@@ -45,7 +45,7 @@ public class UIUpgradeManager : MonoBehaviour
             SettingTiers(); 
         }
 
-        currencyText.text = upgradeManager.playerCurrency.ToString(); 
+        currencyText.text = "Money: " + upgradeManager.playerCurrency.ToString(); 
 
     }
 

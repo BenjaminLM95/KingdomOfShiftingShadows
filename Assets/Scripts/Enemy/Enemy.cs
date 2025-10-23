@@ -32,8 +32,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private int atk;
     [SerializeField] private float speed = 0;
     [SerializeField] private Vector2 velocity;
-    public bool alive = true; 
+    public bool alive = true;
 
+    public bool isWalking = false; 
 
     [Header("Reference")]
     [SerializeField] GameObject _player; 
@@ -41,11 +42,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject kingdomsGate;
     public TextMeshPro hpText;
     [SerializeField] DayNightManager dayNightManager;
-    public Rigidbody2D rb2; 
+    public Rigidbody2D rb2;
 
 
     [Header("Behavior")]
-    public EnemyState enemyState { get; private set; }
+    public EnemyState enemyState;
     [SerializeField] private Animator enemyAnimator; 
     public EnemyType enemyType;
 
@@ -71,11 +72,11 @@ public class Enemy : MonoBehaviour
 
         if (enemyType == EnemyType.DayEnemy)
         {
-            SetBaseStats(4 + nDay * 2, 2 + nDay, 1.5f + (nDay / 4), 10 * nDay);
+            SetBaseStats(1 + nDay * 5, 2 + nDay, 1.5f + (nDay / 2), 10 * nDay);
         }
         else if (enemyType == EnemyType.NightEnemy)
         {
-            SetBaseStats(2 + (nDay * 2 - 1), 2 + nDay, 0.8f + (nDay / 8), 0);
+            SetBaseStats(nDay * 4 - 1 , 2 + nDay, 0.8f + (nDay / 4), 0);
         }
 
     }
@@ -101,9 +102,8 @@ public class Enemy : MonoBehaviour
 
         if (!alive) 
         {
-            gameObject.SetActive(false);            
+            this.gameObject.SetActive(false);
         }
-                
     }
 
     private void LateUpdate()
@@ -117,8 +117,19 @@ public class Enemy : MonoBehaviour
         }
 
         if (healthSystem.health <= 0 && !isDefeat)
-        {         
-            DeathBehavior();
+        {
+            if (enemyType == EnemyType.DayEnemy)
+            {
+                isDefeat = true;
+                enemyAnimator.SetBool("isFainted", true);
+                playerController.numKill++;
+                playerController.upgradeManager.ObtainingMoneyReward(moneyValue);
+                Invoke("DeathBehavior", 1f);
+            }
+            else 
+            {
+                DeathBehavior(); 
+            }
         }
     }
 
@@ -154,7 +165,8 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Sword") && !invincibility) 
         {
             isHit = true;
-            rb2.bodyType = RigidbodyType2D.Dynamic; 
+            rb2.bodyType = RigidbodyType2D.Dynamic;
+            enemyAnimator.SetBool("isWalking", false); 
             //Debug.Log("Collision with sword");
             healthSystem.TakeDamage(playerController.swordPower);
             Debug.Log(healthSystem.health);
@@ -179,6 +191,7 @@ public class Enemy : MonoBehaviour
         invincibility = false;
         enemyAnimator.SetBool("isDamaged", false);
         isHit = false;
+        isWalking = true;
         rb2.bodyType = RigidbodyType2D.Kinematic;
     }
 
@@ -237,6 +250,14 @@ public class Enemy : MonoBehaviour
 
     private void RunningThroughKingdomGates() 
     {
+        if (isWalking) 
+        {           
+            if (enemyType == EnemyType.DayEnemy)
+            {
+                enemyAnimator.SetBool("isWalking", true);
+            }
+        }            
+
         velocity = (kingdomsGate.transform.position - transform.position).normalized;
         EnemyMove(); 
     }
@@ -263,9 +284,7 @@ public class Enemy : MonoBehaviour
     {
         switch (enemyType) 
         {
-            case EnemyType.DayEnemy:
-                playerController.numKill++;
-                playerController.upgradeManager.ObtainingMoneyReward(moneyValue);                 
+            case EnemyType.DayEnemy:                                
                 isDefeat = true; 
                 this.gameObject.SetActive(false);
                 break; 

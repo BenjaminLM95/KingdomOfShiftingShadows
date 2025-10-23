@@ -29,7 +29,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D body;
 
     [Header("Attack movements")]
-    public GameObject sword; 
+    public GameObject sword;
+    public GameObject slashCollider; 
     public bool isAttacking = false;
     public int baseSwordPower = 3;
     public int upgradeSwordPower = 0;
@@ -104,8 +105,7 @@ public class PlayerController : MonoBehaviour
 
         if(playerHealth.healthSystem.health <= 0)
         {
-            playerState = PlayerState.Death;
-            sword.gameObject.SetActive(false);
+            playerState = PlayerState.Death;            
             canAttack = true;
             playerAnimator.SetBool("isAttacking", false);
             isDead = true; 
@@ -181,8 +181,9 @@ public class PlayerController : MonoBehaviour
         {
             playerState = PlayerState.Attack;
             isAttacking = true;
-            playerAnimator.SetBool("isAttacking", true); 
-            sword.gameObject.SetActive(true);           
+            sword.gameObject.SetActive(true);
+            slashCollider.gameObject.SetActive(true);
+            playerAnimator.SetBool("isAttacking", true);                       
             canAttack = false;
             Invoke("SaveSword", 0.4f);
         }
@@ -191,6 +192,7 @@ public class PlayerController : MonoBehaviour
     public void SaveSword() 
     {        
         sword.gameObject.SetActive(false);
+        slashCollider.gameObject.SetActive(false); 
         canAttack = true;
         playerAnimator.SetBool("isAttacking", false);
         playerState = PlayerState.Walk; 

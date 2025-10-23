@@ -13,8 +13,7 @@ public class LevelManager : MonoBehaviour
     {
         Gameplay,
         MainMenu,
-        TitleScreen,
-        TestScene,
+        TitleScreen,        
         UpgradeScene,
         Settings,
         Introduction
@@ -49,7 +48,7 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeToGameplay() 
     {
-        SceneManager.LoadScene(SceneNames.TestScene.ToString());
+        SceneManager.LoadScene(SceneNames.Gameplay.ToString());
         gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State);
         playerHealth.healthSystem.resetStats();
         playerController.SetStartingPosition(); 

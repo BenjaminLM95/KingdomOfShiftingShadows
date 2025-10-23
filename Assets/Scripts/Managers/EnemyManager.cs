@@ -103,10 +103,13 @@ public class EnemyManager : MonoBehaviour
 
     public void DestroyNightEnemies() 
     {
+        Debug.Log("Destroy Night Enemy"); 
+
         for(int i = 0; i < enemyList.Count; i++) 
         {
             if (enemyList[i].enemyType == EnemyType.NightEnemy) 
             {
+                Debug.Log("Destroy Enemy" + i); 
                 enemyList[i].alive = false;
                 
             }
