@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
+using static GameStateManager;
 
 public class KingdomGate : MonoBehaviour
 {
-    public bool gameOver { get; private set; }
-    public bool gameWin { get; private set; }
-    public GameObject gameOverText;
-    public GameObject gameWinText;
+    public bool gameOver;// { get; private set; }
+    public bool gameWin;// { get; private set; }
+    //public GameObject gameOverText;
+    //public GameObject gameWinText;
     [SerializeField] private int dayMax;
 
 
@@ -14,6 +16,7 @@ public class KingdomGate : MonoBehaviour
     [SerializeField] private ResultInformation resultInfo;
     [SerializeField] private DayNightManager dayNightManager;
     [SerializeField] private MusicManager musicManager;
+    [SerializeField] private GameStateManager gameStateManager;
 
 
     private void Awake()
@@ -24,7 +27,8 @@ public class KingdomGate : MonoBehaviour
         resultInfo = FindFirstObjectByType<ResultInformation>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         musicManager = FindFirstObjectByType<MusicManager>();
-        dayMax = 5; 
+        gameStateManager = FindFirstObjectByType<GameStateManager>();
+        dayMax = 6; 
     }
 
     private void Update()
@@ -55,7 +59,7 @@ public class KingdomGate : MonoBehaviour
     {
         Debug.Log("Game Over"); 
         gameOver = true;
-        gameOverText.gameObject.SetActive(true);
+        gameStateManager.ChangeState(GameState.Result); 
         musicManager.PlayMusic(true, "Result"); 
 
         if(resultInfo == null)
@@ -69,7 +73,8 @@ public class KingdomGate : MonoBehaviour
     {
         gameWin = true;
         Debug.Log("Game Win");
-        gameWinText.gameObject.SetActive(true);
+        musicManager.PlayMusic(true, "WinningScreen");
+        gameStateManager.ChangeState(GameState.WinScreen); 
         Time.timeScale = 0f;
     }
 

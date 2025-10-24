@@ -20,4 +20,9 @@ public class ToUpgradeShop : MonoBehaviour
     {
         levelManager.ChangeToUpgrade(); 
     }
+
+    public void ToCredits() 
+    {
+        levelManager.GoToCredits(); 
+    }
 }

@@ -13,6 +13,9 @@ public class GameStateManager : MonoBehaviour
         Upgrade,
         Settings,
         Introduction,
+        Credit,
+        Result,
+        WinScreen,
         None
     }
     // Property to store the current game state, accessible publicly but modifiable only within this class
@@ -83,6 +86,18 @@ public class GameStateManager : MonoBehaviour
             case GameState.Introduction:
                 Debug.Log("Switch to Introduction");
                 uiManager.EnableIntroductionUI();
+                Time.timeScale = 0f;
+                break;
+            case GameState.Credit:
+                uiManager.EnableCreditsUI();
+                Time.timeScale = 0f;
+                break;
+            case GameState.Result:
+                uiManager.EnableResultsUI();
+                Time.timeScale = 0f;
+                break;
+            case GameState.WinScreen:
+                uiManager.EnableGameWinUI();
                 Time.timeScale = 0f;
                 break; 
 

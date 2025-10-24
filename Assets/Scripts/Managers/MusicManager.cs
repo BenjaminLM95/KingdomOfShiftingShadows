@@ -10,6 +10,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip mainMenuClip; // The music clip for the main menu
     [SerializeField] private AudioClip gamePlayClip; // The music clip for the level
     [SerializeField] private AudioClip resultScreen; // The music when the player lose and has the result screen
+    [SerializeField] private AudioClip winningScreen; // The music when the player wins
     [SerializeField] private bool isPlaying = false; // Flag to check if music is playing
     public AudioMixer audioMixer; // Reference to the AudioMixer for volume control
 
@@ -28,6 +29,9 @@ public class MusicManager : MonoBehaviour
             case "Result":
                 audioSource.clip = resultScreen;
                 break;
+            case "WinningScreen":
+                audioSource.clip = winningScreen;
+                break; 
             default:
                 Debug.LogWarning("Invalid music clip name: " + clipName);
                 return;

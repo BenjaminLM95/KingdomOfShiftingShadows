@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("All the UIs objects")]
     public GameObject titleScreenUI;
     public GameObject menuUI;
     public GameObject gameplayUI;
@@ -9,6 +10,12 @@ public class UIManager : MonoBehaviour
     public GameObject upgradeUI;
     public GameObject settingsUI;
     public GameObject introductionUI;
+    public GameObject creditUI;
+    public GameObject resultUI;
+    public GameObject gameWinUI;
+
+    [Header("All other objects ")]
+    public GameObject player; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
     public void EnableTitleScreenUI() 
@@ -27,6 +34,7 @@ public class UIManager : MonoBehaviour
     {
         DisableAllUI();
         gameplayUI.gameObject.SetActive(true);
+        player.gameObject.SetActive(true);
     }
 
     public void EnablePauseUI() 
@@ -53,6 +61,24 @@ public class UIManager : MonoBehaviour
         introductionUI.gameObject.SetActive(true);
     }
 
+    public void EnableCreditsUI() 
+    {
+        DisableAllUI();
+        creditUI.gameObject.SetActive(true);
+    }
+
+    public void EnableResultsUI() 
+    {
+        DisableAllUI();
+        resultUI.gameObject.SetActive(true);
+    }
+
+    public void EnableGameWinUI() 
+    {
+        DisableAllUI();
+        gameWinUI.gameObject.SetActive(true);
+    }
+
 
     public void DisableAllUI() 
     {
@@ -63,5 +89,9 @@ public class UIManager : MonoBehaviour
         upgradeUI.gameObject.SetActive(false);
         settingsUI.gameObject.SetActive(false); 
         introductionUI.gameObject.SetActive(false);
+        creditUI.gameObject.SetActive(false);
+        resultUI.gameObject.SetActive(false);
+        gameWinUI.gameObject.SetActive(false);
+        player.gameObject.SetActive(false);
     }
 }

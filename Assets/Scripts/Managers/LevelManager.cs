@@ -16,8 +16,8 @@ public class LevelManager : MonoBehaviour
         TitleScreen,        
         UpgradeScene,
         Settings,
-        Introduction
-
+        Introduction,
+        Credits
 
     }
 
@@ -86,7 +86,11 @@ public class LevelManager : MonoBehaviour
         
     }
         
-
+    public void GoToCredits() 
+    {
+        ChangeScene(SceneNames.Credits);
+        gameStateManager.ChangeState(GameStateManager.GameState.Credit); 
+    }
 
     public void ChangeScene(SceneNames nameScene) 
     {

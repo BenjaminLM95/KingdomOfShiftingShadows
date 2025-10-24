@@ -23,6 +23,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject spawnPoint2;
     [SerializeField] private GameObject spawnPoint3;
     [SerializeField] private GameObject spawnPoint4;
+    [SerializeField] private SoundsManager soundManager;
     private DayNightManager dayNightManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,6 +34,7 @@ public class EnemyManager : MonoBehaviour
         spawnPoint3 = GameObject.Find("SpawnPointC");
         spawnPoint4 = GameObject.Find("SpawnPointD"); 
         dayNightManager = FindFirstObjectByType<DayNightManager>();
+        soundManager = FindFirstObjectByType<SoundsManager>();
     }
 
     // Update is called once per frame
@@ -103,15 +105,27 @@ public class EnemyManager : MonoBehaviour
 
     public void DestroyNightEnemies() 
     {
-        Debug.Log("Destroy Night Enemy"); 
+        int numZombies = 0;
 
-        for(int i = 0; i < enemyList.Count; i++) 
+        for (int i = 0; i < enemyList.Count; i++)
         {
-            if (enemyList[i].enemyType == EnemyType.NightEnemy) 
+            if (enemyList[i].enemyType == EnemyType.NightEnemy)
             {
-                Debug.Log("Destroy Enemy" + i); 
-                enemyList[i].alive = false;
-                
+                numZombies++;
+
+            }
+        }
+
+        if (numZombies > 0)
+        {
+            soundManager.PlaySound("ZombieScreams");
+            for (int i = 0; i < enemyList.Count; i++)
+            {
+                if (enemyList[i].enemyType == EnemyType.NightEnemy)
+                {
+                    enemyList[i].alive = false;
+
+                }
             }
         }
     }

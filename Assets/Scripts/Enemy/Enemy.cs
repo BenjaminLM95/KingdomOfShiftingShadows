@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Vector2 velocity;
     public bool alive = true;
 
-    public bool isWalking = false; 
+    public bool isWalking = true; 
 
     [Header("Reference")]
     [SerializeField] GameObject _player; 
@@ -56,8 +56,9 @@ public class Enemy : MonoBehaviour
     public float stateCount = 0f;
     public int moneyValue = 0;
     public bool isDefeat = false;
-    public bool isHit = false; 
-  
+    public bool isHit = false;
+    [SerializeField] private SoundsManager soundManager;
+
 
 
     private void Awake()
@@ -66,9 +67,11 @@ public class Enemy : MonoBehaviour
         kingdomsGate = GameObject.Find("KingdomGate");
         enemyAnimator = GetComponent<Animator>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
+        soundManager = FindFirstObjectByType<SoundsManager>();
         rb2 = GetComponent<Rigidbody2D>(); 
 
         int nDay = dayNightManager.dayCount;
+        isWalking = true; 
 
         if (enemyType == EnemyType.DayEnemy)
         {
@@ -92,7 +95,12 @@ public class Enemy : MonoBehaviour
 
         SetStats();
 
-        UpdateHPText(); 
+        UpdateHPText();
+
+        if (enemyType == EnemyType.DayEnemy) 
+        {
+            //soundManager.PlaySound("WitchLaugh"); 
+        }
     }
 
     // Update is called once per frame
@@ -102,7 +110,11 @@ public class Enemy : MonoBehaviour
 
         if (!alive) 
         {
-            this.gameObject.SetActive(false);
+            if (enemyType == EnemyType.NightEnemy)
+            {                
+                enemyAnimator.SetBool("isFaded", true);                 
+                Invoke("SetInactive", 3f); 
+            }
         }
     }
 
@@ -122,12 +134,14 @@ public class Enemy : MonoBehaviour
             {
                 isDefeat = true;
                 enemyAnimator.SetBool("isFainted", true);
+                soundManager.PlaySound("WitchDead"); 
                 playerController.numKill++;
                 playerController.upgradeManager.ObtainingMoneyReward(moneyValue);
                 Invoke("DeathBehavior", 1f);
             }
             else 
             {
+                soundManager.PlaySound("ZombieDefeated"); 
                 DeathBehavior(); 
             }
         }
@@ -166,7 +180,12 @@ public class Enemy : MonoBehaviour
         {
             isHit = true;
             rb2.bodyType = RigidbodyType2D.Dynamic;
-            enemyAnimator.SetBool("isWalking", false); 
+            isWalking = false;
+            if (enemyType == EnemyType.DayEnemy)
+            {
+                enemyAnimator.SetBool("isWalking", false);
+            }
+             
             //Debug.Log("Collision with sword");
             healthSystem.TakeDamage(playerController.swordPower);
             Debug.Log(healthSystem.health);
@@ -193,6 +212,10 @@ public class Enemy : MonoBehaviour
         isHit = false;
         isWalking = true;
         rb2.bodyType = RigidbodyType2D.Kinematic;
+        if (enemyType == EnemyType.DayEnemy)
+        {
+            enemyAnimator.SetBool("isWalking", true);
+        }
     }
 
     private void EnemyMove() 
@@ -253,7 +276,7 @@ public class Enemy : MonoBehaviour
     private void RunningThroughKingdomGates() 
     {
         if (isWalking) 
-        {           
+        {              
             if (enemyType == EnemyType.DayEnemy)
             {
                 enemyAnimator.SetBool("isWalking", true);
@@ -312,4 +335,9 @@ public class Enemy : MonoBehaviour
         UpdateHPText();
     }
 
+
+    private void SetInactive() 
+    {
+        gameObject.SetActive(false);
+    }
 }
