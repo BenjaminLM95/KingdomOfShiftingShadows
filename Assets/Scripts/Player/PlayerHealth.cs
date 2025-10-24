@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public HealthSystem healthSystem = new HealthSystem();
     [SerializeField] private int playerHealth;
     [SerializeField] private bool invincibility = false;
-    [SerializeField] private float vulnerabilityCooldown = 1.5f; 
+    [SerializeField] private float vulnerabilityCooldown = 0.5f; 
     public TextMeshProUGUI healthText;
 
 
@@ -15,16 +15,17 @@ public class PlayerHealth : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private Enemy attackingEnemy = null;
     [SerializeField] private UpgradeManager upgradeManager;
+    [SerializeField] private Animator playerHealthAnimator; 
     private int upgradeHealhValue; 
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerHealth = 15;
-        SettingHealth();
-        healthText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
+        SettingInitialStats(); 
         upgradeManager = FindFirstObjectByType<UpgradeManager>(); 
+        playerHealthAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -59,13 +60,23 @@ public class PlayerHealth : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy")) 
         {
+            
             if (attackingEnemy == null && !invincibility) 
-            { 
+            {
+                 
                 attackingEnemy = col.gameObject.GetComponent<Enemy>();
-                healthSystem.TakeDamage(attackingEnemy.healthSystem.baseAttack);
-                invincibility = true;
-                attackingEnemy = null; 
-                Invoke("vulnerability", vulnerabilityCooldown); 
+                if (attackingEnemy.alive || attackingEnemy.enemyType == EnemyType.DayEnemy)
+                {
+                   
+                    healthSystem.TakeDamage(attackingEnemy.healthSystem.baseAttack);
+                    playerHealthAnimator.SetBool("isDamaged", true);
+                    invincibility = true;
+                    attackingEnemy = null;
+                    Invoke("vulnerability", vulnerabilityCooldown);
+                }
+
+                if (attackingEnemy != null)
+                    attackingEnemy = null; 
             }
             
         }
@@ -73,7 +84,8 @@ public class PlayerHealth : MonoBehaviour
 
     private void vulnerability() 
     {
-        invincibility = false; 
+        invincibility = false;
+        playerHealthAnimator.SetBool("isDamaged", false);
     }
 
 
@@ -82,6 +94,14 @@ public class PlayerHealth : MonoBehaviour
         healthSystem.setMaxHP(15 + upgradeHealhValue);
         healthSystem.health = healthSystem.maxHealth;
         Debug.Log("Health upgraded  " + healthSystem.maxHealth); 
+    }
+
+    public void SettingInitialStats() 
+    {
+        upgradeHealhValue = 0; 
+        playerHealth = 15;
+        SettingHealth();
+        healthText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
     }
 
 }

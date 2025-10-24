@@ -97,6 +97,14 @@ public class IntroductionDialogue : MonoBehaviour
 
     public void BeginGamePlay() 
     {
+        ResetDialogue();       
         levelManager.StartNewGame(); 
+    }
+
+    public void ResetDialogue() 
+    {
+        dialIndex = 0;
+        introText.text = introDialogues[dialIndex];
+        SettingButtons(dialIndex);
     }
 }

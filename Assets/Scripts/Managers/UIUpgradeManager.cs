@@ -7,19 +7,19 @@ public class UIUpgradeManager : MonoBehaviour
     public TextMeshProUGUI swordUpgradeName;
     public TextMeshProUGUI swordUpgradeDescription;
     public TextMeshProUGUI swordUpgradeCost;
-    private int currentSwordTier;
+    [SerializeField] private int currentSwordTier;
 
     [Header("Health Upgrade Reference")]
     public TextMeshProUGUI healthUpgradeName;
     public TextMeshProUGUI healthUpgradeDescription;
     public TextMeshProUGUI healthUpgradeCost;
-    private int currentHealthTier;
+    [SerializeField] private int currentHealthTier;
 
     [Header("Speed Upgrade Reference")]
     public TextMeshProUGUI speedUpgradeName;
     public TextMeshProUGUI speedUpgradeDescription;
     public TextMeshProUGUI speedUpgradeCost;
-    private int currentSpeedTier;
+    [SerializeField] private int currentSpeedTier;
 
     public TextMeshProUGUI currencyText; 
 
@@ -96,6 +96,12 @@ public class UIUpgradeManager : MonoBehaviour
         currentSwordTier = upgradeManager.nextSwordUpgrade.tier;
         currentHealthTier = upgradeManager.nextHealthUpgrade.tier;
         currentSpeedTier = upgradeManager.nextSpeedUpgrade.tier;
+    }
+
+    public void ResetUpgradeUI() 
+    {
+        SettingTiers();
+        UpdateUpgradeUI();
     }
 
 

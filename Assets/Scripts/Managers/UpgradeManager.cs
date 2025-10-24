@@ -168,6 +168,9 @@ public class UpgradeManager : MonoBehaviour
         isHealthUpgrade = false;
         isSpeedUpgrade = false;
         playerCurrency = 0;
+        nextSwordUpgrade = gameUpgrades.swordUpgrades[0];
+        nextHealthUpgrade = gameUpgrades.healthUpgrades[0];
+        nextSpeedUpgrade = gameUpgrades.speedUpgrades[0];
     }
        
 

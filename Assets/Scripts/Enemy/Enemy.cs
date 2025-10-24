@@ -7,6 +7,7 @@ public enum EnemyState
     Running,
     Agressive,
     Collapse,
+    Faded,
     None
 }
 
@@ -75,7 +76,7 @@ public class Enemy : MonoBehaviour
 
         if (enemyType == EnemyType.DayEnemy)
         {
-            SetBaseStats(1 + nDay * 5, 2 + nDay, 1.5f + (nDay / 2), 10 * nDay);
+            SetBaseStats(1 + nDay * 5, 3 + nDay, 1.5f + (nDay / 2), 10 + ((nDay+1) * (nDay+1)) + (4*(nDay+1)));
         }
         else if (enemyType == EnemyType.NightEnemy)
         {
@@ -111,7 +112,9 @@ public class Enemy : MonoBehaviour
         if (!alive) 
         {
             if (enemyType == EnemyType.NightEnemy)
-            {                
+            {
+                enemyState = EnemyState.Faded;
+                hpText.gameObject.SetActive(false); 
                 enemyAnimator.SetBool("isFaded", true);                 
                 Invoke("SetInactive", 3f); 
             }
@@ -137,6 +140,7 @@ public class Enemy : MonoBehaviour
                 soundManager.PlaySound("WitchDead"); 
                 playerController.numKill++;
                 playerController.upgradeManager.ObtainingMoneyReward(moneyValue);
+                hpText.gameObject.SetActive(false); 
                 Invoke("DeathBehavior", 1f);
             }
             else 
@@ -242,6 +246,10 @@ public class Enemy : MonoBehaviour
                 speed = 0f;
                 rb2.linearVelocity = Vector2.zero;
                 //rb2.linearVelocity = new Vector2(0,0); 
+                break;
+            case EnemyState.Faded:
+                speed = 0f;
+                rb2.linearVelocity = Vector2.zero;
                 break; 
             default:
                 RunningThroughKingdomGates();
@@ -320,6 +328,7 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Colapse"); 
                 enemyState = EnemyState.Collapse;
                 isDefeat = true;
+                hpText.gameObject.SetActive(false);
                 Invoke("ReviveEnemy", 5f);                
                 break;
             default:
@@ -332,6 +341,7 @@ public class Enemy : MonoBehaviour
     public void ReviveEnemy() 
     {
         SetStats();
+        hpText.gameObject.SetActive(true);
         invincibility = false;
         isDefeat = false; 
         enemyState = EnemyState.Running;

@@ -302,12 +302,15 @@ MonoBehaviour:
   swordUpgradeName: {fileID: 356975456}
   swordUpgradeDescription: {fileID: 1121989548}
   swordUpgradeCost: {fileID: 1124965222}
+  currentSwordTier: 0
   healthUpgradeName: {fileID: 1514894570}
   healthUpgradeDescription: {fileID: 1502522667}
   healthUpgradeCost: {fileID: 531050137}
+  currentHealthTier: 0
   speedUpgradeName: {fileID: 1640044003}
   speedUpgradeDescription: {fileID: 1312311754}
   speedUpgradeCost: {fileID: 1225477139}
+  currentSpeedTier: 0
   currencyText: {fileID: 729281601}
   upgradeManager: {fileID: 0}
 --- !u!1 &133018879
@@ -7962,6 +7965,8 @@ MonoBehaviour:
   gameStateManager: {fileID: 1277368567}
   playerHealth: {fileID: 923641072}
   playerController: {fileID: 923641073}
+  upgradeManager: {fileID: 0}
+  uiUpgradeManager: {fileID: 32331208}
   playerCurrency: 0
   _musicManager: {fileID: 0}
 --- !u!1 &1600089293
@@ -10520,8 +10525,8 @@ Transform:
   - {fileID: 1922236822}
   - {fileID: 261074404}
   - {fileID: 1875287135}
-  - {fileID: 32331207}
   - {fileID: 729281600}
+  - {fileID: 32331207}
   m_Father: {fileID: 831404978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2071207553

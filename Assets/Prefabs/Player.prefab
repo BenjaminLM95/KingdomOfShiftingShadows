@@ -78,12 +78,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.09681988, y: 1.0064547}
+    - - {x: 0.25326443, y: 1.0600928}
       - {x: -0.19586092, y: 0.9286648}
-      - {x: 0.21904808, y: 0.25600255}
-      - {x: -0.20613801, y: -0.46691978}
-      - {x: 1.112534, y: -0.5259272}
-      - {x: 0.8090539, y: 0.2573798}
+      - {x: 0.098362505, y: 0.20683426}
+      - {x: -0.29315794, y: -0.62231255}
+      - {x: 0.62116003, y: -0.6704986}
+      - {x: 1.3585858, y: -0.72755384}
+      - {x: 1.0548949, y: 0.28419888}
   m_UseDelaunayMesh: 0
 --- !u!1 &6757053921615204007
 GameObject:
@@ -166,9 +167,9 @@ PolygonCollider2D:
     - - {x: 0.697104, y: 0.9548174}
       - {x: 0.44200706, y: 0.682425}
       - {x: -0.14422327, y: 0.05728501}
-      - {x: -0.1230492, y: 0.017179906}
-      - {x: 0.16823256, y: 0.28182143}
-      - {x: 0.7767811, y: 0.9480289}
+      - {x: -0.091760576, y: -0.045397878}
+      - {x: 0.19505131, y: 0.24159282}
+      - {x: 0.86617756, y: 0.9569686}
   m_UseDelaunayMesh: 0
 --- !u!1 &6768104230059079462
 GameObject:
@@ -298,6 +299,7 @@ MonoBehaviour:
   stillCount: 0
   upgradeManager: {fileID: 0}
   playerHealth: {fileID: 4576890133481530474}
+  soundManager: {fileID: 0}
 --- !u!114 &4576890133481530474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +318,7 @@ MonoBehaviour:
   healthText: {fileID: 0}
   attackingEnemy: {fileID: 0}
   upgradeManager: {fileID: 0}
+  playerHealthAnimator: {fileID: 0}
 --- !u!114 &1186564037291499569
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Movement Variables")]
     private float horizontal;
     private float vertical;
-    [SerializeField] private float baseSpeedMove = 3f;
+    [SerializeField] private float baseSpeedMove = 4f;
     [SerializeField] private float speedMove = 0;
     private float upgradeSpeedMove = 1; 
     [SerializeField] private float sprintSpeed = 5;
@@ -218,10 +218,18 @@ public class PlayerController : MonoBehaviour
         isDead = false; 
     }
 
-    public void ResetKills() 
+    public void ResetValues() 
     {
         numKill = 0;
         transform.position = initialPos;
+        upgradeSwordPower = 0;
+        upgradeSpeedMove = 0;
+        UpdatingSwordMight();
+        UpdatingSpeed();
+        playerHealth.SettingInitialStats(); 
     }
+     
+    
+   
 
 }

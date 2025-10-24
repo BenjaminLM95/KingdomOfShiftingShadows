@@ -6,7 +6,9 @@ public class LevelManager : MonoBehaviour
     public GameStateManager gameStateManager;
     public PlayerHealth playerHealth;
     public PlayerController playerController;
-    private UpgradeManager upgradeManager;
+    [SerializeField] private UpgradeManager upgradeManager;
+    public UIUpgradeManager uiUpgradeManager;    
+    
 
     public int playerCurrency; 
 
@@ -30,7 +32,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         _musicManager = FindFirstObjectByType<MusicManager>();
-        upgradeManager = FindFirstObjectByType<UpgradeManager>(); 
+        upgradeManager = FindFirstObjectByType<UpgradeManager>();        
         ChangeToTitleScreen();
         
     }
@@ -84,9 +86,14 @@ public class LevelManager : MonoBehaviour
     public void StartNewGame() 
     {
         ChangeToGameplay();
-        playerController.ResetKills();
-        upgradeManager.RestartUpgrade(); 
+        Invoke("StartingValues", 0.25f);      
 
+    }
+
+    public void StartingValues() 
+    {
+        playerController.ResetValues();
+        upgradeManager.RestartUpgrade();
     }
 
     public void GoToIntroduction() 
@@ -108,10 +115,14 @@ public class LevelManager : MonoBehaviour
         
     }
 
+    
+
+
     public void ExitGame() 
     {
         Application.Quit();
     }
 
+    
 
 }
