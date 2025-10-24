@@ -218,6 +218,10 @@ public class PlayerController : MonoBehaviour
         isDead = false; 
     }
 
-    
+    public void ResetKills() 
+    {
+        numKill = 0;
+        transform.position = initialPos;
+    }
 
 }

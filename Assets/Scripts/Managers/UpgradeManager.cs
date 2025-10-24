@@ -153,6 +153,22 @@ public class UpgradeManager : MonoBehaviour
     {
         playerCurrency += currency;
     }
+
+
+    public void RestartUpgrade() 
+    {
+        Debug.Log("Restart Upgrade"); 
+        currentSwordUpgrade = null;
+        currentHealthUpgrade = null;
+        currentSpeedUpgrade = null;
+        swordIndex = 0;
+        healthIndex = 0;
+        speedIndex = 0;
+        isSwordUpgrade = false;
+        isHealthUpgrade = false;
+        isSpeedUpgrade = false;
+        playerCurrency = 0;
+    }
        
 
 }

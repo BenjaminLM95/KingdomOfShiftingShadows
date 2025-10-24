@@ -620,8 +620,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOver: 0
   gameWin: 0
-  gameOverText: {fileID: 0}
-  gameWinText: {fileID: 0}
   dayMax: 0
   playerController: {fileID: 0}
   resultInfo: {fileID: 0}

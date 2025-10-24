@@ -292,16 +292,19 @@ public class Enemy : MonoBehaviour
         if (_player == null)
             _player = GameObject.Find("Player");
 
-        float distanceWithPlayer = Vector2.Distance(transform.position, _player.transform.position); 
+        if (_player != null)
+        {
+            float distanceWithPlayer = Vector2.Distance(transform.position, _player.transform.position);
 
-        if(distanceWithPlayer > 0f) 
-        {
-            velocity = (_player.transform.position - transform.position).normalized;
-            EnemyMove(); 
-        }
-        else 
-        {
-            //Debug.Log("Attack"); 
+            if (distanceWithPlayer > 0f)
+            {
+                velocity = (_player.transform.position - transform.position).normalized;
+                EnemyMove();
+            }
+            else
+            {
+                //Debug.Log("Attack"); 
+            }
         }
     }
 

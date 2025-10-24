@@ -31,8 +31,8 @@ public class IntroductionDialogue : MonoBehaviour
     public void SettingTheDialogue() 
     {
         introDialogues[0] = "Sky, the last warrior of the Daydream Kingdom, is sent to defend it against evil witches and prevent them from entering through the gates.\r\nThe warrior has to be alert day and night!!";
-        introDialogues[1] = "Survive for five days! Reach until the dawn of the sixth day. \r\n All the hopes are deposited on Sky";
-        introDialogues[2] = "Move with Key Arrow or WASD. Press 'I' to attack. Prevent the monsters reaching the Kingdom's gate (Pink Rectangle)";
+        introDialogues[1] = "Survive for five days! Reach the dawn of the sixth day. \r\n All our hopes are resting on Sky";
+        introDialogues[2] = "Move with Key Arrow or WASD. Press 'I' to attack. Prevent enemies from reaching the Kingdom Gate. (Pink Rectangle)";
     }
 
     public void NextDialogue() 
@@ -97,6 +97,6 @@ public class IntroductionDialogue : MonoBehaviour
 
     public void BeginGamePlay() 
     {
-        levelManager.ChangeToGameplay(); 
+        levelManager.StartNewGame(); 
     }
 }

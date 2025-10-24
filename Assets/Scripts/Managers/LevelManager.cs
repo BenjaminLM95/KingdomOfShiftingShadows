@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
     public GameStateManager gameStateManager;
     public PlayerHealth playerHealth;
     public PlayerController playerController;
+    private UpgradeManager upgradeManager;
 
     public int playerCurrency; 
 
@@ -29,6 +30,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         _musicManager = FindFirstObjectByType<MusicManager>();
+        upgradeManager = FindFirstObjectByType<UpgradeManager>(); 
         ChangeToTitleScreen();
         
     }
@@ -77,6 +79,14 @@ public class LevelManager : MonoBehaviour
     {
         ChangeScene(SceneNames.Settings);
         gameStateManager.ChangeState(GameStateManager.GameState.Settings); 
+    }
+
+    public void StartNewGame() 
+    {
+        ChangeToGameplay();
+        playerController.ResetKills();
+        upgradeManager.RestartUpgrade(); 
+
     }
 
     public void GoToIntroduction() 
