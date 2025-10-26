@@ -282,6 +282,7 @@ MonoBehaviour:
   baseSpeedMove: 3
   speedMove: 0
   sprintSpeed: 5
+  knockBackForce: 1.5
   sword: {fileID: 6757053921615204007}
   slashCollider: {fileID: 5705028957381102069}
   isAttacking: 0
@@ -326,7 +327,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6768104230059079462}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 52ad25a48e6b96e459bf5816db008031, type: 3}
   m_Name: 

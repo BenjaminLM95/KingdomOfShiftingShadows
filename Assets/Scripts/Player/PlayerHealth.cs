@@ -66,8 +66,8 @@ public class PlayerHealth : MonoBehaviour
                  
                 attackingEnemy = col.gameObject.GetComponent<Enemy>();
                 if (attackingEnemy.alive || attackingEnemy.enemyType == EnemyType.DayEnemy)
-                {
-                   
+                {                   
+                    attackingEnemy.SetAttackAnimation();                   
                     healthSystem.TakeDamage(attackingEnemy.healthSystem.baseAttack);
                     playerHealthAnimator.SetBool("isDamaged", true);
                     invincibility = true;
@@ -100,6 +100,7 @@ public class PlayerHealth : MonoBehaviour
     {
         upgradeHealhValue = 0; 
         playerHealth = 15;
+        invincibility = false;
         SettingHealth();
         healthText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
     }

@@ -15,8 +15,7 @@ public class MenuTransition : MonoBehaviour
     void Start()
     {
         SetDayMenuImage();
-        timerCount = 0;
-        Debug.Log("Started"); 
+        timerCount = 0;        
     }
 
     // Update is called once per frame

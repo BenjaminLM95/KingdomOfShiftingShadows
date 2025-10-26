@@ -79,8 +79,18 @@ public class LevelManager : MonoBehaviour
 
     public void GoToSettings() 
     {
-        ChangeScene(SceneNames.Settings);
+        //ChangeScene(SceneNames.Settings);
         gameStateManager.ChangeState(GameStateManager.GameState.Settings); 
+    }
+
+    public void InGameSetting() 
+    {
+        gameStateManager.ChangeState(GameStateManager.GameState.Settings); 
+    }
+
+    public void BackState() 
+    {
+        gameStateManager.ChangeState(gameStateManager.GivePreviousGameState()); 
     }
 
     public void StartNewGame() 

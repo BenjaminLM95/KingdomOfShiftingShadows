@@ -3,6 +3,10 @@ using UnityEngine.Audio;
 
 public class SoundsManager : MonoBehaviour
 {
+
+    public static SoundsManager instance;
+    [SerializeField] private AudioSource soundFXObject; 
+
     [Header("References")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip slashSwordClip; // The sound effect for the character swinging the sword
@@ -12,8 +16,18 @@ public class SoundsManager : MonoBehaviour
     [SerializeField] private AudioClip zombieFadedClip; // the sound effect for the zombie when fades
     [SerializeField] private bool isPlaying = false; // Flag to check if music is playing
     public AudioMixer audioMixer; // Reference to the AudioMixer for volume control
-       
 
+    public float sfxVolume = 1; 
+
+    private void Awake()
+    {
+       if(instance == null) 
+        {
+            instance = this; 
+        }
+    }
+
+    /*
     public void PlaySound(string clipName) 
     {
         switch (clipName) 
@@ -36,10 +50,64 @@ public class SoundsManager : MonoBehaviour
         }
         audioSource.Play();
         
+    } */
+
+    private void Start()
+    {
+        sfxVolume = 1; 
     }
 
-    public void SetVolume(float volume, string groupName)
+    public void SetSound(string clipName, AudioSource _audioSource)
     {
-        audioMixer.SetFloat(groupName, volume);
+        switch (clipName)
+        {
+            case "SlashSword":
+                _audioSource.clip = slashSwordClip;
+                break;
+            case "WitchLaugh":
+                _audioSource.clip = witchLaugh;
+                break;
+            case "WitchDead":
+                _audioSource.clip = witchDeadClip;
+                break;
+            case "ZombieDefeated":
+                _audioSource.clip = zombieDefeatClip;
+                break;
+            case "ZombieScreams":
+                _audioSource.clip = zombieFadedClip;
+                break;
+        }
+        
+
+    }
+
+    public void SetVolume(float volume)
+    {
+        audioSource.volume = volume;
+    }
+
+    
+
+    public void PlaySoundFXClip(string clipName, Transform spawnTransform) 
+    {
+        // Spawn the gameObject
+        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+
+        // assign the audioClip
+        SetSound(clipName, audioSource);
+
+        // Assign Volume
+        audioSource.volume = sfxVolume; 
+
+        // play Sound
+        audioSource.Play();
+
+        // get length of sound FX clip
+        float clipLength = audioSource.clip.length;
+
+        //destroy the clip after it is done playing
+        Destroy(audioSource.gameObject, clipLength); 
+
+
     }
 }

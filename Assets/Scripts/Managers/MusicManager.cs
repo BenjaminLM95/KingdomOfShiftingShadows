@@ -39,11 +39,12 @@ public class MusicManager : MonoBehaviour
         audioSource.loop = loop;
         audioSource.Play();
         isPlaying = true;
-    }
+    }       
 
-    public void SetVolume(float volume, string groupName)
+    public void SetVolume(float volume) 
     {
-        audioMixer.SetFloat(groupName, volume);
+        audioSource.volume = volume; 
     }
+    
 
 }

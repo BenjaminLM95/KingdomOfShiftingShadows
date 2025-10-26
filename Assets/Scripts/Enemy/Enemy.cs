@@ -1,5 +1,8 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
+using UnityEngine.UIElements;
+using System;
+using Unity.VisualScripting;
 
 
 public enum EnemyState 
@@ -43,13 +46,16 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject kingdomsGate;
     public TextMeshPro hpText;
     [SerializeField] DayNightManager dayNightManager;
+
     public Rigidbody2D rb2;
+    public LayerMask enemyLayerMask;
 
 
     [Header("Behavior")]
     public EnemyState enemyState;
     [SerializeField] private Animator enemyAnimator; 
     public EnemyType enemyType;
+    [SerializeField] private float enemyDistance = 1f; 
 
     [Header("Other variables")]
     public bool invincibility = false;
@@ -116,8 +122,36 @@ public class Enemy : MonoBehaviour
                 enemyState = EnemyState.Faded;
                 hpText.gameObject.SetActive(false); 
                 enemyAnimator.SetBool("isFaded", true);                 
-                Invoke("SetInactive", 3f); 
+                Invoke("SetInactive", 2f); 
             }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (velocity.x < 0)
+        {
+            if (enemyType == EnemyType.DayEnemy)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else if(enemyType == EnemyType.NightEnemy) 
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+
+        }
+        else if (velocity.x > 0)
+        {
+            if(enemyType == EnemyType.DayEnemy) 
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            if(enemyType == EnemyType.NightEnemy) 
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            
         }
     }
 
@@ -137,7 +171,7 @@ public class Enemy : MonoBehaviour
             {
                 isDefeat = true;
                 enemyAnimator.SetBool("isFainted", true);
-                soundManager.PlaySound("WitchDead"); 
+                soundManager.PlaySoundFXClip("WitchDead", transform);                  
                 playerController.numKill++;
                 playerController.upgradeManager.ObtainingMoneyReward(moneyValue);
                 hpText.gameObject.SetActive(false); 
@@ -145,7 +179,7 @@ public class Enemy : MonoBehaviour
             }
             else 
             {
-                soundManager.PlaySound("ZombieDefeated"); 
+                soundManager.PlaySoundFXClip("ZombieDefeated", transform);                 
                 DeathBehavior(); 
             }
         }
@@ -184,19 +218,14 @@ public class Enemy : MonoBehaviour
         {
             isHit = true;
             rb2.bodyType = RigidbodyType2D.Dynamic;
-            isWalking = false;
-            if (enemyType == EnemyType.DayEnemy)
-            {
-                enemyAnimator.SetBool("isWalking", false);
-            }
-             
-            //Debug.Log("Collision with sword");
-            healthSystem.TakeDamage(playerController.swordPower);
-            Debug.Log(healthSystem.health);
+            isWalking = false;            
+            enemyAnimator.SetBool("isWalking", false);        
+            healthSystem.TakeDamage(playerController.swordPower);            
             invincibility = true;
             enemyAnimator.SetBool("isDamaged", true);
             rb2.linearVelocity = Vector2.zero;
-            rb2.AddForceX(1f, ForceMode2D.Impulse);
+            rb2.AddForceX(playerController.knockBackForce * Mathf.Sign(collision.attachedRigidbody.linearVelocityX), ForceMode2D.Impulse);
+            //rb2.AddForceX(Mathf.Lerp(0, playerController.knockBackForce, 1/Time.time), ForceMode2D.Impulse);             
             SetAgressiveMode();
             Invoke("vulnerability", 1f);
         }
@@ -274,9 +303,7 @@ public class Enemy : MonoBehaviour
         if(stateCount > agressiveStateCooldown) 
         {
             enemyState = EnemyState.Running;
-            stateCount = 0;
-            //Debug.Log("To Running"); 
-            //Debug.Log("Time: " + stateCount + " , " + Time.time); 
+            stateCount = 0;           
         }
     }
 
@@ -284,14 +311,19 @@ public class Enemy : MonoBehaviour
     private void RunningThroughKingdomGates() 
     {
         if (isWalking) 
-        {              
-            if (enemyType == EnemyType.DayEnemy)
-            {
-                enemyAnimator.SetBool("isWalking", true);
-            }
-        }            
+        { 
+           enemyAnimator.SetBool("isWalking", true);
+        }
 
-        velocity = (kingdomsGate.transform.position - transform.position).normalized;
+        if (isAnotherEnemyClose()) 
+        {            
+            velocity = Vector2.zero;
+        }
+        else 
+        {
+            velocity = (kingdomsGate.transform.position - transform.position).normalized;
+        }
+                    
         EnemyMove(); 
     }
     
@@ -311,7 +343,7 @@ public class Enemy : MonoBehaviour
             }
             else
             {
-                //Debug.Log("Attack"); 
+                 
             }
         }
     }
@@ -324,8 +356,7 @@ public class Enemy : MonoBehaviour
                 isDefeat = true; 
                 this.gameObject.SetActive(false);
                 break; 
-            case EnemyType.NightEnemy:
-                Debug.Log("Colapse"); 
+            case EnemyType.NightEnemy:                
                 enemyState = EnemyState.Collapse;
                 isDefeat = true;
                 hpText.gameObject.SetActive(false);
@@ -352,5 +383,87 @@ public class Enemy : MonoBehaviour
     private void SetInactive() 
     {
         gameObject.SetActive(false);
+    }
+
+    public void SetAttackAnimation() 
+    {
+        enemyAnimator.SetBool("isAttacking", true);
+        Invoke("ReturnToNormalAnimation", 0.25f); 
+    }
+
+    public void ReturnToNormalAnimation() 
+    {
+        enemyAnimator.SetBool("isAttacking", false);
+    }
+
+    public bool isAnotherEnemyClose() 
+    {
+        RaycastHit2D[] enemyClose = Physics2D.RaycastAll(this.transform.position + Vector3.left, Vector2.left, enemyDistance, enemyLayerMask);
+        RaycastHit2D[] enemyClose2 = Physics2D.RaycastAll(this.transform.position + Vector3.left, new Vector2(-1f, 1.41f), enemyDistance, enemyLayerMask);
+        RaycastHit2D[] enemyClose3 = Physics2D.RaycastAll(this.transform.position + Vector3.left, new Vector2(-1f, -1.41f), enemyDistance, enemyLayerMask);
+
+        if (enemyClose.Length > 0)
+        {
+            for (int i = 0; i < enemyClose.Length; i++)
+            {
+                if (enemyClose[i].transform == this.transform)
+                {
+                    return false;
+                }
+                else 
+                {
+                    return true; 
+                }
+            }
+        }
+
+        if(enemyClose2.Length > 0) 
+        { 
+            for (int i = 0; i < enemyClose2.Length; i++)
+            {
+                if (enemyClose2[i].transform == this.transform)
+                {
+                    return false;
+                }
+                else 
+                {
+                    return true; 
+                }
+            }
+            
+
+        }
+
+        if (enemyClose3.Length > 0) 
+        {
+            for (int i = 0; i < enemyClose3.Length; i++)
+            {
+                if (enemyClose3[i].transform == this.transform)
+                {
+                    return false;
+                }
+                else 
+                {
+                    return true; 
+                }
+            }
+           
+        }
+
+        return false; 
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Set gizmo color
+        Gizmos.color = Color.red;
+
+        // Raycast direction
+        Vector2 direction = Vector2.left;
+
+        // Draw the ray in the Scene view
+        Gizmos.DrawRay(transform.position + Vector3.left, direction * enemyDistance);
+        Gizmos.DrawRay(transform.position + Vector3.left, new Vector2(-1f, 1.41f) * enemyDistance);
+        Gizmos.DrawRay(transform.position + Vector3.left, new Vector2(-1f, -1.41f) * enemyDistance);
     }
 }

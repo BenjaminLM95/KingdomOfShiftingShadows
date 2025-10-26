@@ -289,21 +289,27 @@ MonoBehaviour:
   speed: 1
   velocity: {x: 0, y: 0}
   alive: 1
-  isWaking: 0
+  isWalking: 1
   _player: {fileID: 0}
   playerController: {fileID: 0}
   kingdomsGate: {fileID: 0}
   hpText: {fileID: 5604340312610121977}
   dayNightManager: {fileID: 0}
   rb2: {fileID: 0}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  enemyState: 0
   enemyAnimator: {fileID: 0}
   enemyType: 0
+  enemyDistance: 1
   invincibility: 0
   agressiveStateCooldown: 4
   stateCount: 0
   moneyValue: 0
   isDefeat: 0
   isHit: 0
+  soundManager: {fileID: 0}
 --- !u!61 &7260923006866466129
 BoxCollider2D:
   m_ObjectHideFlags: 0

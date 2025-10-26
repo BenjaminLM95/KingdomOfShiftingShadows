@@ -35,11 +35,7 @@ public class UpgradeManager : MonoBehaviour
 
         nextSwordUpgrade = gameUpgrades.swordUpgrades[swordIndex]; 
         nextHealthUpgrade = gameUpgrades.healthUpgrades[healthIndex];
-        nextSpeedUpgrade = gameUpgrades.speedUpgrades[speedIndex];
-
-        Debug.Log(nextSwordUpgrade.description + " , " + nextSwordUpgrade.cost + " , " + nextSwordUpgrade.value);
-        Debug.Log(nextHealthUpgrade.description + " , " + nextHealthUpgrade.cost + " , " + nextHealthUpgrade.value);
-        Debug.Log(nextSpeedUpgrade.description + " , " + nextSpeedUpgrade.cost + " , " + nextSpeedUpgrade.value);
+        nextSpeedUpgrade = gameUpgrades.speedUpgrades[speedIndex];        
 
         isSwordUpgrade = false;
         isHealthUpgrade = false;
@@ -156,8 +152,7 @@ public class UpgradeManager : MonoBehaviour
 
 
     public void RestartUpgrade() 
-    {
-        Debug.Log("Restart Upgrade"); 
+    {        
         currentSwordUpgrade = null;
         currentHealthUpgrade = null;
         currentSpeedUpgrade = null;

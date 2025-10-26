@@ -118,11 +118,12 @@ public class EnemyManager : MonoBehaviour
 
         if (numZombies > 0)
         {
-            soundManager.PlaySound("ZombieScreams");
+            soundManager.PlaySoundFXClip("ZombieScreams", transform);
+
             for (int i = 0; i < enemyList.Count; i++)
             {
                 if (enemyList[i].enemyType == EnemyType.NightEnemy)
-                {
+                {                    
                     enemyList[i].alive = false;
 
                 }

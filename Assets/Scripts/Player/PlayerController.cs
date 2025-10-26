@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speedMove = 0;
     private float upgradeSpeedMove = 1; 
     [SerializeField] private float sprintSpeed = 5;
+    public float knockBackForce = 1.5f; 
     private Vector3 initialPos = new Vector3(-6f, -0.5f);
     
 
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.I) && playerState != PlayerState.Attack) 
+        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Mouse0)) && playerState != PlayerState.Attack) 
         {
             Attack(); 
         }
@@ -180,8 +181,8 @@ public class PlayerController : MonoBehaviour
     public void Attack() 
     {
         if (canAttack)
-        {
-            soundManager.PlaySound("SlashSword");
+        {            
+            soundManager.PlaySoundFXClip("SlashSword", transform); 
             playerState = PlayerState.Attack;
             isAttacking = true;
             sword.gameObject.SetActive(true);

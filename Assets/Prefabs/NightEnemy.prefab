@@ -257,7 +257,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9041316329220071802, guid: b67fcd372c0b1f44483ea18e415d7172, type: 3}
+  m_Sprite: {fileID: 7502526002507739574, guid: 6ed13742dd8eaac4e8e3cb9184e2477c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -289,21 +289,27 @@ MonoBehaviour:
   speed: 1
   velocity: {x: 0, y: 0}
   alive: 1
-  isWaking: 0
+  isWalking: 1
   _player: {fileID: 0}
   playerController: {fileID: 0}
   kingdomsGate: {fileID: 0}
   hpText: {fileID: 5604340312610121977}
   dayNightManager: {fileID: 0}
   rb2: {fileID: 0}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  enemyState: 0
   enemyAnimator: {fileID: 0}
   enemyType: 1
+  enemyDistance: 1
   invincibility: 0
   agressiveStateCooldown: 4
   stateCount: 0
   moneyValue: 0
   isDefeat: 0
   isHit: 0
+  soundManager: {fileID: 0}
 --- !u!61 &7260923006866466129
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -338,17 +344,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.011146784, y: -0.2201516}
+  m_Offset: {x: -0.005533695, y: -0.18679088}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.33, y: 2.61}
+    oldSize: {x: 1.77, y: 1.97}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.7579904, y: 2.131412}
+  m_Size: {x: 1.5244646, y: 1.6643606}
   m_EdgeRadius: 0
 --- !u!50 &2828626037115954620
 Rigidbody2D:
