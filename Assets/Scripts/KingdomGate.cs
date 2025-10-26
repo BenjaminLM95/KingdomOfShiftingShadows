@@ -38,8 +38,8 @@ public class KingdomGate : MonoBehaviour
         if(!gameOver && playerController.isDead && !gameWin) 
         {
             //playerHealth.StopMyCoroutine(); 
-            playerHealth.vulnerability(); 
-            SetGameOver();
+            playerHealth.vulnerability();
+            Invoke("SetGameOver", 0.25f);             
         }
 
         if(dayNightManager.dayCount >= dayMax && dayNightManager.GetHour() >= 6 && !gameOver && !gameWin) 
@@ -54,7 +54,8 @@ public class KingdomGate : MonoBehaviour
         {
             if (!gameOver)
             {
-                SetGameOver();
+                playerHealth.vulnerability();
+                Invoke("SetGameOver", 0.25f);
             }
         }
     }
