@@ -301,6 +301,7 @@ MonoBehaviour:
   upgradeManager: {fileID: 0}
   playerHealth: {fileID: 4576890133481530474}
   soundManager: {fileID: 0}
+  dayNightManager: {fileID: 0}
 --- !u!114 &4576890133481530474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +321,8 @@ MonoBehaviour:
   attackingEnemy: {fileID: 0}
   upgradeManager: {fileID: 0}
   playerHealthAnimator: {fileID: 0}
+  cameraShaking: {fileID: 0}
+  _playerController: {fileID: 8776361553925642626}
 --- !u!114 &1186564037291499569
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -111,8 +111,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4286019447
+  m_fontColor: {r: 0.46666667, g: 0.46666667, b: 0.46666667, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -295,6 +295,7 @@ MonoBehaviour:
   kingdomsGate: {fileID: 0}
   hpText: {fileID: 5604340312610121977}
   dayNightManager: {fileID: 0}
+  cameraShaking: {fileID: 0}
   rb2: {fileID: 0}
   enemyLayerMask:
     serializedVersion: 2

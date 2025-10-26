@@ -29,7 +29,9 @@ public class DayNightManager : MonoBehaviour
 
     [Header("Day and Night Background Images")]
     public GameObject dayImg;
-    public GameObject nightImg; 
+    public GameObject nightImg;
+    public GameObject sunImg;
+    public GameObject moonImg; 
 
     private EnemyManager enemyManager;
 
@@ -135,17 +137,21 @@ public class DayNightManager : MonoBehaviour
     {
         dayImg.gameObject.SetActive(false);
         nightImg.gameObject.SetActive(false);
+        sunImg.gameObject.SetActive(false);
+        moonImg.gameObject.SetActive(false); 
     }
 
     public void setDayImg() 
     {
         DisableImages();
         dayImg.gameObject.SetActive(true);
+        sunImg.gameObject.SetActive(true); 
     }
 
     public void setNightImg() 
     {
         DisableImages();
         nightImg.gameObject.SetActive(true);
+        moonImg.gameObject.SetActive(true); 
     }
 }

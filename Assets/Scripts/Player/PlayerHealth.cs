@@ -15,40 +15,69 @@ public class PlayerHealth : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private Enemy attackingEnemy = null;
     [SerializeField] private UpgradeManager upgradeManager;
-    [SerializeField] private Animator playerHealthAnimator; 
-    private int upgradeHealhValue; 
-
+    [SerializeField] private Animator playerHealthAnimator;
+    [SerializeField] private CameraShaking cameraShaking;
+    public PlayerController _playerController; 
+    private int upgradeHealhValue;
+    private Coroutine myCoroutineReference;
+   
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SettingInitialStats(); 
-        upgradeManager = FindFirstObjectByType<UpgradeManager>(); 
+        upgradeManager = FindFirstObjectByType<UpgradeManager>();         
         playerHealthAnimator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+
         if(playerHealth != healthSystem.health) 
-        {
+        {                     
             healthText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
             playerHealth = healthSystem.health;
+            
+            /*
+            if(playerHealth > 0) 
+            {
+                if (cameraShaking == null)
+                {
+                    cameraShaking = FindFirstObjectByType<CameraShaking>();
+                }
+
+                if (cameraShaking != null)
+                {
+                    myCoroutineReference = StartCoroutine(cameraShaking.Shake2(0.25f, 0.125f));
+                }
+            } */
+
         }
 
         if (upgradeManager.isHealthUpgrade && upgradeManager.currentHealthUpgrade != null)
         {
             if (upgradeHealhValue != upgradeManager.currentHealthUpgrade.value)
             {
-                upgradeHealhValue = upgradeManager.currentHealthUpgrade.value;
-                Debug.Log(upgradeHealhValue);
+                upgradeHealhValue = upgradeManager.currentHealthUpgrade.value;          
                 UpdatingHealthUpgrade(); 
             }
         }
 
-
     }
+
+    public void StopMyCoroutine() 
+    {
+        if(myCoroutineReference != null) 
+        {
+            StopCoroutine(myCoroutineReference);
+            myCoroutineReference = null; 
+        }
+    }
+
 
     private void SettingHealth() 
     {
@@ -65,10 +94,19 @@ public class PlayerHealth : MonoBehaviour
             {
                  
                 attackingEnemy = col.gameObject.GetComponent<Enemy>();
-                if (attackingEnemy.alive || attackingEnemy.enemyType == EnemyType.DayEnemy)
+                if ((attackingEnemy.alive || attackingEnemy.enemyType == EnemyType.DayEnemy) && attackingEnemy.enemyState != EnemyState.Collapse 
+                    &&  !attackingEnemy.isDefeat)
                 {                   
                     attackingEnemy.SetAttackAnimation();                   
                     healthSystem.TakeDamage(attackingEnemy.healthSystem.baseAttack);
+
+                    Debug.Log(healthSystem.health); 
+
+                    if(attackingEnemy.enemyType == EnemyType.DayEnemy && healthSystem.health <= 0) 
+                    {
+                       _playerController.soundManager.PlaySoundFXClip("WitchLaugh", transform);
+                    }
+
                     playerHealthAnimator.SetBool("isDamaged", true);
                     invincibility = true;
                     attackingEnemy = null;
@@ -82,7 +120,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void vulnerability() 
+    public void vulnerability() 
     {
         invincibility = false;
         playerHealthAnimator.SetBool("isDamaged", false);

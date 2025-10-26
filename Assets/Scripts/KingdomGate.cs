@@ -17,6 +17,7 @@ public class KingdomGate : MonoBehaviour
     [SerializeField] private DayNightManager dayNightManager;
     [SerializeField] private MusicManager musicManager;
     [SerializeField] private GameStateManager gameStateManager;
+    [SerializeField] private PlayerHealth playerHealth; 
 
 
     private void Awake()
@@ -28,6 +29,7 @@ public class KingdomGate : MonoBehaviour
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         musicManager = FindFirstObjectByType<MusicManager>();
         gameStateManager = FindFirstObjectByType<GameStateManager>();
+        playerHealth = FindFirstObjectByType<PlayerHealth>(); 
         dayMax = 6; 
     }
 
@@ -35,6 +37,8 @@ public class KingdomGate : MonoBehaviour
     {
         if(!gameOver && playerController.isDead && !gameWin) 
         {
+            //playerHealth.StopMyCoroutine(); 
+            playerHealth.vulnerability(); 
             SetGameOver();
         }
 

@@ -1,0 +1,649 @@
+fileFormatVersion: 2
+guid: c709b3d31d6b0aa42a9a64d17b251db4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8581786147302120093
+    second: UISpriteSheet_KingdomOfShiftingShadows_0
+  - first:
+      213: -8759453764863794841
+    second: UISpriteSheet_KingdomOfShiftingShadows_1
+  - first:
+      213: -6948199175797065537
+    second: UISpriteSheet_KingdomOfShiftingShadows_2
+  - first:
+      213: 6315569283356542312
+    second: UISpriteSheet_KingdomOfShiftingShadows_3
+  - first:
+      213: 524977054072504551
+    second: UISpriteSheet_KingdomOfShiftingShadows_4
+  - first:
+      213: 1282477861172525690
+    second: UISpriteSheet_KingdomOfShiftingShadows_5
+  - first:
+      213: 4133644229814095400
+    second: UISpriteSheet_KingdomOfShiftingShadows_6
+  - first:
+      213: -7825168762152547024
+    second: UISpriteSheet_KingdomOfShiftingShadows_7
+  - first:
+      213: 8634394237397827519
+    second: UISpriteSheet_KingdomOfShiftingShadows_8
+  - first:
+      213: 709362150149048484
+    second: UISpriteSheet_KingdomOfShiftingShadows_9
+  - first:
+      213: 4224093947443274771
+    second: UISpriteSheet_KingdomOfShiftingShadows_10
+  - first:
+      213: 7205265515070199506
+    second: UISpriteSheet_KingdomOfShiftingShadows_11
+  - first:
+      213: -5223100352393476904
+    second: UISpriteSheet_KingdomOfShiftingShadows_12
+  - first:
+      213: 7679346166000457179
+    second: UISpriteSheet_KingdomOfShiftingShadows_13
+  - first:
+      213: -2056791128078838040
+    second: UISpriteSheet_KingdomOfShiftingShadows_14
+  - first:
+      213: -3022588242122967639
+    second: UISpriteSheet_KingdomOfShiftingShadows_15
+  - first:
+      213: -52433824859185860
+    second: UISpriteSheet_KingdomOfShiftingShadows_16
+  - first:
+      213: -6098100083791287682
+    second: UISpriteSheet_KingdomOfShiftingShadows_17
+  - first:
+      213: 8588967252785980505
+    second: UISpriteSheet_KingdomOfShiftingShadows_18
+  - first:
+      213: 6370114400905917889
+    second: UISpriteSheet_KingdomOfShiftingShadows_19
+  - first:
+      213: -7698447835028751784
+    second: UISpriteSheet_KingdomOfShiftingShadows_20
+  - first:
+      213: -2258040674143484790
+    second: UISpriteSheet_KingdomOfShiftingShadows_21
+  - first:
+      213: -5376708448247677172
+    second: UISpriteSheet_KingdomOfShiftingShadows_22
+  - first:
+      213: 3000527852662388769
+    second: UISpriteSheet_KingdomOfShiftingShadows_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 896
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9a9f406801a81770800000000000000
+      internalID: 8581786147302120093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 896
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 761e5ded53b207680800000000000000
+      internalID: -8759453764863794841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 896
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb834f9a9a9039f90800000000000000
+      internalID: -6948199175797065537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 865c5d84dc865a750800000000000000
+      internalID: 6315569283356542312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e0093769d7194700800000000000000
+      internalID: 524977054072504551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7abd73e1d64cc110800000000000000
+      internalID: 1282477861172525690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82e89e9a687ad5930800000000000000
+      internalID: 4133644229814095400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03d0a68687a676390800000000000000
+      internalID: -7825168762152547024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbff6cadfc783d770800000000000000
+      internalID: 8634394237397827519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a8cdb00e1928d900800000000000000
+      internalID: 709362150149048484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 314eb33a01ffe9a30800000000000000
+      internalID: 4224093947443274771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_11
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d691229fce3ef360800000000000000
+      internalID: 7205265515070199506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d48e5517e1d387b0800000000000000
+      internalID: -5223100352393476904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd517bba6a4829a60800000000000000
+      internalID: 7679346166000457179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e69fa9cd5fc473e0800000000000000
+      internalID: -2056791128078838040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_15
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a5fcf5120c9d06d0800000000000000
+      internalID: -3022588242122967639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3d9d0fc6b7b54ff0800000000000000
+      internalID: -52433824859185860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a27dc68423f5ba0800000000000000
+      internalID: -6098100083791287682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95465c9c534223770800000000000000
+      internalID: 8588967252785980505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UISpriteSheet_KingdomOfShiftingShadows_19
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c5f89c1c41376850800000000000000
+      internalID: 6370114400905917889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9d49fe5b5b7dc6b48a9c1180969daa4f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      UISpriteSheet_KingdomOfShiftingShadows_0: 8581786147302120093
+      UISpriteSheet_KingdomOfShiftingShadows_1: -8759453764863794841
+      UISpriteSheet_KingdomOfShiftingShadows_10: 4224093947443274771
+      UISpriteSheet_KingdomOfShiftingShadows_11: 7205265515070199506
+      UISpriteSheet_KingdomOfShiftingShadows_12: -5223100352393476904
+      UISpriteSheet_KingdomOfShiftingShadows_13: 7679346166000457179
+      UISpriteSheet_KingdomOfShiftingShadows_14: -2056791128078838040
+      UISpriteSheet_KingdomOfShiftingShadows_15: -3022588242122967639
+      UISpriteSheet_KingdomOfShiftingShadows_16: -52433824859185860
+      UISpriteSheet_KingdomOfShiftingShadows_17: -6098100083791287682
+      UISpriteSheet_KingdomOfShiftingShadows_18: 8588967252785980505
+      UISpriteSheet_KingdomOfShiftingShadows_19: 6370114400905917889
+      UISpriteSheet_KingdomOfShiftingShadows_2: -6948199175797065537
+      UISpriteSheet_KingdomOfShiftingShadows_3: 6315569283356542312
+      UISpriteSheet_KingdomOfShiftingShadows_4: 524977054072504551
+      UISpriteSheet_KingdomOfShiftingShadows_5: 1282477861172525690
+      UISpriteSheet_KingdomOfShiftingShadows_6: 4133644229814095400
+      UISpriteSheet_KingdomOfShiftingShadows_7: -7825168762152547024
+      UISpriteSheet_KingdomOfShiftingShadows_8: 8634394237397827519
+      UISpriteSheet_KingdomOfShiftingShadows_9: 709362150149048484
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

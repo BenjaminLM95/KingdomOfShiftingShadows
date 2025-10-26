@@ -46,6 +46,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject kingdomsGate;
     public TextMeshPro hpText;
     [SerializeField] DayNightManager dayNightManager;
+    [SerializeField] CameraShaking cameraShaking; 
 
     public Rigidbody2D rb2;
     public LayerMask enemyLayerMask;
@@ -75,7 +76,8 @@ public class Enemy : MonoBehaviour
         enemyAnimator = GetComponent<Animator>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         soundManager = FindFirstObjectByType<SoundsManager>();
-        rb2 = GetComponent<Rigidbody2D>(); 
+        rb2 = GetComponent<Rigidbody2D>();
+        cameraShaking = FindFirstObjectByType<CameraShaking>(); 
 
         int nDay = dayNightManager.dayCount;
         isWalking = true; 
@@ -216,6 +218,7 @@ public class Enemy : MonoBehaviour
         //Debug.Log("Collision");
         if (collision.gameObject.CompareTag("Sword") && !invincibility) 
         {
+            StartCoroutine(cameraShaking.Shake(0.25f, 0.125f));           
             isHit = true;
             rb2.bodyType = RigidbodyType2D.Dynamic;
             isWalking = false;            

@@ -54,7 +54,8 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     public UpgradeManager upgradeManager;
     public PlayerHealth playerHealth;
-    [SerializeField] private SoundsManager soundManager;
+    public SoundsManager soundManager;
+    [SerializeField] private DayNightManager dayNightManager; 
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
     {
         upgradeManager = FindFirstObjectByType<UpgradeManager>();
         soundManager = FindFirstObjectByType<SoundsManager>();
+        dayNightManager = FindFirstObjectByType<DayNightManager>(); 
         transform.position = initialPos;    
         sword.gameObject.SetActive(false);
         body = GetComponent<Rigidbody2D>();
@@ -82,6 +84,11 @@ public class PlayerController : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Mouse0)) && playerState != PlayerState.Attack) 
         {
             Attack(); 
+        }
+
+        if(dayNightManager == null) 
+        {
+            dayNightManager = FindFirstObjectByType<DayNightManager>();
         }
 
 
