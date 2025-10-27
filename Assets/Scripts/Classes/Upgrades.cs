@@ -21,10 +21,10 @@ public class Upgrades
 
     public void AddSwordUpgrades() 
     {
-        swordUpgrades.Add(new Upgrade(0, "Great Sword", "Increases ATK by 5", 1, 50, 3, typeUpgrade.Sword));
-        swordUpgrades.Add(new Upgrade(1, "Great Sword+", "Increases ATK by 8", 2, 125, 5, typeUpgrade.Sword));
-        swordUpgrades.Add(new Upgrade(2, "Hero Sword", "Increases ATK by 12", 3, 300, 8, typeUpgrade.Sword));
-        swordUpgrades.Add(new Upgrade(3, "Hero Sword+", "Increases ATK by 15", 4, 700, 12, typeUpgrade.Sword));
+        swordUpgrades.Add(new Upgrade(0, "Great Sword", "Increases ATK by 3", 1, 50, 3, typeUpgrade.Sword));
+        swordUpgrades.Add(new Upgrade(1, "Great Sword+", "Increases ATK by 5", 2, 125, 5, typeUpgrade.Sword));
+        swordUpgrades.Add(new Upgrade(2, "Hero Sword", "Increases ATK by 8", 3, 300, 8, typeUpgrade.Sword));
+        swordUpgrades.Add(new Upgrade(3, "Hero Sword+", "Increases ATK by 12", 4, 700, 12, typeUpgrade.Sword));
         swordUpgrades.Add(new Upgrade(99, "SOLD", "", 5, 0, 0, typeUpgrade.Sword)); 
 
     }

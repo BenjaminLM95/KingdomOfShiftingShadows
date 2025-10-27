@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     public GameObject sword;
     public GameObject slashCollider; 
     public bool isAttacking = false;
-    public int baseSwordPower = 3;
+    public int baseSwordPower = 4;
     public int upgradeSwordPower = 0;
     public int swordPower = 0; 
     [SerializeField] private Animator playerAnimator; 
