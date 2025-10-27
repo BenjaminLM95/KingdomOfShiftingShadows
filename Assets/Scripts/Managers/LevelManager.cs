@@ -33,7 +33,7 @@ public class LevelManager : MonoBehaviour
     {
         _musicManager = FindFirstObjectByType<MusicManager>();
         upgradeManager = FindFirstObjectByType<UpgradeManager>();
-        //ChangeToMainMenu();
+        ChangeToMainMenu();
 
 
     }

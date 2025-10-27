@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class VolumesSlide : MonoBehaviour
+public class VolumesSlide : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public Slider musicSlider;
     public Slider soundSlider;
@@ -11,6 +12,8 @@ public class VolumesSlide : MonoBehaviour
 
     [SerializeField] private SoundsManager soundManager;
     [SerializeField] private MusicManager musicManager;
+
+    private bool changeSFXVolume = false;
 
     private void Awake()
     {
@@ -47,9 +50,29 @@ public class VolumesSlide : MonoBehaviour
         {
             soundVolume = soundSlider.value;
             soundManager.SetVolume(soundVolume);
-            soundManager.sfxVolume = soundVolume;
+            soundManager.sfxVolume = soundVolume;           
+            
+        }
+        
+        
+
+
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        changeSFXVolume = true;
+        Debug.Log("PointDown");
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Debug.Log("PointUp");
+        if (changeSFXVolume)
+        {
+            soundManager.PlaySoundFXClip("SlashSword", transform);
+            changeSFXVolume = false;
         }
     }
 
-    
 }
