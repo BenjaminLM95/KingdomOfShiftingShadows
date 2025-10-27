@@ -32,9 +32,10 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         _musicManager = FindFirstObjectByType<MusicManager>();
-        upgradeManager = FindFirstObjectByType<UpgradeManager>();        
-        ChangeToTitleScreen();
-        
+        upgradeManager = FindFirstObjectByType<UpgradeManager>();
+        //ChangeToMainMenu();
+
+
     }
 
     public void ChangeToTitleScreen() 
