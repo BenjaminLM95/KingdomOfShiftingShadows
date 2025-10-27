@@ -1702,7 +1702,7 @@ GameObject:
   - component: {fileID: 509765519}
   - component: {fileID: 509765518}
   m_Layer: 5
-  m_Name: MainMenuButton
+  m_Name: CreditsBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1803,7 +1803,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6948199175797065537, guid: c709b3d31d6b0aa42a9a64d17b251db4, type: 3}
+  m_Sprite: {fileID: 1282477861172525690, guid: c709b3d31d6b0aa42a9a64d17b251db4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2256,8 +2256,8 @@ Transform:
   m_GameObject: {fileID: 558384136}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.47967592, y: -25.547762, z: -0.022540255}
-  m_LocalScale: {x: 3.8052635, y: 3.8052635, z: 1.2684212}
+  m_LocalPosition: {x: 0.47967592, y: 3.7, z: -0.022540255}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1.2684212}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 644520159}
@@ -5985,7 +5985,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1308476735
 Transform:
   m_ObjectHideFlags: 0
