@@ -40,21 +40,7 @@ public class PlayerHealth : MonoBehaviour
         if(playerHealth != healthSystem.health) 
         {                     
             healthText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
-            playerHealth = healthSystem.health;
-            
-            /*
-            if(playerHealth > 0) 
-            {
-                if (cameraShaking == null)
-                {
-                    cameraShaking = FindFirstObjectByType<CameraShaking>();
-                }
-
-                if (cameraShaking != null)
-                {
-                    myCoroutineReference = StartCoroutine(cameraShaking.Shake2(0.25f, 0.125f));
-                }
-            } */
+            playerHealth = healthSystem.health;    
 
         }
 
@@ -100,9 +86,17 @@ public class PlayerHealth : MonoBehaviour
                     attackingEnemy.SetAttackAnimation();                   
                     healthSystem.TakeDamage(attackingEnemy.healthSystem.baseAttack);
 
-                    Debug.Log(healthSystem.health); 
+                    if (cameraShaking == null)
+                    {
+                        cameraShaking = FindFirstObjectByType<CameraShaking>();
+                    }
 
-                    if(attackingEnemy.enemyType == EnemyType.DayEnemy && healthSystem.health <= 0) 
+                    if (cameraShaking != null)
+                    {
+                        myCoroutineReference = StartCoroutine(cameraShaking.Shake2(0.25f, 0.125f));
+                    }
+
+                    if (attackingEnemy.enemyType == EnemyType.DayEnemy && healthSystem.health <= 0) 
                     {
                        _playerController.soundManager.PlaySoundFXClip("WitchLaugh", transform);
                     }
@@ -141,6 +135,11 @@ public class PlayerHealth : MonoBehaviour
         invincibility = false;
         SettingHealth();
         healthText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
+    }
+
+    private void OnDisable()
+    {
+        StopMyCoroutine(); 
     }
 
 }

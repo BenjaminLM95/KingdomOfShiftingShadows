@@ -37,7 +37,7 @@ public class KingdomGate : MonoBehaviour
     {
         if(!gameOver && playerController.isDead && !gameWin) 
         {
-            //playerHealth.StopMyCoroutine(); 
+           // playerHealth.StopMyCoroutine(); 
             playerHealth.vulnerability();
             Invoke("SetGameOver", 0.25f);             
         }
