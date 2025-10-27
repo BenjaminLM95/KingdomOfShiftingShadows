@@ -139,7 +139,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnDisable()
     {
-        StopMyCoroutine(); 
+        StopAllCoroutines(); 
     }
 
 }
