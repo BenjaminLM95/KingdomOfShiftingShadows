@@ -12,7 +12,7 @@ public class MoneyDisplay : MonoBehaviour
     {
         upgradeManager = FindFirstObjectByType<UpgradeManager>();
         playerMoney = upgradeManager.playerCurrency;
-        moneyText.text = "Money: " + playerMoney.ToString();
+        moneyText.text = "Currency: " + playerMoney.ToString() + "$";
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class MoneyDisplay : MonoBehaviour
         if(playerMoney != upgradeManager.playerCurrency) 
         {
             playerMoney = upgradeManager.playerCurrency;
-            moneyText.text = "Money: " + playerMoney.ToString(); 
+            moneyText.text = "Currency: " + playerMoney.ToString() + "$"; 
         }
     }
 }

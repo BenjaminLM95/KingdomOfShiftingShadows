@@ -9,10 +9,8 @@ public class TimeDisplay : MonoBehaviour
     [Header("Time Properties")]
     [SerializeField] private int dayCount;
     [SerializeField] private int hourCount;
-    [SerializeField] private int minuteCount;
-    [SerializeField] private string cycleText; 
+    [SerializeField] private int minuteCount;   
     
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,11 +30,10 @@ public class TimeDisplay : MonoBehaviour
     public void DisplayInfo() 
     {
         if (dayNightManager != null) 
-        {
-            cycleText = dayNightManager.cycle.ToString();
+        {            
             dayCount = dayNightManager.dayCount; 
         }
 
-        timeDisplayClock.text = cycleText + " - " + "Day: " + dayCount + " - " + dayNightManager.GetTimeString(); 
+        timeDisplayClock.text = "Day: " + dayCount + " - " + dayNightManager.GetTimeString(); 
     }
 }

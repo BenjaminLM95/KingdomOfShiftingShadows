@@ -105,11 +105,7 @@ public class Enemy : MonoBehaviour
         SetStats();
 
         UpdateHPText();
-
-        if (enemyType == EnemyType.DayEnemy) 
-        {
-            //soundManager.PlaySound("WitchLaugh"); 
-        }
+        
     }
 
     // Update is called once per frame
@@ -176,6 +172,7 @@ public class Enemy : MonoBehaviour
                 soundManager.PlaySoundFXClip("WitchDead", transform);                  
                 playerController.numKill++;
                 playerController.upgradeManager.ObtainingMoneyReward(moneyValue);
+                soundManager.PlaySoundFXClip("GetMoney", transform); 
                 hpText.gameObject.SetActive(false); 
                 Invoke("DeathBehavior", 1f);
             }
@@ -218,7 +215,7 @@ public class Enemy : MonoBehaviour
         //Debug.Log("Collision");
         if (collision.gameObject.CompareTag("Sword") && !invincibility) 
         {
-            StartCoroutine(cameraShaking.Shake(0.25f, 0.125f));           
+            //StartCoroutine(cameraShaking.Shake(0.25f, 0.125f));           
             isHit = true;
             rb2.bodyType = RigidbodyType2D.Dynamic;
             isWalking = false;            

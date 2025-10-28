@@ -21,13 +21,15 @@ public class UpgradeManager : MonoBehaviour
     public int healthIndex = 0;
     public int speedIndex = 0;
 
-    public int playerCurrency {  get; private set; }     
+    public int playerCurrency {  get; private set; }
+    private SoundsManager soundManager; 
 
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        soundManager = FindFirstObjectByType<SoundsManager>(); 
         gameUpgrades = new Upgrades();
        
 
@@ -94,6 +96,7 @@ public class UpgradeManager : MonoBehaviour
 
         }
 
+        soundManager.PlaySoundFXClip("BuySound", transform); 
         return _upgrade; 
     }
 

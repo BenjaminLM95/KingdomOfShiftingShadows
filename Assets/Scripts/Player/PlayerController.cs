@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Abilities")]
-    [SerializeField] private bool canMove = true;
+    [SerializeField] private bool canMove = false;
     [SerializeField] private bool canSprint = true;
     [SerializeField] private bool canAttack = true;
 
@@ -55,7 +55,8 @@ public class PlayerController : MonoBehaviour
     public UpgradeManager upgradeManager;
     public PlayerHealth playerHealth;
     public SoundsManager soundManager;
-    [SerializeField] private DayNightManager dayNightManager; 
+    [SerializeField] private DayNightManager dayNightManager;
+    private NewGameScene newGameScene; 
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -63,8 +64,10 @@ public class PlayerController : MonoBehaviour
     {
         upgradeManager = FindFirstObjectByType<UpgradeManager>();
         soundManager = FindFirstObjectByType<SoundsManager>();
-        dayNightManager = FindFirstObjectByType<DayNightManager>(); 
-        transform.position = initialPos;    
+        dayNightManager = FindFirstObjectByType<DayNightManager>();
+        newGameScene = FindFirstObjectByType<NewGameScene>();
+        transform.position = initialPos;
+        canMove = false; 
         sword.gameObject.SetActive(false);
         body = GetComponent<Rigidbody2D>();
         playerState = PlayerState.Walk;
@@ -78,8 +81,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        if(newGameScene == null) 
+        {
+            newGameScene = FindFirstObjectByType<NewGameScene>();
+        }
+        
+        if (newGameScene.isStarted) 
+        {
+            canMove = true;
+        }
+
+        if (canMove)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
+        }
 
         if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Mouse0)) && playerState != PlayerState.Attack) 
         {
@@ -127,11 +143,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+
 
 
         if (canMove)
-        body.linearVelocity = new Vector2(horizontal * speedMove, vertical * speedMove); 
+        {
+            body.linearVelocity = new Vector2(horizontal * speedMove, vertical * speedMove);
+        }
 
         if(body.linearVelocity.magnitude > 0) 
         {

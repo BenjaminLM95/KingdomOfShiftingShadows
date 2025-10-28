@@ -25,6 +25,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject spawnPoint4;
     [SerializeField] private SoundsManager soundManager;
     private DayNightManager dayNightManager;
+    private NewGameScene newGameScene; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -35,13 +36,14 @@ public class EnemyManager : MonoBehaviour
         spawnPoint4 = GameObject.Find("SpawnPointD"); 
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         soundManager = FindFirstObjectByType<SoundsManager>();
+        newGameScene = FindFirstObjectByType<NewGameScene>(); 
     }
 
     // Update is called once per frame
     void Update()
     {         
 
-        if(_kingdomGate.gameOver != true && Time.time > timer) 
+        if(_kingdomGate.gameOver != true && Time.time > timer && newGameScene.isStarted) 
         {             
             SpawnEnemy(); 
         }

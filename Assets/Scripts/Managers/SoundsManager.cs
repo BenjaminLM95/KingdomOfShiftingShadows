@@ -14,6 +14,8 @@ public class SoundsManager : MonoBehaviour
     [SerializeField] private AudioClip witchDeadClip; // The sound effect for the witch when dies
     [SerializeField] private AudioClip zombieDefeatClip; // The sound effect for the zombie when is defeated 
     [SerializeField] private AudioClip zombieFadedClip; // the sound effect for the zombie when fades
+    [SerializeField] private AudioClip getCoinClip; // The sound effect when you get money;
+    [SerializeField] private AudioClip useCoinClip; // The sound when you buy something; 
     [SerializeField] private bool isPlaying = false; // Flag to check if music is playing
     public AudioMixer audioMixer; // Reference to the AudioMixer for volume control
 
@@ -76,6 +78,12 @@ public class SoundsManager : MonoBehaviour
             case "ZombieScreams":
                 _audioSource.clip = zombieFadedClip;
                 break;
+            case "GetMoney":
+                _audioSource.clip = getCoinClip;
+                break;
+            case "BuySound":
+                _audioSource.clip = useCoinClip;
+                break;
         }
         
 
@@ -109,5 +117,10 @@ public class SoundsManager : MonoBehaviour
         Destroy(audioSource.gameObject, clipLength); 
 
 
+    }
+
+    public void TestSFX() 
+    {
+        PlaySoundFXClip("SlashSword", transform); 
     }
 }

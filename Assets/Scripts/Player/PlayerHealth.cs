@@ -1,5 +1,6 @@
 using UnityEngine;
-using TMPro; 
+using TMPro;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class PlayerHealth : MonoBehaviour
     public PlayerController _playerController; 
     private int upgradeHealhValue;
     private Coroutine myCoroutineReference;
+
+    
+
    
 
 
@@ -39,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
         if(playerHealth != healthSystem.health) 
         {                     
-            healthText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
+            healthText.text = "Player's HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
             playerHealth = healthSystem.health;    
 
         }
@@ -94,7 +98,7 @@ public class PlayerHealth : MonoBehaviour
                     if (cameraShaking != null)
                     {
                         myCoroutineReference = StartCoroutine(cameraShaking.Shake2(0.25f, 0.125f));
-                    }
+                    }                    
 
                     if (attackingEnemy.enemyType == EnemyType.DayEnemy && healthSystem.health <= 0) 
                     {
@@ -134,7 +138,7 @@ public class PlayerHealth : MonoBehaviour
         playerHealth = 15;
         invincibility = false;
         SettingHealth();
-        healthText.text = "HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
+        healthText.text = "Player's HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
     }
 
     private void OnDisable()
@@ -142,4 +146,6 @@ public class PlayerHealth : MonoBehaviour
         StopAllCoroutines(); 
     }
 
+
+    
 }

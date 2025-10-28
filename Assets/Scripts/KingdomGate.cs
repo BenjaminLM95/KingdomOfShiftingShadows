@@ -17,7 +17,8 @@ public class KingdomGate : MonoBehaviour
     [SerializeField] private DayNightManager dayNightManager;
     [SerializeField] private MusicManager musicManager;
     [SerializeField] private GameStateManager gameStateManager;
-    [SerializeField] private PlayerHealth playerHealth; 
+    [SerializeField] private PlayerHealth playerHealth;
+    public GameObject timeCountTMPU; 
 
 
     private void Awake()
@@ -70,6 +71,7 @@ public class KingdomGate : MonoBehaviour
         if(resultInfo == null)
             resultInfo = FindFirstObjectByType<ResultInformation>();
 
+        timeCountTMPU.gameObject.SetActive(false); 
         resultInfo.DisplayResult(); 
         Time.timeScale = 0f;
     }
@@ -79,7 +81,8 @@ public class KingdomGate : MonoBehaviour
         gameWin = true;
         Debug.Log("Game Win");
         musicManager.PlayMusic(true, "WinningScreen");
-        gameStateManager.ChangeState(GameState.WinScreen); 
+        gameStateManager.ChangeState(GameState.WinScreen);
+        timeCountTMPU.gameObject.SetActive(false);
         Time.timeScale = 0f;
     }
 

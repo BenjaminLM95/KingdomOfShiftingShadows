@@ -7,18 +7,21 @@ public class UIUpgradeManager : MonoBehaviour
     public TextMeshProUGUI swordUpgradeName;
     public TextMeshProUGUI swordUpgradeDescription;
     public TextMeshProUGUI swordUpgradeCost;
+    public TextMeshProUGUI swordUpgradeLevel; 
     [SerializeField] private int currentSwordTier;
 
     [Header("Health Upgrade Reference")]
     public TextMeshProUGUI healthUpgradeName;
     public TextMeshProUGUI healthUpgradeDescription;
     public TextMeshProUGUI healthUpgradeCost;
+    public TextMeshProUGUI healthUpgradeLevel; 
     [SerializeField] private int currentHealthTier;
 
     [Header("Speed Upgrade Reference")]
     public TextMeshProUGUI speedUpgradeName;
     public TextMeshProUGUI speedUpgradeDescription;
     public TextMeshProUGUI speedUpgradeCost;
+    public TextMeshProUGUI speedUpgradeLevel; 
     [SerializeField] private int currentSpeedTier;
 
     public TextMeshProUGUI currencyText; 
@@ -40,9 +43,9 @@ public class UIUpgradeManager : MonoBehaviour
         
         if(currentSwordTier != upgradeManager.nextSwordUpgrade.tier || currentHealthTier != upgradeManager.nextHealthUpgrade.tier ||
             currentSpeedTier != upgradeManager.nextSpeedUpgrade.tier) 
-        {
+        {            
+            SettingTiers();
             UpdateUpgradeUI();
-            SettingTiers(); 
         }
 
         currencyText.text = "Money: " + upgradeManager.playerCurrency.ToString(); 
@@ -61,9 +64,9 @@ public class UIUpgradeManager : MonoBehaviour
             swordUpgradeCost.text = "Cost: " + (upgradeManager.nextSwordUpgrade.cost).ToString();
         }
         else
-            swordUpgradeCost.text = " - "; 
+            swordUpgradeCost.text = " - ";
 
-
+        swordUpgradeLevel.text = (currentSwordTier-1).ToString() + "/5"; 
 
             // For health upgrade
 
@@ -77,6 +80,8 @@ public class UIUpgradeManager : MonoBehaviour
         else
             healthUpgradeCost.text = " - ";
 
+        healthUpgradeLevel.text = (currentHealthTier - 1).ToString() + "/5"; 
+
             // For speed upgrade
 
         speedUpgradeName.text = upgradeManager.nextSpeedUpgrade.name;
@@ -89,6 +94,7 @@ public class UIUpgradeManager : MonoBehaviour
         else
             speedUpgradeCost.text = " - ";
 
+        speedUpgradeLevel.text = (currentSpeedTier - 1).ToString() + "/5";
     }
 
     public void SettingTiers() 
