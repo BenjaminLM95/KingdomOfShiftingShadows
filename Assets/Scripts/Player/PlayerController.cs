@@ -67,7 +67,8 @@ public class PlayerController : MonoBehaviour
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         newGameScene = FindFirstObjectByType<NewGameScene>();
         transform.position = initialPos;
-        canMove = false; 
+        canMove = false;
+        canAttack = false; 
         sword.gameObject.SetActive(false);
         body = GetComponent<Rigidbody2D>();
         playerState = PlayerState.Walk;
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
         if (newGameScene.isStarted) 
         {
             canMove = true;
+            canAttack = true; 
         }
 
         if (canMove)
@@ -143,8 +145,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-
 
         if (canMove)
         {
@@ -255,7 +255,11 @@ public class PlayerController : MonoBehaviour
         playerHealth.SettingInitialStats(); 
     }
      
-    
+    public void FreezePlayer() 
+    {
+        canMove = false;
+        canAttack = false;
+    }
    
 
 }

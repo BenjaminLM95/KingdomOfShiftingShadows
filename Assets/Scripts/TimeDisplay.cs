@@ -4,18 +4,17 @@ using TMPro;
 public class TimeDisplay : MonoBehaviour
 {
     public TextMeshProUGUI timeDisplayClock;
-    [SerializeField] private DayNightManager dayNightManager;
+    public string timeText; 
 
     [Header("Time Properties")]
-    [SerializeField] private int dayCount;
-    [SerializeField] private int hourCount;
-    [SerializeField] private int minuteCount;   
+    public int dayCount = 0;
+    public int hourCount = 0;
+    public int minuteCount = 0;   
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        dayNightManager = FindFirstObjectByType<DayNightManager>();
+    {        
         DisplayInfo(); 
     }
 
@@ -29,11 +28,7 @@ public class TimeDisplay : MonoBehaviour
 
     public void DisplayInfo() 
     {
-        if (dayNightManager != null) 
-        {            
-            dayCount = dayNightManager.dayCount; 
-        }
 
-        timeDisplayClock.text = "Day: " + dayCount + " - " + dayNightManager.GetTimeString(); 
+        timeDisplayClock.text = timeText; 
     }
 }

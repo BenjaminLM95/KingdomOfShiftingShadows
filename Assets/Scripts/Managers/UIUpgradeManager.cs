@@ -48,7 +48,7 @@ public class UIUpgradeManager : MonoBehaviour
             UpdateUpgradeUI();
         }
 
-        currencyText.text = "Money: " + upgradeManager.playerCurrency.ToString(); 
+        currencyText.text = upgradeManager.playerCurrency.ToString() + " $"; 
 
     }
 

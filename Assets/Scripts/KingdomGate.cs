@@ -18,7 +18,7 @@ public class KingdomGate : MonoBehaviour
     [SerializeField] private MusicManager musicManager;
     [SerializeField] private GameStateManager gameStateManager;
     [SerializeField] private PlayerHealth playerHealth;
-    public GameObject timeCountTMPU; 
+    
 
 
     private void Awake()
@@ -37,8 +37,7 @@ public class KingdomGate : MonoBehaviour
     private void Update()
     {
         if(!gameOver && playerController.isDead && !gameWin) 
-        {
-           // playerHealth.StopMyCoroutine(); 
+        {           
             playerHealth.vulnerability();
             Invoke("SetGameOver", 0.25f);             
         }
@@ -66,12 +65,12 @@ public class KingdomGate : MonoBehaviour
         Debug.Log("Game Over"); 
         gameOver = true;
         gameStateManager.ChangeState(GameState.Result); 
-        musicManager.PlayMusic(true, "Result"); 
+        musicManager.PlayMusic(true, "Result");
+        playerController.FreezePlayer();
 
         if(resultInfo == null)
             resultInfo = FindFirstObjectByType<ResultInformation>();
-
-        timeCountTMPU.gameObject.SetActive(false); 
+                
         resultInfo.DisplayResult(); 
         Time.timeScale = 0f;
     }
@@ -81,8 +80,7 @@ public class KingdomGate : MonoBehaviour
         gameWin = true;
         Debug.Log("Game Win");
         musicManager.PlayMusic(true, "WinningScreen");
-        gameStateManager.ChangeState(GameState.WinScreen);
-        timeCountTMPU.gameObject.SetActive(false);
+        gameStateManager.ChangeState(GameState.WinScreen);       
         Time.timeScale = 0f;
     }
 

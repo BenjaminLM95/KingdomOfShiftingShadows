@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public enum DiurnalCycle 
@@ -34,9 +35,12 @@ public class DayNightManager : MonoBehaviour
     public GameObject moonImg; 
 
     private EnemyManager enemyManager;
+    public TextMeshProUGUI dayNotificationText; 
 
     [Header("References")]
-    [SerializeField] private LevelManager levelManager; 
+    [SerializeField] private LevelManager levelManager;
+    [SerializeField] private TimeDisplay timeDisplay;
+    [SerializeField] private NewGameScene newGameScene; 
 
 
 
@@ -44,16 +48,24 @@ public class DayNightManager : MonoBehaviour
     {
         enemyManager = FindFirstObjectByType<EnemyManager>();
         levelManager = FindFirstObjectByType<LevelManager>();
+        timeDisplay = FindFirstObjectByType<TimeDisplay>();
+        newGameScene = FindFirstObjectByType<NewGameScene>();
         InitialDaySetup();
-        currentHour = (int)GetHour(); 
+        currentHour = (int)GetHour();
+
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        totalTime += Time.deltaTime * 0.5f;
+        if (newGameScene.isStarted)
+        {
+            totalTime += Time.deltaTime * 0.5f;
 
-        currentTime = (initialHour + totalTime) % dayDuration;
+            currentTime = (initialHour + totalTime) % dayDuration;
+        }
         
         
         CycleChange(); 
@@ -86,7 +98,7 @@ public class DayNightManager : MonoBehaviour
             }
         }
 
-
+        DisplayTime(); 
 
     }
 
@@ -106,7 +118,9 @@ public class DayNightManager : MonoBehaviour
             isDay = true;
             cycle = DiurnalCycle.Day;
             setDayImg();
+            DayNotification(); 
             enemyManager.DestroyNightEnemies();
+            Invoke("DayTextDisapear", 2f); 
         }
         else if(GetHour() >= 18 && isDay) 
         {
@@ -153,5 +167,55 @@ public class DayNightManager : MonoBehaviour
         DisableImages();
         nightImg.gameObject.SetActive(true);
         moonImg.gameObject.SetActive(true); 
+    }
+
+    public void DisplayTime() 
+    {
+        timeDisplay.dayCount = dayCount; 
+        timeDisplay.timeText = "Day: " + dayCount + " - " + GetTimeString();
+    }
+
+    public void DayNotification() 
+    {
+        dayNotificationText.gameObject.SetActive(true);
+        dayNotificationText.text = DisplayDayNotificationText(dayCount); 
+    }
+
+    public string DisplayDayNotificationText(int nDay) 
+    {
+        string returningText; 
+
+        switch (nDay) 
+        {
+            case 1:
+                returningText = "1st day of 6";
+                break;
+            case 2:
+                returningText = "2nd day of 6";
+                break;
+            case 3:
+                returningText = "3rd day of 6";
+                break;
+            case 4:
+                returningText = "4th day of 6";
+                break;
+            case 5:
+                returningText = "5th day of 6";
+                break;
+            case 6:
+                returningText = "6th day of 6";
+                break;
+            default:
+                returningText = "Another Day passed";
+                break;
+
+        }
+
+        return returningText; 
+    }
+
+    public void DayTextDisapear() 
+    {
+        dayNotificationText.gameObject.SetActive(false);
     }
 }
