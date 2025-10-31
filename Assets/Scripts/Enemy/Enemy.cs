@@ -132,10 +132,12 @@ public class Enemy : MonoBehaviour
             if (enemyType == EnemyType.DayEnemy)
             {
                 transform.localScale = new Vector3(1, 1, 1);
+                hpText.gameObject.transform.localScale = new Vector3(1, 1, 1);
             }
             else if(enemyType == EnemyType.NightEnemy) 
             {
                 transform.localScale = new Vector3(-1, 1, 1);
+                hpText.gameObject.transform.localScale = new Vector3(-1, 1, 1); 
             }
 
         }
@@ -144,10 +146,12 @@ public class Enemy : MonoBehaviour
             if(enemyType == EnemyType.DayEnemy) 
             {
                 transform.localScale = new Vector3(-1, 1, 1);
+                hpText.gameObject.transform.localScale = new Vector3(-1, 1, 1);
             }
             if(enemyType == EnemyType.NightEnemy) 
             {
                 transform.localScale = new Vector3(1, 1, 1);
+                hpText.gameObject.transform.localScale = new Vector3(1, 1, 1);
             }
             
         }
@@ -401,17 +405,22 @@ public class Enemy : MonoBehaviour
         RaycastHit2D[] enemyClose = Physics2D.RaycastAll(this.transform.position + Vector3.left, Vector2.left, enemyDistance, enemyLayerMask);
         RaycastHit2D[] enemyClose2 = Physics2D.RaycastAll(this.transform.position + Vector3.left, new Vector2(-1f, 1.41f), enemyDistance, enemyLayerMask);
         RaycastHit2D[] enemyClose3 = Physics2D.RaycastAll(this.transform.position + Vector3.left, new Vector2(-1f, -1.41f), enemyDistance, enemyLayerMask);
+               
+
 
         if (enemyClose.Length > 0)
         {
             for (int i = 0; i < enemyClose.Length; i++)
             {
-                if (enemyClose[i].transform == this.transform)
+                EnemyState hitEnemyState = enemyClose[i].collider.gameObject.GetComponent<Enemy>().enemyState; 
+
+                if (enemyClose[i].transform == this.transform )
                 {
                     return false;
                 }
-                else 
+                else if (hitEnemyState != EnemyState.Collapse)
                 {
+                    //Debug.Log(hitEnemyState.ToString());
                     return true; 
                 }
             }
@@ -421,12 +430,15 @@ public class Enemy : MonoBehaviour
         { 
             for (int i = 0; i < enemyClose2.Length; i++)
             {
+                EnemyState hitEnemyState = enemyClose2[i].collider.gameObject.GetComponent<Enemy>().enemyState;
+
                 if (enemyClose2[i].transform == this.transform)
                 {
                     return false;
                 }
-                else 
+                else if (hitEnemyState != EnemyState.Collapse)
                 {
+                    //Debug.Log(hitEnemyState.ToString());
                     return true; 
                 }
             }
@@ -438,12 +450,15 @@ public class Enemy : MonoBehaviour
         {
             for (int i = 0; i < enemyClose3.Length; i++)
             {
+                EnemyState hitEnemyState = enemyClose3[i].collider.gameObject.GetComponent<Enemy>().enemyState;
+
                 if (enemyClose3[i].transform == this.transform)
                 {
                     return false;
                 }
-                else 
+                else if (hitEnemyState != EnemyState.Collapse)
                 {
+                    //Debug.Log(hitEnemyState.ToString()); 
                     return true; 
                 }
             }

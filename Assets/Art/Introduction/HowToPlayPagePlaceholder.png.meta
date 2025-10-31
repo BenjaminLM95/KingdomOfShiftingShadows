@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: bdd736c61791c0147aaa04688ab06249
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -13057327154838747
+    second: HowToPlayPagePlaceholder_0
+  - first:
+      213: 3090837343671192742
+    second: HowToPlayPagePlaceholder_1
+  - first:
+      213: -3337154531887675782
+    second: HowToPlayPagePlaceholder_2
+  - first:
+      213: -6541152789693370709
+    second: HowToPlayPagePlaceholder_3
+  - first:
+      213: 3151252043587380323
+    second: HowToPlayPagePlaceholder_4
+  - first:
+      213: 6712571450987877812
+    second: HowToPlayPagePlaceholder_5
+  - first:
+      213: 7168901634700872234
+    second: HowToPlayPagePlaceholder_6
+  - first:
+      213: 4071651966516307990
+    second: HowToPlayPagePlaceholder_7
+  - first:
+      213: 6272045008813947782
+    second: HowToPlayPagePlaceholder_8
+  - first:
+      213: 7121108634921182032
+    second: HowToPlayPagePlaceholder_9
+  - first:
+      213: 383438764171285740
+    second: HowToPlayPagePlaceholder_10
+  - first:
+      213: 4136275984690605965
+    second: HowToPlayPagePlaceholder_11
+  - first:
+      213: 2821788591050289758
+    second: HowToPlayPagePlaceholder_12
+  - first:
+      213: -2116541204256862142
+    second: HowToPlayPagePlaceholder_13
+  - first:
+      213: 7319361456616792380
+    second: HowToPlayPagePlaceholder_14
+  - first:
+      213: -308784173166463030
+    second: HowToPlayPagePlaceholder_15
+  - first:
+      213: 7124061449841646465
+    second: HowToPlayPagePlaceholder_16
+  - first:
+      213: -8948344815316980494
+    second: HowToPlayPagePlaceholder_17
+  - first:
+      213: -8909271026886934096
+    second: HowToPlayPagePlaceholder_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_0
+      rect:
+        serializedVersion: 2
+        x: 1208
+        y: 832
+        width: 167
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 523483d1e6c91dff0800000000000000
+      internalID: -13057327154838747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_1
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 648
+        width: 62
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ac8808203cd4ea20800000000000000
+      internalID: 3090837343671192742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_2
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 697
+        width: 59
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a76004e52ab00b1d0800000000000000
+      internalID: -3337154531887675782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_3
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 693
+        width: 60
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bae65ccb1382935a0800000000000000
+      internalID: -6541152789693370709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_4
+      rect:
+        serializedVersion: 2
+        x: 603
+        y: 645
+        width: 56
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 364efbf990f7bbb20800000000000000
+      internalID: 3151252043587380323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_5
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 643
+        width: 55
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b59f818b28d72d50800000000000000
+      internalID: 6712571450987877812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_6
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 641
+        width: 62
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2a0016ed0e0d7360800000000000000
+      internalID: 7168901634700872234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_7
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 641
+        width: 58
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 618a93914e9618830800000000000000
+      internalID: 4071651966516307990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_8
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 641
+        width: 53
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68bfd9d64b7ca0750800000000000000
+      internalID: 6272045008813947782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_9
+      rect:
+        serializedVersion: 2
+        x: 1045
+        y: 527
+        width: 104
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 053a17ff29243d260800000000000000
+      internalID: 7121108634921182032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_10
+      rect:
+        serializedVersion: 2
+        x: 610
+        y: 556
+        width: 202
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce45b83468f325500800000000000000
+      internalID: 383438764171285740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_11
+      rect:
+        serializedVersion: 2
+        x: 1149
+        y: 516
+        width: 151
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8f6678d711076930800000000000000
+      internalID: 4136275984690605965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_12
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 521
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e527dc8e5c1092720800000000000000
+      internalID: 2821788591050289758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_13
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 524
+        width: 9
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 240dac71df880a2e0800000000000000
+      internalID: -2116541204256862142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_14
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 460
+        width: 175
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3164541778939560800000000000000
+      internalID: 7319361456616792380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_15
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 505
+        width: 21
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac776263e6af6bbf0800000000000000
+      internalID: -308784173166463030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_16
+      rect:
+        serializedVersion: 2
+        x: 769
+        y: 449
+        width: 55
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18b9ddbc420cdd260800000000000000
+      internalID: 7124061449841646465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_17
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 469
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fca2530dc711d380800000000000000
+      internalID: -8948344815316980494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HowToPlayPagePlaceholder_18
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 369
+        width: 208
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b189b25439eb5480800000000000000
+      internalID: -8909271026886934096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      HowToPlayPagePlaceholder_0: -13057327154838747
+      HowToPlayPagePlaceholder_1: 3090837343671192742
+      HowToPlayPagePlaceholder_10: 383438764171285740
+      HowToPlayPagePlaceholder_11: 4136275984690605965
+      HowToPlayPagePlaceholder_12: 2821788591050289758
+      HowToPlayPagePlaceholder_13: -2116541204256862142
+      HowToPlayPagePlaceholder_14: 7319361456616792380
+      HowToPlayPagePlaceholder_15: -308784173166463030
+      HowToPlayPagePlaceholder_16: 7124061449841646465
+      HowToPlayPagePlaceholder_17: -8948344815316980494
+      HowToPlayPagePlaceholder_18: -8909271026886934096
+      HowToPlayPagePlaceholder_2: -3337154531887675782
+      HowToPlayPagePlaceholder_3: -6541152789693370709
+      HowToPlayPagePlaceholder_4: 3151252043587380323
+      HowToPlayPagePlaceholder_5: 6712571450987877812
+      HowToPlayPagePlaceholder_6: 7168901634700872234
+      HowToPlayPagePlaceholder_7: 4071651966516307990
+      HowToPlayPagePlaceholder_8: 6272045008813947782
+      HowToPlayPagePlaceholder_9: 7121108634921182032
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

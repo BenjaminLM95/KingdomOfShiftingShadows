@@ -61,12 +61,12 @@ public class UIUpgradeManager : MonoBehaviour
 
         if (upgradeManager.nextSwordUpgrade.tier < 5)
         {
-            swordUpgradeCost.text = "Cost: " + (upgradeManager.nextSwordUpgrade.cost).ToString();
+            swordUpgradeCost.text = "Cost: " + (upgradeManager.nextSwordUpgrade.cost).ToString() + " $";
         }
         else
             swordUpgradeCost.text = " - ";
 
-        swordUpgradeLevel.text = (currentSwordTier-1).ToString() + "/5"; 
+        swordUpgradeLevel.text = (currentSwordTier-1).ToString() + "/4"; 
 
             // For health upgrade
 
@@ -75,12 +75,12 @@ public class UIUpgradeManager : MonoBehaviour
 
         if (upgradeManager.nextHealthUpgrade.tier < 5)
         {
-            healthUpgradeCost.text = "Cost: " + (upgradeManager.nextHealthUpgrade.cost).ToString();
+            healthUpgradeCost.text = "Cost: " + (upgradeManager.nextHealthUpgrade.cost).ToString() + " $";
         }
         else
             healthUpgradeCost.text = " - ";
 
-        healthUpgradeLevel.text = (currentHealthTier - 1).ToString() + "/5"; 
+        healthUpgradeLevel.text = (currentHealthTier-1).ToString() + "/4"; 
 
             // For speed upgrade
 
@@ -89,12 +89,12 @@ public class UIUpgradeManager : MonoBehaviour
 
         if (upgradeManager.nextSpeedUpgrade.tier < 5)
         {
-            speedUpgradeCost.text = "Cost: " + (upgradeManager.nextSpeedUpgrade).cost.ToString();
+            speedUpgradeCost.text = "Cost: " + (upgradeManager.nextSpeedUpgrade).cost.ToString() + " $";
         }
         else
             speedUpgradeCost.text = " - ";
 
-        speedUpgradeLevel.text = (currentSpeedTier - 1).ToString() + "/5";
+        speedUpgradeLevel.text = (currentSpeedTier-1).ToString() + "/4";
     }
 
     public void SettingTiers() 
