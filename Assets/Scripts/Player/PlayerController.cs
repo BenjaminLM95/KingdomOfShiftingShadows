@@ -14,14 +14,14 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private PlayerState playerState;
+    public PlayerState playerState { get; private set; }
 
     [Header("Player Movement Variables")]
     private float horizontal;
     private float vertical;
     [SerializeField] private float baseSpeedMove = 4f;
     [SerializeField] private float speedMove = 0;
-    private float upgradeSpeedMove = 1; 
+    public float upgradeSpeedMove = 1; 
     [SerializeField] private float sprintSpeed = 5;
     public float knockBackForce = 1.5f; 
     private Vector3 initialPos = new Vector3(-6f, -0.5f);
@@ -31,8 +31,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attack movements")]
     public GameObject sword;
-    public GameObject slashCollider; 
-    public bool isAttacking = false;
+    public GameObject slashCollider;     
     public int baseSwordPower = 4;
     public int upgradeSwordPower = 0;
     public int swordPower = 0; 
@@ -44,8 +43,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canSprint = true;
     [SerializeField] private bool canAttack = true;
 
-    public int numKill = 0;    
-    public bool isDead = false;
+    public int numKill = 0;       
     public bool isStill = false;
     public float stillCoolDown = 1f;
     public float stillCount = 0;
@@ -74,7 +72,7 @@ public class PlayerController : MonoBehaviour
         canAttack = false; 
         sword.gameObject.SetActive(false);
         body = GetComponent<Rigidbody2D>();
-        playerState = PlayerState.Walk;
+        playerState = PlayerState.Still;
         playerAnimator = GetComponent<Animator>();
         UpdatingSwordMight();
         UpdatingSpeed();        
@@ -103,51 +101,44 @@ public class PlayerController : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Mouse0)) && playerState != PlayerState.Attack) 
         {
-            Attack(); 
+            playerState = PlayerState.Attack;  
         }
 
         if(dayNightManager == null) 
         {
             dayNightManager = FindFirstObjectByType<DayNightManager>();
-        }
-
-
-        if (upgradeManager.isSwordUpgrade && upgradeManager.currentSwordUpgrade != null) 
-        {
-            if(upgradeSwordPower != upgradeManager.currentSwordUpgrade.value) 
-            {
-                upgradeSwordPower = upgradeManager.currentSwordUpgrade.value;
-                Debug.Log(upgradeSwordPower); 
-                UpdatingSwordMight(); 
-            }
-        }
-
-        if (upgradeManager.isSpeedUpgrade && upgradeManager.currentSpeedUpgrade != null) 
-        {
-            if(upgradeSpeedMove != upgradeManager.currentSpeedUpgrade.value) 
-            {
-                upgradeSpeedMove = upgradeManager.currentSpeedUpgrade.value;
-                Debug.Log(upgradeSpeedMove);
-                UpdatingSpeed(); 
-            }
-        }
-
-
-        if(playerHealth.healthSystem.health <= 0)
-        {
-            playerState = PlayerState.Death;            
-            canAttack = true;
-            playerAnimator.SetBool("isAttacking", false);
-            isDead = true; 
-
-        }
-
-        
+        }              
+                  
     }
 
     private void FixedUpdate()
     {
-        PlayerMovement();                    
+        HandleAction(playerState);                     
+    }
+
+    public void HandleAction(PlayerState playerState) 
+    {
+        // Action depens on the player state
+        switch (playerState) 
+        {
+            case PlayerState.Still:
+                PlayerMovement();
+                break;
+            case PlayerState.Walk:
+                PlayerMovement();
+                playerAnimator.SetBool("isWalking", true);
+                break;
+            case PlayerState.Attack:
+                body.linearVelocity = new Vector2(0f, 0f); 
+                Attack();
+                break;
+            case PlayerState.Idle:
+                break;
+            case PlayerState.Death:
+                canAttack = true;
+                playerAnimator.SetBool("isAttacking", false);                
+                break; 
+        }
     }
 
     public void PlayerMovement() 
@@ -157,15 +148,12 @@ public class PlayerController : MonoBehaviour
             body.linearVelocity = new Vector2(horizontal * speedMove, vertical * speedMove);
         }
 
+        // If the velocity is greater than 0 the player moves, if not stay still
         if (body.linearVelocity.magnitude > 0)
         {
             if (playerState != PlayerState.Attack)
-            {
-                if (isAttacking)
-                    isAttacking = false;
-
-                playerState = PlayerState.Walk;
-                playerAnimator.SetBool("isWalking", true);
+            {              
+                playerState = PlayerState.Walk;                
             }
 
             if (body.linearVelocityX > 0)
@@ -190,14 +178,12 @@ public class PlayerController : MonoBehaviour
     public void Attack() 
     {
         if (canAttack)
-        {            
-            soundManager.PlaySoundFXClip("SlashSword", transform); 
-            playerState = PlayerState.Attack;
-            isAttacking = true;
+        {
+            canAttack = false;
+            soundManager.PlaySoundFXClip("SlashSword", transform);           
             sword.gameObject.SetActive(true);
             slashCollider.gameObject.SetActive(true);
-            playerAnimator.SetBool("isAttacking", true);                       
-            canAttack = false;
+            playerAnimator.SetBool("isAttacking", true);                     
             Invoke("SaveSword", 0.4f);
         }
     }
@@ -224,12 +210,12 @@ public class PlayerController : MonoBehaviour
     public void SetStartingPosition() 
     {
         transform.position = initialPos;
-        transform.localScale = new Vector3(1, 1, 1);
-        isDead = false; 
+        transform.localScale = new Vector3(1, 1, 1);       
     }
 
     public void ResetValues() 
     {
+        // Reset values when start a new game
         numKill = 0;
         transform.position = initialPos;
         upgradeSwordPower = 0;
@@ -245,5 +231,9 @@ public class PlayerController : MonoBehaviour
         canAttack = false;
     }
    
+    public void PlayerDeath() 
+    {
+        playerState = PlayerState.Death;
+    }
 
 }
