@@ -62,10 +62,13 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // Finding all the references 
         upgradeManager = FindFirstObjectByType<UpgradeManager>();
         soundManager = FindFirstObjectByType<SoundsManager>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         newGameScene = FindFirstObjectByType<NewGameScene>();
+
+
         transform.position = initialPos;
         canMove = false;
         canAttack = false; 
@@ -74,8 +77,7 @@ public class PlayerController : MonoBehaviour
         playerState = PlayerState.Walk;
         playerAnimator = GetComponent<Animator>();
         UpdatingSwordMight();
-        UpdatingSpeed(); 
-       
+        UpdatingSpeed();        
 
     }
 
@@ -145,18 +147,22 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        PlayerMovement();                    
+    }
 
+    public void PlayerMovement() 
+    {
         if (canMove)
         {
             body.linearVelocity = new Vector2(horizontal * speedMove, vertical * speedMove);
         }
 
-        if(body.linearVelocity.magnitude > 0) 
+        if (body.linearVelocity.magnitude > 0)
         {
             if (playerState != PlayerState.Attack)
             {
                 if (isAttacking)
-                    isAttacking = false; 
+                    isAttacking = false;
 
                 playerState = PlayerState.Walk;
                 playerAnimator.SetBool("isWalking", true);
@@ -165,42 +171,20 @@ public class PlayerController : MonoBehaviour
             if (body.linearVelocityX > 0)
             {
                 transform.localScale = new Vector3(1, 1, 1);
-                
+
             }
-            else if(body.linearVelocityX < 0)
+            else if (body.linearVelocityX < 0)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
-                
+
             }
-            
+
         }
-        else 
+        else
         {
             playerState = PlayerState.Still;
             playerAnimator.SetBool("isWalking", false);
         }
-
-        /*
-        if (playerState == PlayerState.Still)
-        {
-            isStill = true;
-        }
-
-        if (isStill) 
-        {
-            stillCount += Time.deltaTime;
-            if(stillCount > stillCoolDown) 
-            {
-                playerState = PlayerState.Idle; 
-            }
-            Debug.Log(stillCount); 
-        }
-        else 
-        {
-            stillCount = 0; 
-        }*/
-
-        
     }
 
     public void Attack() 
