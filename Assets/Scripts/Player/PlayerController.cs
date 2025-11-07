@@ -101,7 +101,11 @@ public class PlayerController : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Mouse0)) && playerState != PlayerState.Attack) 
         {
-            playerState = PlayerState.Attack;  
+            if (canAttack)
+            {
+                soundManager.PlaySoundFXClip("SlashSword", transform);
+                playerState = PlayerState.Attack;
+            }
         }
 
         if(dayNightManager == null) 
@@ -129,7 +133,7 @@ public class PlayerController : MonoBehaviour
                 playerAnimator.SetBool("isWalking", true);
                 break;
             case PlayerState.Attack:
-                body.linearVelocity = new Vector2(0f, 0f); 
+                //body.linearVelocity = new Vector2(0f, 0f); 
                 Attack();
                 break;
             case PlayerState.Idle:
@@ -177,16 +181,13 @@ public class PlayerController : MonoBehaviour
 
     public void Attack() 
     {
-        if (canAttack)
-        {
-            canAttack = false;
-            soundManager.PlaySoundFXClip("SlashSword", transform);           
+            canAttack = false;                      
             sword.gameObject.SetActive(true);
             slashCollider.gameObject.SetActive(true);
             playerAnimator.SetBool("isAttacking", true);                     
             Invoke("SaveSword", 0.4f);
-        }
     }
+    
 
     public void SaveSword() 
     {        
