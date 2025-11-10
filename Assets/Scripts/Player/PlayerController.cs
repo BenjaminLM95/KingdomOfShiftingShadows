@@ -42,7 +42,19 @@ public class PlayerController : MonoBehaviour
     [Header("Abilities")]
     [SerializeField] private bool canMove = false;
     [SerializeField] private bool canSprint = true;
-    [SerializeField] private bool canAttack = true;
+    private bool _canAttack = true;
+    [SerializeField] private bool canAttack
+    {
+        get
+        {
+            return _canAttack;
+        }
+        set
+        {
+            _canAttack = value;
+            Debug.Log($"Can attack set to {value} attack cooldown is {attackCooldown}");
+        }
+    }
 
     public int numKill = 0;       
     public bool isStill = false;
@@ -88,10 +100,11 @@ public class PlayerController : MonoBehaviour
             newGameScene = FindFirstObjectByType<NewGameScene>();
         }
         
-        if (newGameScene.isStarted) 
+        if (newGameScene.isStarted && newGameScene.isEnded) 
         {
             canMove = true;
-            canAttack = true; 
+            canAttack = true;
+            newGameScene.isEnded = false;
         }
 
         if (canMove)
@@ -100,12 +113,12 @@ public class PlayerController : MonoBehaviour
             vertical = Input.GetAxisRaw("Vertical");
         }
 
-        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Mouse0)) && playerState != PlayerState.Attack) 
+        if ((Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Mouse0)) && playerState != PlayerState.Attack) 
         {
             if (canAttack)
             {
                 soundManager.PlaySoundFXClip("SlashSword", transform);
-                playerState = PlayerState.Attack;
+                playerState = PlayerState.Attack;                
             }
         }
 
@@ -141,7 +154,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Death:
                 canAttack = true;
-                playerAnimator.SetBool("isAttacking", false);                
+                //playerAnimator.SetBool("isAttacking", false);                
                 break; 
         }
     }
@@ -182,11 +195,15 @@ public class PlayerController : MonoBehaviour
 
     public void Attack() 
     {
-            canAttack = false;                      
+        if (canAttack)
+        {
+            canAttack = false;
             sword.gameObject.SetActive(true);
             slashCollider.gameObject.SetActive(true);
-            playerAnimator.SetBool("isAttacking", true);                     
+            playerAnimator.Play("FSkyAttackAnimation");
+            Debug.Log("Attack!");
             Invoke("SaveSword", attackCooldown);
+        }
     }
     
 
@@ -194,8 +211,7 @@ public class PlayerController : MonoBehaviour
     {        
         sword.gameObject.SetActive(false);
         slashCollider.gameObject.SetActive(false); 
-        canAttack = true;
-        playerAnimator.SetBool("isAttacking", false);
+        canAttack = true;       
         playerState = PlayerState.Walk; 
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 public class NewGameScene : MonoBehaviour
 {
     public bool isStarted { get; private set; }
+    public bool isEnded; 
     public GameObject kingdomsLine;
     private Animator lineAnimator;
     public GameObject textIndicator; 
@@ -11,6 +12,7 @@ public class NewGameScene : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        isEnded = false; 
         isStarted = false; 
         lineAnimator = kingdomsLine.GetComponent<Animator>();
         lineAnimator.SetBool("itBegin", true);
@@ -31,7 +33,8 @@ public class NewGameScene : MonoBehaviour
         lineAnimator.SetBool("itBegin", false);
         yield return new WaitForSeconds(1f);
         isStarted = true;
-        textIndicator.gameObject.SetActive(false); 
+        textIndicator.gameObject.SetActive(false);
+        isEnded = true; 
         
     }
 

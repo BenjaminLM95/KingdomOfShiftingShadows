@@ -37,15 +37,26 @@ public class EnemyHealthBar : MonoBehaviour
             if (enemyStats.healthSystem.health <= 0)
             {
                 healthBarBackground.SetActive(false);
+                enemyHealthBar.gameObject.SetActive(false); 
             }
             else 
             {                
-                float newScaleX = (enemyStats.healthSystem.health/enemyStats.healthSystem.maxHealth) * healthScale;     // Get the new scale based on the hp             
+                float newScaleX = ((float)enemyStats.healthSystem.health/ (float)enemyStats.healthSystem.maxHealth) * healthScale;     // Get the new scale based on the hp             
 
                 enemyHealthBar.localScale = new Vector3(newScaleX, enemyHealthBar.localScale.y, enemyHealthBar.localScale.z);
 
-                float newPosX = (enemyHealthBar.position.x - newScaleX / 2);   // Get the new position on X to move the health bar
-                Debug.Log(newPosX); 
+                float newPosX; 
+
+                if ((float)enemyStats.healthSystem.health / (float)enemyStats.healthSystem.maxHealth >= 0.5f)
+                {
+                    newPosX = (enemyHealthBar.position.x - newScaleX / 2);   // Get the new position on X to move the health bar
+                    Debug.Log(newPosX);
+                }
+                else 
+                {
+                    newPosX = enemyHealthBar.position.x - (healthScale / 2) + newScaleX;
+                    Debug.Log(newPosX); 
+                }
 
                 enemyHealthBar.position = new Vector3(newPosX, enemyHealthBar.position.y, enemyHealthBar.position.z);
             }
