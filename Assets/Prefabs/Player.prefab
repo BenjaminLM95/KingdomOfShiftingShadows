@@ -78,13 +78,17 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.25326443, y: 1.0600928}
+    - - {x: 0.4494071, y: 0.68869174}
+      - {x: -0.049804688, y: 1.051046}
       - {x: -0.19586092, y: 0.9286648}
-      - {x: 0.098362505, y: 0.20683426}
-      - {x: -0.29315794, y: -0.62231255}
-      - {x: 0.62116003, y: -0.6704986}
-      - {x: 1.3585858, y: -0.72755384}
-      - {x: 1.0548949, y: 0.28419888}
+      - {x: 0.0723176, y: 0.64068794}
+      - {x: 0.18883091, y: 0.20683426}
+      - {x: 0.09340429, y: -0.18039995}
+      - {x: -0.2388767, y: -0.51375043}
+      - {x: 0.5985427, y: -0.589077}
+      - {x: 1.1414618, y: -0.6235151}
+      - {x: 1.0340881, y: -0.21043944}
+      - {x: 0.83777094, y: 0.18468359}
   m_UseDelaunayMesh: 0
 --- !u!1 &6757053921615204007
 GameObject:
@@ -184,6 +188,7 @@ GameObject:
   - component: {fileID: 8776361553925642626}
   - component: {fileID: 4576890133481530474}
   - component: {fileID: 1186564037291499569}
+  - component: {fileID: 1932960855457498605}
   - component: {fileID: 1590059684896537351}
   - component: {fileID: 5556061691710077905}
   - component: {fileID: 4769621267870279495}
@@ -281,11 +286,11 @@ MonoBehaviour:
   playerState: 0
   baseSpeedMove: 3
   speedMove: 0
+  upgradeSpeedMove: 1
   sprintSpeed: 5
   knockBackForce: 1.5
   sword: {fileID: 6757053921615204007}
   slashCollider: {fileID: 5705028957381102069}
-  isAttacking: 0
   baseSwordPower: 3
   upgradeSwordPower: 0
   swordPower: 3
@@ -323,6 +328,7 @@ MonoBehaviour:
   playerHealthAnimator: {fileID: 0}
   cameraShaking: {fileID: 0}
   _playerController: {fileID: 8776361553925642626}
+  upgradeHealhValue: 0
 --- !u!114 &1186564037291499569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +341,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ad25a48e6b96e459bf5816db008031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1932960855457498605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6768104230059079462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ddaa693235f6b74e97a062695ebfa4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 8776361553925642626}
+  playerHealth: {fileID: 4576890133481530474}
 --- !u!50 &1590059684896537351
 Rigidbody2D:
   serializedVersion: 5

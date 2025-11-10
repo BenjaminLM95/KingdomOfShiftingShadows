@@ -4,10 +4,8 @@ using static GameStateManager;
 
 public class KingdomGate : MonoBehaviour
 {
-    public bool gameOver;// { get; private set; }
-    public bool gameWin;// { get; private set; }
-    //public GameObject gameOverText;
-    //public GameObject gameWinText;
+    public bool gameOver;
+    public bool gameWin;
     [SerializeField] private int dayMax;
 
 
@@ -36,9 +34,9 @@ public class KingdomGate : MonoBehaviour
 
     private void Update()
     {
-        if(!gameOver && playerController.isDead && !gameWin) 
+        if(playerController.playerState == PlayerState.Death && !gameOver) 
         {           
-            playerHealth.vulnerability();
+            playerHealth.vulnerability();            
             Invoke("SetGameOver", 0.25f);             
         }
 
@@ -71,7 +69,8 @@ public class KingdomGate : MonoBehaviour
         if(resultInfo == null)
             resultInfo = FindFirstObjectByType<ResultInformation>();
                 
-        resultInfo.DisplayResult(); 
+        resultInfo.DisplayResult();
+        gameOver = false; 
         Time.timeScale = 0f;
     }
 

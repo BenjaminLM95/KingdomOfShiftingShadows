@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Animator playerHealthAnimator;
     [SerializeField] private CameraShaking cameraShaking;
     public PlayerController _playerController; 
-    private int upgradeHealhValue;
+    public int upgradeHealhValue;
     private Coroutine myCoroutineReference;
 
     
@@ -47,17 +47,12 @@ public class PlayerHealth : MonoBehaviour
             healthText.text = "Player's HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
             playerHealth = healthSystem.health;    
 
-        }
+        }       
 
-        if (upgradeManager.isHealthUpgrade && upgradeManager.currentHealthUpgrade != null)
+        if (healthSystem.health <= 0) 
         {
-            if (upgradeHealhValue != upgradeManager.currentHealthUpgrade.value)
-            {
-                upgradeHealhValue = upgradeManager.currentHealthUpgrade.value;          
-                UpdatingHealthUpgrade(); 
-            }
+            _playerController.PlayerDeath(); 
         }
-        
 
     }
 
