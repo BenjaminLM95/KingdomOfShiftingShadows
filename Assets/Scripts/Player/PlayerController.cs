@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
     public int baseSwordPower = 4;
     public int upgradeSwordPower = 0;
     public int swordPower = 0; 
-    [SerializeField] private Animator playerAnimator; 
+    [SerializeField] private Animator playerAnimator;
+    [SerializeField] private float attackCooldown; 
 
 
     [Header("Abilities")]
@@ -66,7 +67,7 @@ public class PlayerController : MonoBehaviour
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         newGameScene = FindFirstObjectByType<NewGameScene>();
 
-
+        attackCooldown = 0.32f; 
         transform.position = initialPos;
         canMove = false;
         canAttack = false; 
@@ -185,7 +186,7 @@ public class PlayerController : MonoBehaviour
             sword.gameObject.SetActive(true);
             slashCollider.gameObject.SetActive(true);
             playerAnimator.SetBool("isAttacking", true);                     
-            Invoke("SaveSword", 0.4f);
+            Invoke("SaveSword", attackCooldown);
     }
     
 
