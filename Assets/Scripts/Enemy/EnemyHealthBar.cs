@@ -12,8 +12,7 @@ public class EnemyHealthBar : MonoBehaviour
    
 
     private void Awake()
-    {
-        enemyHealthBar.position = healthBarBackground.transform.position;
+    {        
         enemyHealthBar.localScale = healthBarBackground.transform.localScale;
         healthScale = enemyHealthBar.localScale.x; 
         enemyStats = this.GetComponent<Enemy>();         
@@ -43,22 +42,7 @@ public class EnemyHealthBar : MonoBehaviour
             {                
                 float newScaleX = ((float)enemyStats.healthSystem.health/ (float)enemyStats.healthSystem.maxHealth) * healthScale;     // Get the new scale based on the hp             
 
-                enemyHealthBar.localScale = new Vector3(newScaleX, enemyHealthBar.localScale.y, enemyHealthBar.localScale.z);
-
-                float newPosX; 
-
-                if ((float)enemyStats.healthSystem.health / (float)enemyStats.healthSystem.maxHealth >= 0.5f)
-                {
-                    newPosX = (enemyHealthBar.position.x - newScaleX / 2);   // Get the new position on X to move the health bar
-                    Debug.Log(newPosX);
-                }
-                else 
-                {
-                    newPosX = enemyHealthBar.position.x - (healthScale / 2) + newScaleX;
-                    Debug.Log(newPosX); 
-                }
-
-                enemyHealthBar.position = new Vector3(newPosX, enemyHealthBar.position.y, enemyHealthBar.position.z);
+                enemyHealthBar.localScale = new Vector3(newScaleX, enemyHealthBar.localScale.y, enemyHealthBar.localScale.z);            
             }
 
             currentEnemyHealth = enemyStats.healthSystem.health;
