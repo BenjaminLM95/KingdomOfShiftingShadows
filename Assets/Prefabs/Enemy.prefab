@@ -314,6 +314,7 @@ MonoBehaviour:
   isDefeat: 0
   isHit: 0
   soundManager: {fileID: 0}
+  coinPrefab: {fileID: 6463467445383395387, guid: a4950f2461320914ab6b934f2cea1c30, type: 3}
 --- !u!114 &7994282961705096139
 MonoBehaviour:
   m_ObjectHideFlags: 0

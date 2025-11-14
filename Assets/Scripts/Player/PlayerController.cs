@@ -14,7 +14,7 @@ public enum PlayerState
 
 public class PlayerController : MonoBehaviour
 {
-    public PlayerState playerState { get; private set; }
+    public PlayerState playerState; 
 
     [Header("Player Movement Variables")]
     private float horizontal;
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         set
         {
             _canAttack = value;
-            Debug.Log($"Can attack set to {value} attack cooldown is {attackCooldown}");
+            //Debug.Log($"Can attack set to {value} attack cooldown is {attackCooldown}");
         }
     }
 
@@ -200,8 +200,7 @@ public class PlayerController : MonoBehaviour
             canAttack = false;
             sword.gameObject.SetActive(true);
             slashCollider.gameObject.SetActive(true);
-            playerAnimator.Play("FSkyAttackAnimation");
-            Debug.Log("Attack!");
+            playerAnimator.Play("FSkyAttackAnimation");            
             Invoke("SaveSword", attackCooldown);
         }
     }
@@ -252,6 +251,11 @@ public class PlayerController : MonoBehaviour
     public void PlayerDeath() 
     {
         playerState = PlayerState.Death;
+    }
+
+    private void OnDisable()
+    {
+        playerState = PlayerState.Still; 
     }
 
 }

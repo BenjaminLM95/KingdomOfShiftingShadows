@@ -40,8 +40,8 @@ public class DayNightManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private TimeDisplay timeDisplay;
-    [SerializeField] private NewGameScene newGameScene; 
-
+    [SerializeField] private NewGameScene newGameScene;
+    private GameStateManager gameState;
 
 
     private void Awake()
@@ -50,6 +50,7 @@ public class DayNightManager : MonoBehaviour
         levelManager = FindFirstObjectByType<LevelManager>();
         timeDisplay = FindFirstObjectByType<TimeDisplay>();
         newGameScene = FindFirstObjectByType<NewGameScene>();
+        gameState = FindFirstObjectByType<GameStateManager>();
         InitialDaySetup();
         currentHour = (int)GetHour();
 
@@ -98,7 +99,12 @@ public class DayNightManager : MonoBehaviour
             }
         }
 
-        DisplayTime(); 
+        DisplayTime();
+
+        if (gameState.currentGameState == GameStateManager.GameState.Paused)
+        {
+            dayNotificationText.gameObject.SetActive(false);
+        }
 
     }
 

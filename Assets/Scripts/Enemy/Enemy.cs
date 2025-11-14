@@ -66,6 +66,7 @@ public class Enemy : MonoBehaviour
     public bool isDefeat = false;
     public bool isHit = false;
     [SerializeField] private SoundsManager soundManager;
+    public GameObject coinPrefab; 
 
 
 
@@ -175,8 +176,8 @@ public class Enemy : MonoBehaviour
                 enemyAnimator.SetBool("isFainted", true);
                 soundManager.PlaySoundFXClip("WitchDead", transform);                  
                 playerController.numKill++;
-                playerController.upgradeManager.ObtainingMoneyReward(moneyValue);
-                soundManager.PlaySoundFXClip("GetMoney", transform); 
+                //playerController.upgradeManager.ObtainingMoneyReward(moneyValue);
+                //soundManager.PlaySoundFXClip("GetMoney", transform); 
                 hpText.gameObject.SetActive(false); 
                 Invoke("DeathBehavior", 1f);
             }
@@ -357,7 +358,19 @@ public class Enemy : MonoBehaviour
         switch (enemyType) 
         {
             case EnemyType.DayEnemy:                                
-                isDefeat = true; 
+                isDefeat = true;
+                GameObject instantiatedCoin = Instantiate(coinPrefab, transform.position, Quaternion.identity);               
+              
+                if (instantiatedCoin != null)
+                {
+                    
+                    instantiatedCoin.GetComponent<CoinBehavior>().SetValue(moneyValue);
+                }
+                else
+                {
+                    Debug.LogError("MyScript component not found on the instantiated object!");
+                }
+
                 this.gameObject.SetActive(false);
                 break; 
             case EnemyType.NightEnemy:                

@@ -7,7 +7,14 @@ public class NewGameScene : MonoBehaviour
     public bool isEnded; 
     public GameObject kingdomsLine;
     private Animator lineAnimator;
-    public GameObject textIndicator; 
+    public GameObject textIndicator;
+
+    GameStateManager gameState;
+
+    private void Awake()
+    {
+        gameState = FindFirstObjectByType<GameStateManager>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +30,14 @@ public class NewGameScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gameState.currentGameState == GameStateManager.GameState.Paused) 
+        {
+            textIndicator.SetActive(false);
+        }
+        else if (!isStarted) 
+        {
+            textIndicator.SetActive(true);
+        }
         
     }
 

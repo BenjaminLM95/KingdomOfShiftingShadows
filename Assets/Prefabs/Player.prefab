@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 4769621267870279495}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2738862d4bd8718409383e87f5381b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerState: 0
   baseSpeedMove: 3
   speedMove: 0
   upgradeSpeedMove: 1
@@ -321,6 +322,7 @@ MonoBehaviour:
   invincibility: 0
   vulnerabilityCooldown: 1.5
   healthText: {fileID: 0}
+  healthSlider: {fileID: 0}
   attackingEnemy: {fileID: 0}
   upgradeManager: {fileID: 0}
   playerHealthAnimator: {fileID: 0}

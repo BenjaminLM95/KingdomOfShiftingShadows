@@ -2,6 +2,8 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.UI;
+
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private bool invincibility = false;
     [SerializeField] private float vulnerabilityCooldown = 0.5f; 
     public TextMeshProUGUI healthText;
+    public GameObject healthSlider;
+    Slider hpSlider; 
 
 
 
@@ -34,7 +38,11 @@ public class PlayerHealth : MonoBehaviour
         SettingInitialStats(); 
         upgradeManager = FindFirstObjectByType<UpgradeManager>();         
         playerHealthAnimator = GetComponent<Animator>();
-        
+        healthSlider = GameObject.Find("PlayerHPSlider");
+        hpSlider = healthSlider.GetComponent<Slider>();
+        hpSlider.value = (float)healthSystem.health / (float)healthSystem.maxHealth;
+        ChangingHealthBarColor(hpSlider.value);
+
     }
 
     // Update is called once per frame
@@ -45,7 +53,9 @@ public class PlayerHealth : MonoBehaviour
         if(playerHealth != healthSystem.health) 
         {                     
             healthText.text = "Player's HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
-            playerHealth = healthSystem.health;    
+            playerHealth = healthSystem.health;
+            hpSlider.value = (float)healthSystem.health / (float)healthSystem.maxHealth;
+            ChangingHealthBarColor(hpSlider.value);
 
         }       
 
@@ -53,6 +63,8 @@ public class PlayerHealth : MonoBehaviour
         {
             _playerController.PlayerDeath(); 
         }
+               
+
 
     }
 
@@ -136,6 +148,24 @@ public class PlayerHealth : MonoBehaviour
         invincibility = false;
         SettingHealth();
         healthText.text = "Player's HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
+    }
+
+    private void ChangingHealthBarColor(float _value) 
+    {
+        Image fillImage = hpSlider.fillRect.GetComponent<Image>();
+
+        if (_value > 0.5) 
+        {
+            fillImage.color = Color.green; 
+        }
+        else if(_value > 0.25) 
+        {
+            fillImage.color = Color.yellow; 
+        }
+        else if(_value <= 0.25) 
+        {
+            fillImage.color = Color.red;
+        }
     }
 
     private void OnDisable()
