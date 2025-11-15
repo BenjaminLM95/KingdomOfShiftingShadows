@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CoinBehavior : MonoBehaviour
@@ -5,6 +6,7 @@ public class CoinBehavior : MonoBehaviour
     private GameObject playerObj;
     private float speedMove;
     private int value;
+    public Vector3 moveVec; 
 
     [SerializeField] private SoundsManager soundManager;
 
@@ -14,14 +16,13 @@ public class CoinBehavior : MonoBehaviour
         soundManager = FindFirstObjectByType<SoundsManager>();
         playerObj = GameObject.Find("Player");
         speedMove = 10f;
+        moveVec = new Vector3();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 moveVec = (playerObj.transform.position - transform.position).normalized;
-
-        transform.position += moveVec * Time.deltaTime * speedMove; 
+        StartCoroutine(FollowPlayer());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,5 +41,14 @@ public class CoinBehavior : MonoBehaviour
         value = _value;
     }
 
+
+    private IEnumerator FollowPlayer() 
+    {
+        moveVec = (playerObj.transform.position - transform.position).normalized;
+
+        transform.position += moveVec * Time.deltaTime * speedMove;
+
+        yield return new WaitForSeconds(0.5f);
+    }
     
 }

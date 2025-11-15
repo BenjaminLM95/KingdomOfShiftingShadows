@@ -376,6 +376,7 @@ public class Enemy : MonoBehaviour
             case EnemyType.NightEnemy:                
                 enemyState = EnemyState.Collapse;
                 isDefeat = true;
+                enemyAnimator.SetBool("isStunned", true); 
                 hpText.gameObject.SetActive(false);
                 Invoke("ReviveEnemy", 5f);                
                 break;
@@ -391,7 +392,8 @@ public class Enemy : MonoBehaviour
         SetStats();
         hpText.gameObject.SetActive(true);
         invincibility = false;
-        isDefeat = false; 
+        isDefeat = false;
+        enemyAnimator.SetBool("isStunned", false);
         enemyState = EnemyState.Running;
         UpdateHPText();
     }

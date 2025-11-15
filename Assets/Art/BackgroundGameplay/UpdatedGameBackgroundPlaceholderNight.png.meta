@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 9b79d6e58d8790a449c75c703a8f0f49
+guid: 76bad579104d86646a455a1fcb8b777a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5812742400909274157
-    second: Attackzombie_0
-  - first:
-      213: 4979876139482550567
-    second: Attackzombie_1
-  - first:
-      213: -5446833226616195388
-    second: Attackzombie_2
-  - first:
-      213: -6959285103235443588
-    second: Attackzombie_3
+      213: 4451761207938408594
+    second: UpdatedGameBackgroundPlaceholderNight_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,89 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attackzombie_0
+      name: UpdatedGameBackgroundPlaceholderNight_0
       rect:
         serializedVersion: 2
-        x: 71
-        y: 73
-        width: 181
-        height: 212
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
+        x: 0
+        y: 0
+        width: 1920
+        height: 1080
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3d393f6659df45fa0800000000000000
-      internalID: -5812742400909274157
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attackzombie_1
-      rect:
-        serializedVersion: 2
-        x: 485
-        y: 73
-        width: 225
-        height: 203
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7211d4fd6f21c1540800000000000000
-      internalID: 4979876139482550567
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attackzombie_2
-      rect:
-        serializedVersion: 2
-        x: 885
-        y: 73
-        width: 225
-        height: 203
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4c63fb8f906f864b0800000000000000
-      internalID: -5446833226616195388
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attackzombie_3
-      rect:
-        serializedVersion: 2
-        x: 1285
-        y: 73
-        width: 225
-        height: 203
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c74dbfa0217ab6f90800000000000000
-      internalID: -6959285103235443588
+      spriteID: 29068007b35d7cd30800000000000000
+      internalID: 4451761207938408594
       vertices: []
       indices: 
       edges: []
@@ -200,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ee5d464fdd3822145bd572f3f271911b
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Attackzombie_0: -5812742400909274157
-      Attackzombie_1: 4979876139482550567
-      Attackzombie_2: -5446833226616195388
-      Attackzombie_3: -6959285103235443588
+      UpdatedGameBackgroundPlaceholderNight_0: 4451761207938408594
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,37 +1,67 @@
 fileFormatVersion: 2
-guid: 780e0d2f2324cc64aa31704919d40f93
+guid: f5c2072868699e44cb9443426d50cc99
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7332756924267726008
-    second: DieZombie_0
+      213: 597598957265471056
+    second: ZombieStunSpriteSheet_0
   - first:
-      213: -4833916262313754760
-    second: DieZombie_1
+      213: 6568813515709168728
+    second: ZombieStunSpriteSheet_1
   - first:
-      213: 1558012709822775391
-    second: DieZombie_2
+      213: -5091224963819730806
+    second: ZombieStunSpriteSheet_2
   - first:
-      213: -2435951530646336951
-    second: DieZombie_3
+      213: 5532726768951373156
+    second: ZombieStunSpriteSheet_3
   - first:
-      213: -1081670855263743110
-    second: DieZombie_4
+      213: 6696785757149371186
+    second: ZombieStunSpriteSheet_4
   - first:
-      213: -6133690650445780530
-    second: DieZombie_5
+      213: 5049068035955255755
+    second: ZombieStunSpriteSheet_5
   - first:
-      213: -3899571167005178082
-    second: DieZombie_6
+      213: -1327927900617997232
+    second: ZombieStunSpriteSheet_6
   - first:
-      213: -3818216942898666710
-    second: DieZombie_7
+      213: 1852077605703632611
+    second: ZombieStunSpriteSheet_7
   - first:
-      213: 1489795710290795368
-    second: DieZombie_8
+      213: -802707416294160403
+    second: ZombieStunSpriteSheet_8
   - first:
-      213: -9177546420423043080
-    second: DieZombie_9
+      213: -1183592860207019008
+    second: ZombieStunSpriteSheet_9
+  - first:
+      213: -4556682476308792332
+    second: ZombieStunSpriteSheet_10
+  - first:
+      213: -5241349376859864949
+    second: ZombieStunSpriteSheet_11
+  - first:
+      213: 8458439915915304006
+    second: ZombieStunSpriteSheet_12
+  - first:
+      213: -4667649713673197489
+    second: ZombieStunSpriteSheet_13
+  - first:
+      213: -7876699846975719536
+    second: ZombieStunSpriteSheet_14
+  - first:
+      213: 5474668652623884806
+    second: ZombieStunSpriteSheet_15
+  - first:
+      213: -3159223320292923742
+    second: ZombieStunSpriteSheet_16
+  - first:
+      213: 8604433601428566541
+    second: ZombieStunSpriteSheet_17
+  - first:
+      213: -572546942459497616
+    second: ZombieStunSpriteSheet_18
+  - first:
+      213: -494588259181667749
+    second: ZombieStunSpriteSheet_19
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -127,155 +157,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DieZombie_0
+      name: ZombieStunSpriteSheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 49
         width: 400
-        height: 400
+        height: 320
       alignment: 9
-      pivot: {x: 0.49999997, y: 0.35}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8b4834f629f23c560800000000000000
-      internalID: 7332756924267726008
+      spriteID: 056c3fdd5191b4800800000000000000
+      internalID: 597598957265471056
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DieZombie_1
+      name: ZombieStunSpriteSheet_1
       rect:
         serializedVersion: 2
-        x: 400
-        y: 0
+        x: 401
+        y: 50
         width: 400
-        height: 400
+        height: 320
       alignment: 9
-      pivot: {x: 0.5088893, y: 0.35}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 87ffdc645ca7aecb0800000000000000
-      internalID: -4833916262313754760
+      spriteID: 85c31a7e61d192b50800000000000000
+      internalID: 6568813515709168728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DieZombie_2
+      name: ZombieStunSpriteSheet_2
       rect:
         serializedVersion: 2
         x: 800
-        y: 0
+        y: 51
         width: 400
-        height: 400
+        height: 320
       alignment: 9
-      pivot: {x: 0.49111098, y: 0.35}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f50c78c0e4c2f9510800000000000000
-      internalID: 1558012709822775391
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DieZombie_3
-      rect:
-        serializedVersion: 2
-        x: 1200
-        y: 0
-        width: 400
-        height: 400
-      alignment: 9
-      pivot: {x: 0.49111083, y: 0.35}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 94a81c53df2c13ed0800000000000000
-      internalID: -2435951530646336951
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DieZombie_4
-      rect:
-        serializedVersion: 2
-        x: 1600
-        y: 0
-        width: 400
-        height: 400
-      alignment: 9
-      pivot: {x: 0.49111116, y: 0.35}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a739c1c86122df0f0800000000000000
-      internalID: -1081670855263743110
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DieZombie_5
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 0
-        width: 400
-        height: 400
-      alignment: 9
-      pivot: {x: 0.5000006, y: 0.35}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ec96b02e9d0c0eaa0800000000000000
-      internalID: -6133690650445780530
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DieZombie_6
-      rect:
-        serializedVersion: 2
-        x: 2400
-        y: 0
-        width: 400
-        height: 400
-      alignment: 9
-      pivot: {x: 0.4822223, y: 0.35}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e170d463fa0f1e9c0800000000000000
-      internalID: -3899571167005178082
+      spriteID: a888cefaed55859b0800000000000000
+      internalID: -5091224963819730806
       vertices: []
       indices: 
       edges: []
@@ -284,7 +226,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fb61deecfec6a924683d0dc26f118abc
+    spriteID: c495136376ac51945ac77653a8ed32ec
     internalID: 0
     vertices: []
     indices: 
@@ -294,13 +236,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DieZombie_0: 7332756924267726008
-      DieZombie_1: -4833916262313754760
-      DieZombie_2: 1558012709822775391
-      DieZombie_3: -2435951530646336951
-      DieZombie_4: -1081670855263743110
-      DieZombie_5: -6133690650445780530
-      DieZombie_6: -3899571167005178082
+      ZombieStunSpriteSheet_0: 597598957265471056
+      ZombieStunSpriteSheet_1: 6568813515709168728
+      ZombieStunSpriteSheet_2: -5091224963819730806
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
