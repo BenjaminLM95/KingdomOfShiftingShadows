@@ -14,7 +14,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float vulnerabilityCooldown = 0.5f; 
     public TextMeshProUGUI healthText;
     public GameObject healthSlider;
-    Slider hpSlider; 
+    Slider hpSlider;
+    public GameObject shieldSlider;
+    Slider shieldBar;
+    [SerializeField] private int playerShield; 
+    
 
 
 
@@ -38,10 +42,17 @@ public class PlayerHealth : MonoBehaviour
         SettingInitialStats(); 
         upgradeManager = FindFirstObjectByType<UpgradeManager>();         
         playerHealthAnimator = GetComponent<Animator>();
+        // Setting the HP bar
         healthSlider = GameObject.Find("PlayerHPSlider");
-        hpSlider = healthSlider.GetComponent<Slider>();
+        hpSlider = healthSlider.GetComponent<Slider>();        
         hpSlider.value = (float)healthSystem.health / (float)healthSystem.maxHealth;
         ChangingHealthBarColor(hpSlider.value);
+        // Setting the shield Bar
+        shieldSlider = GameObject.Find("ShieldHPSlider");
+        shieldBar = shieldSlider.GetComponent<Slider>();
+        shieldBar.value = (float)healthSystem.shield / (float)healthSystem.maxShield;
+        SetShieldBarColor(); 
+
 
     }
 
@@ -64,7 +75,20 @@ public class PlayerHealth : MonoBehaviour
             _playerController.PlayerDeath(); 
         }
                
+        if(playerShield != healthSystem.shield) 
+        {
+            shieldBar.value = (float)healthSystem.shield / (float)healthSystem.maxShield;
+            playerShield = healthSystem.shield; 
 
+            if(playerShield <= 0) 
+            {
+                shieldBar.fillRect.gameObject.SetActive(false); 
+            }
+            else 
+            {
+                shieldBar.fillRect.gameObject.SetActive(true);
+            }
+        }
 
     }
 
@@ -82,6 +106,12 @@ public class PlayerHealth : MonoBehaviour
     {
         healthSystem.setMaxHP(playerHealth);
         healthSystem.health = healthSystem.maxHealth;
+    }
+
+    private void SettingShield() 
+    {
+        healthSystem.setMaxShield(playerShield);
+        healthSystem.shield = healthSystem.maxShield; 
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -146,8 +176,10 @@ public class PlayerHealth : MonoBehaviour
     {
         upgradeHealhValue = 0; 
         playerHealth = 15;
+        playerShield = 10; 
         invincibility = false;
         SettingHealth();
+        SettingShield(); 
         healthText.text = "Player's HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
     }
 
@@ -167,6 +199,14 @@ public class PlayerHealth : MonoBehaviour
         {
             fillImage.color = Color.red;
         }
+    }
+
+    private void SetShieldBarColor() 
+    {
+        Image fillImage = shieldBar.fillRect.GetComponent<Image>();
+        Color orangeColor = new Color(255f, 165f, 0f);
+
+        fillImage.color = orangeColor;
     }
 
     private void OnDisable()

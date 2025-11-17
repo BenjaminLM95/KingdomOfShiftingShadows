@@ -44,6 +44,23 @@ public class FreezeMagic : ConsumableItem
     }
 }
 
+public class WindSlash : ConsumableItem 
+{
+    public WindSlash() 
+    {
+        itemName = "Wind Slash";
+        itemCost = 15; 
+    }
+
+    public override void Effect()
+    {
+        // Player do the wind slash
+    }
+}
+
+
+
+
 
 
 

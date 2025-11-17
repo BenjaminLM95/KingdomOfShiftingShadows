@@ -54,7 +54,7 @@ public class UIUpgradeManager : MonoBehaviour
             UpdateUpgradeUI();
         }
 
-        currencyText.text = upgradeManager.playerCurrency.ToString() + " $"; 
+        currencyText.text = upgradeManager.playerCurrency.ToString(); 
 
 
         if(upgradeManager.nextSwordUpgrade.cost > upgradeManager.playerCurrency) 
@@ -95,7 +95,7 @@ public class UIUpgradeManager : MonoBehaviour
 
         if (upgradeManager.nextSwordUpgrade.tier < 5)
         {
-            swordUpgradeCost.text = "Cost: " + (upgradeManager.nextSwordUpgrade.cost).ToString() + " $";
+            swordUpgradeCost.text = "Cost: " + " $:" + (upgradeManager.nextSwordUpgrade.cost).ToString();
         }
         else
             swordUpgradeCost.text = " - ";
@@ -109,7 +109,7 @@ public class UIUpgradeManager : MonoBehaviour
 
         if (upgradeManager.nextHealthUpgrade.tier < 5)
         {
-            healthUpgradeCost.text = "Cost: " + (upgradeManager.nextHealthUpgrade.cost).ToString() + " $";
+            healthUpgradeCost.text = "Cost: " + "$ " + (upgradeManager.nextHealthUpgrade.cost).ToString();
         }
         else
             healthUpgradeCost.text = " - ";
@@ -123,7 +123,7 @@ public class UIUpgradeManager : MonoBehaviour
 
         if (upgradeManager.nextSpeedUpgrade.tier < 5)
         {
-            speedUpgradeCost.text = "Cost: " + (upgradeManager.nextSpeedUpgrade).cost.ToString() + " $";
+            speedUpgradeCost.text = "Cost: " + "$ " + (upgradeManager.nextSpeedUpgrade).cost.ToString();
         }
         else
             speedUpgradeCost.text = " - ";

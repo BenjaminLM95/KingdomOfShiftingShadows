@@ -21,7 +21,7 @@ public class MoneyDisplay : MonoBehaviour
         if(playerMoney != upgradeManager.playerCurrency) 
         {
             playerMoney = upgradeManager.playerCurrency;
-            moneyText.text = playerMoney.ToString() + " $"; 
+            moneyText.text = playerMoney.ToString(); 
         }
     }
 }

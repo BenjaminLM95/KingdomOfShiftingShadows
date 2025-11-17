@@ -6,7 +6,8 @@ public enum typeUpgrade
 {
     Sword,
     Health,
-    Speed
+    Speed,
+    Push
 }
 
 public class Upgrades
@@ -14,7 +15,7 @@ public class Upgrades
     public List<Upgrade> swordUpgrades = new List<Upgrade>();
     public List<Upgrade> healthUpgrades = new List<Upgrade>();
     public List<Upgrade> speedUpgrades = new List<Upgrade>();
-        
+    public List<Upgrade> pushUpgrades = new List<Upgrade>(); 
 
 
     // Upgrades for swords
@@ -48,7 +49,11 @@ public class Upgrades
         
     }
 
-
+    public void AddPushUpgrades() 
+    {
+        pushUpgrades.Add(new Upgrade(12, "Push1", "Push the enemies further", 1, 50, 2, typeUpgrade.Push));
+        pushUpgrades.Add(new Upgrade(13, "Push2", "Push the enemies even further", 2, 300, 3, typeUpgrade.Push)); 
+    }
 }
 
 public class Upgrade 
