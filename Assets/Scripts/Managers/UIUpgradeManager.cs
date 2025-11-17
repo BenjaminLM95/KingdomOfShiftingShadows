@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class UIUpgradeManager : MonoBehaviour
 {
 
@@ -9,6 +10,7 @@ public class UIUpgradeManager : MonoBehaviour
     public TextMeshProUGUI swordUpgradeCost;
     public TextMeshProUGUI swordUpgradeLevel; 
     [SerializeField] private int currentSwordTier;
+
 
     [Header("Health Upgrade Reference")]
     public TextMeshProUGUI healthUpgradeName;
@@ -24,7 +26,11 @@ public class UIUpgradeManager : MonoBehaviour
     public TextMeshProUGUI speedUpgradeLevel; 
     [SerializeField] private int currentSpeedTier;
 
-    public TextMeshProUGUI currencyText; 
+    public TextMeshProUGUI currencyText;
+
+    public Button swordUpgradeButton;
+    public Button healthUpgradeButton;
+    public Button speedUpgradeButton; 
 
     [Header("Upgrade Manager Reference")]
     [SerializeField] private UpgradeManager upgradeManager;
@@ -49,6 +55,34 @@ public class UIUpgradeManager : MonoBehaviour
         }
 
         currencyText.text = upgradeManager.playerCurrency.ToString() + " $"; 
+
+
+        if(upgradeManager.nextSwordUpgrade.cost > upgradeManager.playerCurrency) 
+        {
+            swordUpgradeButton.image.color = Color.gray; 
+        }
+        else 
+        {
+            swordUpgradeButton.image.color = Color.white;
+        }
+
+        if (upgradeManager.nextHealthUpgrade.cost > upgradeManager.playerCurrency)
+        {
+            healthUpgradeButton.image.color = Color.gray;
+        }
+        else
+        {
+            healthUpgradeButton.image.color = Color.white;
+        }
+
+        if (upgradeManager.nextSpeedUpgrade.cost > upgradeManager.playerCurrency)
+        {
+            speedUpgradeButton.image.color = Color.gray;
+        }
+        else
+        {
+            speedUpgradeButton.image.color = Color.white;
+        }
 
     }
 

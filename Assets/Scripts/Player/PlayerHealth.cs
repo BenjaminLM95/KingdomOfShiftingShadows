@@ -98,6 +98,7 @@ public class PlayerHealth : MonoBehaviour
                 {                   
                     attackingEnemy.SetAttackAnimation();                   
                     healthSystem.TakeDamage(attackingEnemy.healthSystem.baseAttack);
+                    _playerController.soundManager.PlaySoundFXClip("PlayerHurt", transform); 
 
                     if (cameraShaking == null)
                     {

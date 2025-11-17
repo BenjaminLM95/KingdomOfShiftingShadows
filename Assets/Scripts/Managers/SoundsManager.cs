@@ -16,6 +16,7 @@ public class SoundsManager : MonoBehaviour
     [SerializeField] private AudioClip zombieFadedClip; // the sound effect for the zombie when fades
     [SerializeField] private AudioClip getCoinClip; // The sound effect when you get money;
     [SerializeField] private AudioClip useCoinClip; // The sound when you buy something; 
+    [SerializeField] private AudioClip skyHurtClip; // The sound when Sky (the player) get hit by the enemy
     [SerializeField] private bool isPlaying = false; // Flag to check if music is playing
     public AudioMixer audioMixer; // Reference to the AudioMixer for volume control
 
@@ -84,6 +85,9 @@ public class SoundsManager : MonoBehaviour
             case "BuySound":
                 _audioSource.clip = useCoinClip;
                 break;
+            case "PlayerHurt":
+                _audioSource.clip = skyHurtClip;
+                break; 
         }
         
 

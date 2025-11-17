@@ -358,7 +358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &57332695
 Transform:
   m_ObjectHideFlags: 0
@@ -3633,6 +3633,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730821291}
   m_CullTransparentMesh: 1
+--- !u!114 &739984859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5982440938627147774, guid: df01b5126cd95bf4bb88dd6d328623c7, type: 3}
+  m_PrefabInstance: {fileID: 1397217480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &753098389
 GameObject:
   m_ObjectHideFlags: 0
@@ -5189,6 +5200,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6950280852429344055, guid: df01b5126cd95bf4bb88dd6d328623c7, type: 3}
   m_PrefabInstance: {fileID: 1497685538}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &957992677 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5982440938627147774, guid: df01b5126cd95bf4bb88dd6d328623c7, type: 3}
+  m_PrefabInstance: {fileID: 1497685538}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &962651103
 GameObject:
   m_ObjectHideFlags: 0
@@ -6573,6 +6595,17 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1108550813 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5982440938627147774, guid: df01b5126cd95bf4bb88dd6d328623c7, type: 3}
+  m_PrefabInstance: {fileID: 805857612}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1125781601
 GameObject:
   m_ObjectHideFlags: 0
@@ -7652,6 +7685,9 @@ MonoBehaviour:
   speedUpgradeLevel: {fileID: 946927475}
   currentSpeedTier: 0
   currencyText: {fileID: 567662065}
+  swordUpgradeButton: {fileID: 739984859}
+  healthUpgradeButton: {fileID: 1108550813}
+  speedUpgradeButton: {fileID: 957992677}
   upgradeManager: {fileID: 0}
 --- !u!4 &1256331818
 Transform:
@@ -8119,6 +8155,7 @@ MonoBehaviour:
   zombieFadedClip: {fileID: 8300000, guid: 67a50a84d2b3d5146a3fee2e6d1b0a76, type: 3}
   getCoinClip: {fileID: 8300000, guid: 9ac22af2150b50144b60d6dc6bb5df3b, type: 3}
   useCoinClip: {fileID: 8300000, guid: fe58dad1dd15c004696f93e78aa8dcf7, type: 3}
+  skyHurtClip: {fileID: 8300000, guid: 7d61a506b65502e469287b2e15a24b61, type: 3}
   isPlaying: 0
   audioMixer: {fileID: 24100000, guid: a7b935bda96bd9347a70d7d9aad79590, type: 2}
   sfxVolume: 0
@@ -9588,7 +9625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1519884237
 Transform:
   m_ObjectHideFlags: 0
