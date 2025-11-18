@@ -5,22 +5,19 @@ public class UIUpgradeManager : MonoBehaviour
 {
 
     [Header("Sword Upgrade References")]
-    public TextMeshProUGUI swordUpgradeName;
-    public TextMeshProUGUI swordUpgradeDescription;
+   public TextMeshProUGUI swordUpgradeDescription;
     public TextMeshProUGUI swordUpgradeCost;
     public TextMeshProUGUI swordUpgradeLevel; 
     [SerializeField] private int currentSwordTier;
 
 
     [Header("Health Upgrade Reference")]
-    public TextMeshProUGUI healthUpgradeName;
     public TextMeshProUGUI healthUpgradeDescription;
     public TextMeshProUGUI healthUpgradeCost;
     public TextMeshProUGUI healthUpgradeLevel; 
     [SerializeField] private int currentHealthTier;
 
     [Header("Speed Upgrade Reference")]
-    public TextMeshProUGUI speedUpgradeName;
     public TextMeshProUGUI speedUpgradeDescription;
     public TextMeshProUGUI speedUpgradeCost;
     public TextMeshProUGUI speedUpgradeLevel; 
@@ -88,9 +85,7 @@ public class UIUpgradeManager : MonoBehaviour
 
     public void UpdateUpgradeUI() 
     {
-        // For sword Upgrade
-
-        swordUpgradeName.text = upgradeManager.nextSwordUpgrade.name;
+        // For sword Upgrade        
         swordUpgradeDescription.text = upgradeManager.nextSwordUpgrade.description;
 
         if (upgradeManager.nextSwordUpgrade.tier < 5)
@@ -102,9 +97,7 @@ public class UIUpgradeManager : MonoBehaviour
 
         swordUpgradeLevel.text = (currentSwordTier-1).ToString() + "/4"; 
 
-            // For health upgrade
-
-        healthUpgradeName.text = upgradeManager.nextHealthUpgrade.name;
+            // For health upgrade        
         healthUpgradeDescription.text = upgradeManager.nextHealthUpgrade.description;
 
         if (upgradeManager.nextHealthUpgrade.tier < 5)
@@ -116,9 +109,7 @@ public class UIUpgradeManager : MonoBehaviour
 
         healthUpgradeLevel.text = (currentHealthTier-1).ToString() + "/4"; 
 
-            // For speed upgrade
-
-        speedUpgradeName.text = upgradeManager.nextSpeedUpgrade.name;
+            // For speed upgrade        
         speedUpgradeDescription.text = upgradeManager.nextSpeedUpgrade.description;
 
         if (upgradeManager.nextSpeedUpgrade.tier < 5)

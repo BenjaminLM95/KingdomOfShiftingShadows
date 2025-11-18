@@ -36,7 +36,8 @@ public class PlayerController : MonoBehaviour
     public int upgradeSwordPower = 0;
     public int swordPower = 0; 
     [SerializeField] private Animator playerAnimator;
-    [SerializeField] private float attackCooldown; 
+    [SerializeField] private float attackCooldown;
+    public static bool windSlash = false; 
 
 
     [Header("Abilities")]
@@ -67,7 +68,8 @@ public class PlayerController : MonoBehaviour
     public PlayerHealth playerHealth;
     public SoundsManager soundManager;
     [SerializeField] private DayNightManager dayNightManager;
-    private NewGameScene newGameScene; 
+    private NewGameScene newGameScene;
+    public GameObject windSlashObj; 
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -125,7 +127,18 @@ public class PlayerController : MonoBehaviour
         if(dayNightManager == null) 
         {
             dayNightManager = FindFirstObjectByType<DayNightManager>();
-        }              
+        }
+
+        if (windSlash && playerState != PlayerState.Attack) 
+        {
+            if (canAttack)
+            {
+                soundManager.PlaySoundFXClip("SlashSword", transform);
+                playerState = PlayerState.Attack;
+                WindSlashAttack();
+                windSlash = false; 
+            }
+        }
                   
     }
 
@@ -251,6 +264,13 @@ public class PlayerController : MonoBehaviour
     public void PlayerDeath() 
     {
         playerState = PlayerState.Death;
+    }
+
+    public void WindSlashAttack() 
+    {
+        GameObject windSlashTemp = Instantiate(windSlashObj, transform.position, Quaternion.identity);
+        Debug.Log("Wind Slash!!!");
+        Destroy(windSlashTemp, 5f); 
     }
 
     private void OnDisable()

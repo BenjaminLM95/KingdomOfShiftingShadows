@@ -11,7 +11,8 @@ public class PlayerInventory : MonoBehaviour
         itemDisplay = FindFirstObjectByType<ItemDisplayHandler>();       
         _inventory.SetInventorySlots(3);        
         _inventory.GetAnItem(new FreezeMagic());
-        _inventory.GetAnItem(new FreezeMagic());                
+        _inventory.GetAnItem(new FreezeMagic());
+        _inventory.GetAnItem(new WindSlash()); 
         ShowItemNames();
         itemDisplay.UpdateItemImages(_inventory); 
         

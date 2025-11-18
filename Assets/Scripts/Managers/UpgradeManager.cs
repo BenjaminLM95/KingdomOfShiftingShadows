@@ -65,7 +65,7 @@ public class UpgradeManager : MonoBehaviour
         switch (_upgrade.type) 
         {
             case typeUpgrade.Sword:
-                if (swordIndex < listUpgrades.swordUpgrades.Count) 
+                if (swordIndex < listUpgrades.swordUpgrades.Count - 1) 
                 {                    
                     currentSwordUpgrade = listUpgrades.swordUpgrades[swordIndex];
                     swordIndex++;
@@ -74,7 +74,7 @@ public class UpgradeManager : MonoBehaviour
                 
                 break; 
             case typeUpgrade.Health:
-                if (healthIndex < listUpgrades.healthUpgrades.Count)
+                if (healthIndex < listUpgrades.healthUpgrades.Count - 1)
                 {
                     currentHealthUpgrade = listUpgrades.healthUpgrades[healthIndex];
                     healthIndex++;
@@ -84,7 +84,7 @@ public class UpgradeManager : MonoBehaviour
                 break; 
             case typeUpgrade.Speed: 
                 {
-                    if (speedIndex < listUpgrades.speedUpgrades.Count)
+                    if (speedIndex < listUpgrades.speedUpgrades.Count - 1)
                     {
                         currentSpeedUpgrade = listUpgrades.speedUpgrades[speedIndex];
                         speedIndex++;

@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemyTypeOne;
     public GameObject enemyTypeTwo;
     public GameObject currentEnemyType = null;
-    [SerializeField] public static List<Enemy> enemyList = new List<Enemy>();
+    public static List<Enemy> enemyList = new List<Enemy>();
     [SerializeField] private int enemyDeployed = 0; 
 
 
@@ -36,7 +36,9 @@ public class EnemyManager : MonoBehaviour
         spawnPoint4 = GameObject.Find("SpawnPointD"); 
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         soundManager = FindFirstObjectByType<SoundsManager>();
-        newGameScene = FindFirstObjectByType<NewGameScene>(); 
+        newGameScene = FindFirstObjectByType<NewGameScene>();
+
+        enemyList.Clear(); 
     }
 
     // Update is called once per frame

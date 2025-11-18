@@ -45,10 +45,15 @@ public class FreezeMagic : ConsumableItem
     {
         // Access to the list of enemies and make them changing their state to Freeze
         List<Enemy> enemies = new List<Enemy>(); 
-        enemies = EnemyManager.enemyList; 
+        enemies = EnemyManager.enemyList;
 
-        for(int i = 0; i < enemies.Count; i++) 
+        Debug.Log("Enemy list Count " +EnemyManager.enemyList.Count);
+
+
+        for (int i = 0; i < enemies.Count; i++) 
         {
+            Debug.Log("Enemy List Object: " + i);
+
             enemies[i].BeFrozen(); 
             enemies[i].healthSystem.TakeDamage(4); 
         }
@@ -66,6 +71,8 @@ public class WindSlash : ConsumableItem
     public override void Effect()
     {
         // Player do the wind slash
+        PlayerController.windSlash = true;
+         
     }
 }
 
