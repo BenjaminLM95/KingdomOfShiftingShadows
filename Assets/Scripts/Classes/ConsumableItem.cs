@@ -1,3 +1,4 @@
+using System.Collections.Generic; 
 using UnityEngine;
 
 public class ConsumableItem
@@ -24,6 +25,8 @@ public class InvisibleCloak : ConsumableItem
     public override void Effect() 
     {
         // Set a bool to false, to make the enemies not see the player
+
+
     }
 
 
@@ -41,6 +44,14 @@ public class FreezeMagic : ConsumableItem
     public override void Effect() 
     {
         // Access to the list of enemies and make them changing their state to Freeze
+        List<Enemy> enemies = new List<Enemy>(); 
+        enemies = EnemyManager.enemyList; 
+
+        for(int i = 0; i < enemies.Count; i++) 
+        {
+            enemies[i].BeFrozen(); 
+            enemies[i].healthSystem.TakeDamage(4); 
+        }
     }
 }
 

@@ -7,7 +7,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemyTypeOne;
     public GameObject enemyTypeTwo;
     public GameObject currentEnemyType = null;
-    [SerializeField] private List<Enemy> enemyList = new List<Enemy>();
+    [SerializeField] public static List<Enemy> enemyList = new List<Enemy>();
     [SerializeField] private int enemyDeployed = 0; 
 
 

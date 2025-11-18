@@ -2,19 +2,18 @@ using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public Inventory _inventory = new Inventory(); 
+    public Inventory _inventory = new Inventory();
+    [SerializeField] ItemDisplayHandler itemDisplay;  
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        _inventory.SetInventorySlots(5);
-        _inventory.GetAnItem(new InvisibleCloak());
+        itemDisplay = FindFirstObjectByType<ItemDisplayHandler>();       
+        _inventory.SetInventorySlots(3);        
         _inventory.GetAnItem(new FreezeMagic());
-        _inventory.GetAnItem(new FreezeMagic());
-        _inventory.GetAnItem(new FreezeMagic());
-        _inventory.GetAnItem(new InvisibleCloak());
-        _inventory.GetAnItem(new InvisibleCloak());
-        ShowItemNames(); 
+        _inventory.GetAnItem(new FreezeMagic());                
+        ShowItemNames();
+        itemDisplay.UpdateItemImages(_inventory); 
         
     }
 
@@ -23,32 +22,32 @@ public class PlayerInventory : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) 
         {
-            _inventory.UseAnItem(0); 
-            ShowItemNames();
+            if (_inventory.inventory.Count > 0)
+            {
+                _inventory.UseAnItem(0);
+                ShowItemNames();
+                itemDisplay.UpdateItemImages(_inventory);
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            _inventory.UseAnItem(1);
-            ShowItemNames();
+            if (_inventory.inventory.Count > 1)
+            {
+                _inventory.UseAnItem(1);
+                ShowItemNames();
+                itemDisplay.UpdateItemImages(_inventory);
+            }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            _inventory.UseAnItem(2);
-            ShowItemNames();
+            if (_inventory.inventory.Count > 2)
+            {
+                _inventory.UseAnItem(2);
+                ShowItemNames();
+                itemDisplay.UpdateItemImages(_inventory);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            _inventory.UseAnItem(3);
-            ShowItemNames();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            _inventory.UseAnItem(4);
-            ShowItemNames();
-        }
-
-
-
+       
     }
 
     public void ShowItemNames() 

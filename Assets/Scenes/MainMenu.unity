@@ -1633,6 +1633,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 404469205}
+  - component: {fileID: 404469206}
   m_Layer: 0
   m_Name: ItemDisplay
   m_TagString: Untagged
@@ -1661,6 +1662,25 @@ Transform:
   - {fileID: 584917130}
   m_Father: {fileID: 399524755}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &404469206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404469204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ef54ce621becb4ab6cc82b15932763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldSp: {fileID: 6624244383690064908, guid: 64effd7704cc73645a47d0cf43045143, type: 3}
+  frozeSpellSp: {fileID: -2733490718345121457, guid: d1701a4ca460d4742ac8a5c31c23501e, type: 3}
+  windSlashSp: {fileID: -3522583371700606260, guid: 765da1625be49ca43939e6d322805b7f, type: 3}
+  defaultSp: {fileID: 8195263301745118598, guid: d0cda0c4c7b43034fbd5059bf501ef0d, type: 3}
+  itemSlot1: {fileID: 1550775878}
+  itemSlot2: {fileID: 1056460996}
+  itemSlot3: {fileID: 584917131}
 --- !u!1 &414976635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2877,7 +2897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &584917130
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6649,7 +6669,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1056460995
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8819,6 +8839,7 @@ MonoBehaviour:
   getCoinClip: {fileID: 8300000, guid: 9ac22af2150b50144b60d6dc6bb5df3b, type: 3}
   useCoinClip: {fileID: 8300000, guid: fe58dad1dd15c004696f93e78aa8dcf7, type: 3}
   skyHurtClip: {fileID: 8300000, guid: 7d61a506b65502e469287b2e15a24b61, type: 3}
+  iceSpellClip: {fileID: 8300000, guid: d08b7a9a4705c854e80b1ea95adcc5ac, type: 3}
   isPlaying: 0
   audioMixer: {fileID: 24100000, guid: a7b935bda96bd9347a70d7d9aad79590, type: 2}
   sfxVolume: 0
@@ -13558,6 +13579,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1724803143}
     m_Modifications:
+    - target: {fileID: 1186564037291499569, guid: c986269dd60704549b334c86b649d1f8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3566994322049730366, guid: c986269dd60704549b334c86b649d1f8, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -13632,7 +13657,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6768104230059079462, guid: c986269dd60704549b334c86b649d1f8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6768104230059079462, guid: c986269dd60704549b334c86b649d1f8, type: 3}
       propertyPath: m_TagString

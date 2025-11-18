@@ -17,6 +17,7 @@ public class SoundsManager : MonoBehaviour
     [SerializeField] private AudioClip getCoinClip; // The sound effect when you get money;
     [SerializeField] private AudioClip useCoinClip; // The sound when you buy something; 
     [SerializeField] private AudioClip skyHurtClip; // The sound when Sky (the player) get hit by the enemy
+    [SerializeField] private AudioClip iceSpellClip; // The sound effect when the enemies are frozen
     [SerializeField] private bool isPlaying = false; // Flag to check if music is playing
     public AudioMixer audioMixer; // Reference to the AudioMixer for volume control
 
@@ -29,31 +30,7 @@ public class SoundsManager : MonoBehaviour
             instance = this; 
         }
     }
-
-    /*
-    public void PlaySound(string clipName) 
-    {
-        switch (clipName) 
-        {
-            case "SlashSword":
-                audioSource.clip = slashSwordClip;
-                break;
-            case "WitchLaugh":
-                audioSource.clip = witchLaugh;
-                break;
-            case "WitchDead":
-                audioSource.clip = witchDeadClip;
-                break;
-            case "ZombieDefeated":
-                audioSource.clip = zombieDefeatClip;
-                break;
-            case "ZombieScreams":
-                audioSource.clip = zombieFadedClip;
-                break; 
-        }
-        audioSource.Play();
         
-    } */
 
     private void Start()
     {
@@ -87,6 +64,9 @@ public class SoundsManager : MonoBehaviour
                 break;
             case "PlayerHurt":
                 _audioSource.clip = skyHurtClip;
+                break;
+            case "IceSpell":
+                _audioSource.clip = iceSpellClip;
                 break; 
         }
         

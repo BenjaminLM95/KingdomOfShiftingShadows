@@ -11,6 +11,7 @@ public enum EnemyState
     Agressive,
     Collapse,
     Faded,
+    Frozen,
     None
 }
 
@@ -56,7 +57,8 @@ public class Enemy : MonoBehaviour
     public EnemyState enemyState;
     [SerializeField] private Animator enemyAnimator; 
     public EnemyType enemyType;
-    [SerializeField] private float enemyDistance = 1f; 
+    [SerializeField] private float enemyDistance = 1f;
+    private float freezeCoolDown = 3f; 
 
     [Header("Other variables")]
     public bool invincibility = false;
@@ -284,12 +286,31 @@ public class Enemy : MonoBehaviour
             case EnemyState.Faded:
                 speed = 0f;
                 rb2.linearVelocity = Vector2.zero;
+                break;
+            case EnemyState.Frozen:                
+                invincibility = true; 
+                gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
+                Invoke("Melt", freezeCoolDown);
                 break; 
             default:
                 RunningThroughKingdomGates();
                 break; 
         }
 
+    }
+
+    public void Melt() 
+    {
+        enemyState = EnemyState.Running;
+        invincibility = false;
+        enemyAnimator.SetBool("isFrozen", false); 
+    }
+
+    public void BeFrozen() 
+    {
+        soundManager.PlaySoundFXClip("IceSpell", transform); 
+        enemyState = EnemyState.Frozen;
+        enemyAnimator.SetBool("isFrozen", true); 
     }
 
     private void SetAgressiveMode() 
