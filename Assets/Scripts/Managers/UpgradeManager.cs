@@ -8,18 +8,24 @@ public class UpgradeManager : MonoBehaviour
     public Upgrade nextSwordUpgrade;
     public Upgrade nextHealthUpgrade;
     public Upgrade nextSpeedUpgrade;
+    public Upgrade nextKnockbackUpgrade;
 
     public Upgrade currentSwordUpgrade = null;
     public Upgrade currentHealthUpgrade = null;
     public Upgrade currentSpeedUpgrade = null;
+    public Upgrade currentKnockbackUpgrade = null; 
 
     public bool isSwordUpgrade;
     public bool isHealthUpgrade;
     public bool isSpeedUpgrade;
+    public bool isKnockbackUpgrade; 
 
     public int swordIndex = 0;
     public int healthIndex = 0;
     public int speedIndex = 0;
+    public int knockbackIndex = 0;
+
+    public Inventory playerInventory = new Inventory();
 
     public int playerCurrency {  get; private set; }
     private SoundsManager soundManager; 
@@ -31,17 +37,21 @@ public class UpgradeManager : MonoBehaviour
     {
         soundManager = FindFirstObjectByType<SoundsManager>(); 
         gameUpgrades = new Upgrades();
-       
+
+        playerInventory.SetInventorySlots(3);
+        //playerInventory.GetAnItem(new FreezeMagic()); 
 
         SetAllUpgrades(); 
 
         nextSwordUpgrade = gameUpgrades.swordUpgrades[swordIndex]; 
         nextHealthUpgrade = gameUpgrades.healthUpgrades[healthIndex];
-        nextSpeedUpgrade = gameUpgrades.speedUpgrades[speedIndex];        
+        nextSpeedUpgrade = gameUpgrades.speedUpgrades[speedIndex];
+        nextKnockbackUpgrade = gameUpgrades.pushUpgrades[knockbackIndex]; 
 
         isSwordUpgrade = false;
         isHealthUpgrade = false;
         isSpeedUpgrade = false;
+        isKnockbackUpgrade = false; 
     }
 
     // Update is called once per frame
@@ -55,8 +65,8 @@ public class UpgradeManager : MonoBehaviour
     {
         gameUpgrades.AddSwordUpgrades();
         gameUpgrades.AddHealthUpgrades();
-        gameUpgrades.AddSpeedUpgrades(); 
-
+        gameUpgrades.AddSpeedUpgrades();
+        gameUpgrades.AddPushUpgrades(); 
     }
 
     public Upgrade ChangeTier(Upgrades listUpgrades, Upgrade _upgrade) 
@@ -93,10 +103,20 @@ public class UpgradeManager : MonoBehaviour
                 }
                 
                 break;
+            case typeUpgrade.Push: 
+                {
+                    if(knockbackIndex < listUpgrades.pushUpgrades.Count - 1) 
+                    {
+                        currentKnockbackUpgrade = listUpgrades.pushUpgrades[knockbackIndex];
+                        knockbackIndex++;
+                        _upgrade = listUpgrades.pushUpgrades[knockbackIndex]; 
+                    }
+                    break; 
+                }
+
 
         }
-
-        soundManager.PlaySoundFXClip("BuySound", transform); 
+                 
         return _upgrade; 
     }
 
@@ -107,6 +127,7 @@ public class UpgradeManager : MonoBehaviour
         if (playerCurrency >= nextSwordUpgrade.cost)
         {
             playerCurrency -= nextSwordUpgrade.cost;
+            soundManager.PlaySoundFXClip("BuySound", transform);
 
             if (!isSwordUpgrade)
                 isSwordUpgrade = true;
@@ -114,7 +135,7 @@ public class UpgradeManager : MonoBehaviour
 
 
             nextSwordUpgrade = ChangeTier(gameUpgrades, nextSwordUpgrade);
-            Debug.Log(nextSwordUpgrade.description + " , " + nextSwordUpgrade.cost + " , " + nextSwordUpgrade.value);
+            //Debug.Log(nextSwordUpgrade.description + " , " + nextSwordUpgrade.cost + " , " + nextSwordUpgrade.value);
         }
     }
 
@@ -123,13 +144,14 @@ public class UpgradeManager : MonoBehaviour
         if (playerCurrency >= nextHealthUpgrade.cost)
         {
             playerCurrency -= nextHealthUpgrade.cost;
+            soundManager.PlaySoundFXClip("BuySound", transform);
 
             if (!isHealthUpgrade)
                 isHealthUpgrade = true;
 
 
             nextHealthUpgrade = ChangeTier(gameUpgrades, nextHealthUpgrade);            
-            Debug.Log(nextHealthUpgrade.description + " , " + nextHealthUpgrade.cost + " , " + nextHealthUpgrade.value);
+            //Debug.Log(nextHealthUpgrade.description + " , " + nextHealthUpgrade.cost + " , " + nextHealthUpgrade.value);
         }
     }
 
@@ -138,15 +160,31 @@ public class UpgradeManager : MonoBehaviour
         if (playerCurrency >= nextSpeedUpgrade.cost)
         {
             playerCurrency -= nextSpeedUpgrade.cost;
+            soundManager.PlaySoundFXClip("BuySound", transform);
 
             if (!isSpeedUpgrade)
                 isSpeedUpgrade = true;
 
 
             nextSpeedUpgrade = ChangeTier(gameUpgrades, nextSpeedUpgrade);
-            Debug.Log(nextSpeedUpgrade.description + " , " + nextSpeedUpgrade.cost + " , " + nextSpeedUpgrade.value);
+            //Debug.Log(nextSpeedUpgrade.description + " , " + nextSpeedUpgrade.cost + " , " + nextSpeedUpgrade.value);
         }
-    }        
+    }     
+    
+    public void GetKnockbackUpgrade() 
+    {
+        if(playerCurrency >= nextKnockbackUpgrade.cost) 
+        {
+            playerCurrency -= nextKnockbackUpgrade.cost;
+            soundManager.PlaySoundFXClip("BuySound", transform);
+
+            if (!isKnockbackUpgrade)
+                isKnockbackUpgrade = true;
+
+            nextKnockbackUpgrade = ChangeTier(gameUpgrades, nextKnockbackUpgrade);
+
+        }
+    }
 
     public void ObtainingMoneyReward(int currency) 
     {
@@ -159,17 +197,49 @@ public class UpgradeManager : MonoBehaviour
         currentSwordUpgrade = null;
         currentHealthUpgrade = null;
         currentSpeedUpgrade = null;
+        currentKnockbackUpgrade = null;
         swordIndex = 0;
         healthIndex = 0;
         speedIndex = 0;
+        knockbackIndex = 0;
         isSwordUpgrade = false;
         isHealthUpgrade = false;
         isSpeedUpgrade = false;
+        isKnockbackUpgrade = false; 
         playerCurrency = 0;
         nextSwordUpgrade = gameUpgrades.swordUpgrades[0];
         nextHealthUpgrade = gameUpgrades.healthUpgrades[0];
         nextSpeedUpgrade = gameUpgrades.speedUpgrades[0];
+        nextKnockbackUpgrade = gameUpgrades.pushUpgrades[0]; 
     }
        
+    public void AddIceMagic() 
+    {
+        FreezeMagic refItem = new FreezeMagic();
+        if (playerCurrency >= refItem.itemCost)
+        {
+            playerCurrency -= refItem.itemCost;
+
+            soundManager.PlaySoundFXClip("BuySound", transform);
+
+            playerInventory.GetAnItem(new FreezeMagic());
+            Debug.Log("Buy a freeze magic");
+        }
+    }
+
+    public void AddWindSlash() 
+    {
+        WindSlash refItem = new WindSlash();
+
+        if (playerCurrency >= refItem.itemCost)
+        {
+            playerCurrency -= refItem.itemCost;
+
+            soundManager.PlaySoundFXClip("BuySound", transform);
+
+            playerInventory.GetAnItem(new WindSlash());
+            Debug.Log("Buy Wind Slash");
+        }
+    }
 
 }

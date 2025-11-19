@@ -53,5 +53,14 @@ public class PlayerUpgrade : MonoBehaviour
                 playerHealth.UpdatingHealthUpgrade();
             }
         }
+
+        if(upgradeManager.isKnockbackUpgrade && upgradeManager.currentKnockbackUpgrade != null) 
+        {
+            if(playerController.upgradeKnockback != upgradeManager.currentKnockbackUpgrade.value) 
+            {
+                playerController.upgradeKnockback = upgradeManager.currentKnockbackUpgrade.value;
+                playerController.UpdatingKnockback(); 
+            }
+        }
     }
 }

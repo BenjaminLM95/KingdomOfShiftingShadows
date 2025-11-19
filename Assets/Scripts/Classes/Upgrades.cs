@@ -26,7 +26,7 @@ public class Upgrades
         swordUpgrades.Add(new Upgrade(1, "Great Sword+", "Increases ATK by 5", 2, 125, 5, typeUpgrade.Sword));
         swordUpgrades.Add(new Upgrade(2, "Hero Sword", "Increases ATK by 8", 3, 300, 8, typeUpgrade.Sword));
         swordUpgrades.Add(new Upgrade(3, "Hero Sword+", "Increases ATK by 12", 4, 700, 12, typeUpgrade.Sword));
-        swordUpgrades.Add(new Upgrade(99, "MAX OUT", "", 5, 0, 0, typeUpgrade.Sword)); 
+        swordUpgrades.Add(new Upgrade(99, "MAX OUT", "MAX OUT", 5, 0, 0, typeUpgrade.Sword)); 
 
     }
 
@@ -36,7 +36,7 @@ public class Upgrades
         healthUpgrades.Add(new Upgrade(5, "Health++", "Increases MaxHP by 20", 2, 125, 20, typeUpgrade.Health));
         healthUpgrades.Add(new Upgrade(6, "Super Health", "Increases MaxHP by 30", 3, 300, 30, typeUpgrade.Health));
         healthUpgrades.Add(new Upgrade(7, "Mega Health", "Increases MaxHP by 40", 4, 700, 40, typeUpgrade.Health));
-        healthUpgrades.Add(new Upgrade(98, "MAX OUT", "", 5, 0, 0, typeUpgrade.Health));
+        healthUpgrades.Add(new Upgrade(98, "MAX OUT", "MAX OUT", 5, 0, 0, typeUpgrade.Health));
     }
 
     public void AddSpeedUpgrades() 
@@ -45,14 +45,17 @@ public class Upgrades
         speedUpgrades.Add(new Upgrade(9, "Speedy Boots+", "Increases Speed by 50% the original speed", 2, 125, 2, typeUpgrade.Speed));
         speedUpgrades.Add(new Upgrade(10, "Light Boots", "Increases Speed 75% times the original speed", 3, 300, 3, typeUpgrade.Speed));
         speedUpgrades.Add(new Upgrade(11, "Light Boots+", "Increases Speed 2 times the original speed", 4, 700, 4, typeUpgrade.Speed));
-        speedUpgrades.Add(new Upgrade(97, "MAX OUT", "", 5, 0, 0, typeUpgrade.Speed)); 
+        speedUpgrades.Add(new Upgrade(97, "MAX OUT", "MAX OUT", 5, 0, 0, typeUpgrade.Speed)); 
         
     }
 
     public void AddPushUpgrades() 
     {
-        pushUpgrades.Add(new Upgrade(12, "Push1", "Push the enemies further", 1, 50, 2, typeUpgrade.Push));
-        pushUpgrades.Add(new Upgrade(13, "Push2", "Push the enemies even further", 2, 300, 3, typeUpgrade.Push)); 
+        pushUpgrades.Add(new Upgrade(12, "Push1", "Push the enemies further", 1, 50, 1, typeUpgrade.Push));
+        pushUpgrades.Add(new Upgrade(13, "Push2", "Push the enemies even further", 2, 125, 2, typeUpgrade.Push));
+        pushUpgrades.Add(new Upgrade(14, "Push3", "Push the enemies way further", 3, 300, 3, typeUpgrade.Push));
+        pushUpgrades.Add(new Upgrade(15, "Push4", "Push the enemies to the other side", 4, 700, 4, typeUpgrade.Push));
+        pushUpgrades.Add(new Upgrade(96, "Max Out", "Max Out", 5, 0, 0, typeUpgrade.Push)); 
     }
 }
 

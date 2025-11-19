@@ -231,9 +231,14 @@ public class Enemy : MonoBehaviour
             invincibility = true;
             enemyAnimator.SetBool("isDamaged", true);
             rb2.linearVelocity = Vector2.zero;
-            rb2.AddForceX(playerController.knockBackForce * Mathf.Sign(collision.attachedRigidbody.linearVelocityX), ForceMode2D.Impulse);
-            //rb2.AddForceX(Mathf.Lerp(0, playerController.knockBackForce, 1/Time.time), ForceMode2D.Impulse);             
+
+            if (collision.name != "WindSlash_0(Clone)")
+            {
+                rb2.AddForceX(playerController.knockBackForce * Mathf.Sign(collision.attachedRigidbody.linearVelocityX), ForceMode2D.Impulse);
+            }
+                        
             SetAgressiveMode();
+            Debug.Log("Hit"); 
             Invoke("vulnerability", 1f);
         }
 

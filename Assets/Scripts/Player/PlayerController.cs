@@ -23,7 +23,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speedMove = 0;
     public float upgradeSpeedMove = 1; 
     [SerializeField] private float sprintSpeed = 5;
-    public float knockBackForce = 1.5f; 
+    public float baseknockbackForce = 1.5f;
+    public float upgradeKnockback = 0;
+    public float knockBackForce = 0; 
     private Vector3 initialPos = new Vector3(-6f, -0.5f);
     
 
@@ -235,7 +237,12 @@ public class PlayerController : MonoBehaviour
     public void UpdatingSpeed() 
     {
         speedMove = baseSpeedMove + upgradeSpeedMove; 
-    }       
+    }      
+    
+    public void UpdatingKnockback() 
+    {
+        knockBackForce = baseknockbackForce + upgradeKnockback; 
+    }
     
     public void SetStartingPosition() 
     {
@@ -250,6 +257,7 @@ public class PlayerController : MonoBehaviour
         transform.position = initialPos;
         upgradeSwordPower = 0;
         upgradeSpeedMove = 0;
+        upgradeKnockback = 0; 
         UpdatingSwordMight();
         UpdatingSpeed();
         playerHealth.SettingInitialStats(); 

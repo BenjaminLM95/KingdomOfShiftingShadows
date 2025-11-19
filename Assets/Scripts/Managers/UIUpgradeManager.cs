@@ -23,11 +23,18 @@ public class UIUpgradeManager : MonoBehaviour
     public TextMeshProUGUI speedUpgradeLevel; 
     [SerializeField] private int currentSpeedTier;
 
+    [Header("KnockBack Upgrade Reference")]
+    public TextMeshProUGUI knockbackUpgradeDescription;
+    public TextMeshProUGUI knockbackUpgradeCost;
+    public TextMeshProUGUI knockbackUpgradeLevel;
+    [SerializeField] private int currentKnockbackTier; 
+
     public TextMeshProUGUI currencyText;
 
     public Button swordUpgradeButton;
     public Button healthUpgradeButton;
-    public Button speedUpgradeButton; 
+    public Button speedUpgradeButton;
+    public Button knockbackUpgradeButton; 
 
     [Header("Upgrade Manager Reference")]
     [SerializeField] private UpgradeManager upgradeManager;
@@ -45,7 +52,7 @@ public class UIUpgradeManager : MonoBehaviour
     {        
         
         if(currentSwordTier != upgradeManager.nextSwordUpgrade.tier || currentHealthTier != upgradeManager.nextHealthUpgrade.tier ||
-            currentSpeedTier != upgradeManager.nextSpeedUpgrade.tier) 
+            currentSpeedTier != upgradeManager.nextSpeedUpgrade.tier || currentKnockbackTier != upgradeManager.nextKnockbackUpgrade.tier) 
         {            
             SettingTiers();
             UpdateUpgradeUI();
@@ -81,6 +88,15 @@ public class UIUpgradeManager : MonoBehaviour
             speedUpgradeButton.image.color = Color.white;
         }
 
+        if(upgradeManager.nextKnockbackUpgrade.cost > upgradeManager.playerCurrency) 
+        {
+            knockbackUpgradeButton.image.color = Color.gray;
+        }
+        else 
+        {
+            speedUpgradeButton.image.color = Color.white; 
+        }
+
     }
 
     public void UpdateUpgradeUI() 
@@ -114,12 +130,24 @@ public class UIUpgradeManager : MonoBehaviour
 
         if (upgradeManager.nextSpeedUpgrade.tier < 5)
         {
-            speedUpgradeCost.text = "Cost: " + "$ " + (upgradeManager.nextSpeedUpgrade).cost.ToString();
+            speedUpgradeCost.text = "Cost: " + "$ " + (upgradeManager.nextSpeedUpgrade.cost).ToString();
         }
         else
             speedUpgradeCost.text = " - ";
 
         speedUpgradeLevel.text = (currentSpeedTier-1).ToString() + "/4";
+
+        // For Knockback Upgrade
+        knockbackUpgradeDescription.text = upgradeManager.nextKnockbackUpgrade.description;
+
+        if (upgradeManager.nextKnockbackUpgrade.tier < 5)
+        {
+            knockbackUpgradeCost.text = "Cost: " + "$ " + (upgradeManager.nextKnockbackUpgrade.cost).ToString();
+        }
+        else
+            knockbackUpgradeCost.text = " - ";
+
+        knockbackUpgradeLevel.text = (currentKnockbackTier - 1).ToString() + "/4"; 
     }
 
     public void SettingTiers() 
@@ -127,6 +155,7 @@ public class UIUpgradeManager : MonoBehaviour
         currentSwordTier = upgradeManager.nextSwordUpgrade.tier;
         currentHealthTier = upgradeManager.nextHealthUpgrade.tier;
         currentSpeedTier = upgradeManager.nextSpeedUpgrade.tier;
+        currentKnockbackTier = upgradeManager.nextKnockbackUpgrade.tier;
     }
 
     public void ResetUpgradeUI() 

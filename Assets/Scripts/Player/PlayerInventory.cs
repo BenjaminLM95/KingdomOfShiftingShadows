@@ -3,18 +3,14 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public Inventory _inventory = new Inventory();
-    [SerializeField] ItemDisplayHandler itemDisplay;  
+    [SerializeField] ItemDisplayHandler itemDisplay;
+    [SerializeField] private UpgradeManager _upgradeManager; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake ()
     {
-        itemDisplay = FindFirstObjectByType<ItemDisplayHandler>();       
-        _inventory.SetInventorySlots(3);        
-        _inventory.GetAnItem(new FreezeMagic());
-        _inventory.GetAnItem(new FreezeMagic());
-        _inventory.GetAnItem(new WindSlash()); 
-        ShowItemNames();
-        itemDisplay.UpdateItemImages(_inventory); 
+        itemDisplay = FindFirstObjectByType<ItemDisplayHandler>();
+        _upgradeManager = FindFirstObjectByType<UpgradeManager>();       
         
     }
 
@@ -57,5 +53,39 @@ public class PlayerInventory : MonoBehaviour
         {
             Debug.Log(_inventory.inventory[i].itemName + " , " + _inventory.inventory[i].itemCost); 
         }
+    }
+
+    private void UpgradeInventory() 
+    {
+        Debug.Log("A" + _inventory.inventory.Count);
+
+        _inventory.inventory.Clear();
+
+        Debug.Log("A" + _inventory.inventory.Count);
+
+        Debug.Log("B" + _upgradeManager.playerInventory.inventory.Count);
+        
+
+        for(int i = 0; i < _upgradeManager.playerInventory.inventory.Count; i++) 
+        {
+            _inventory.inventory.Add(_upgradeManager.playerInventory.inventory[i]);
+            Debug.Log(_inventory.inventory.Count);
+            Debug.Log(_upgradeManager.playerInventory.inventory.Count); 
+        }
+
+        Debug.Log("Inventory Upgraded"); 
+    }
+
+    private void OnEnable()
+    {
+        if (_upgradeManager == null)
+        {
+            _upgradeManager = FindFirstObjectByType<UpgradeManager>();
+        }
+            
+        UpgradeInventory();
+        ShowItemNames();
+        itemDisplay.UpdateItemImages(_inventory);
+        
     }
 }
