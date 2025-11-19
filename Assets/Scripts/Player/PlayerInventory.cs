@@ -21,7 +21,7 @@ public class PlayerInventory : MonoBehaviour
         {
             if (_inventory.inventory.Count > 0)
             {
-                _inventory.UseAnItem(0);
+                _inventory.UseAnItem(0);                
                 ShowItemNames();
                 itemDisplay.UpdateItemImages(_inventory);
             }
@@ -56,21 +56,16 @@ public class PlayerInventory : MonoBehaviour
     }
 
     private void UpgradeInventory() 
-    {
-        Debug.Log("A" + _inventory.inventory.Count);
+    {        
 
-        _inventory.inventory.Clear();
+        _inventory.inventory.Clear();      
 
-        Debug.Log("A" + _inventory.inventory.Count);
 
-        Debug.Log("B" + _upgradeManager.playerInventory.inventory.Count);
-        
-
-        for(int i = 0; i < _upgradeManager.playerInventory.inventory.Count; i++) 
+        for(int i = 0; i < UpgradeManager.playerInventory.inventory.Count; i++) 
         {
-            _inventory.inventory.Add(_upgradeManager.playerInventory.inventory[i]);
+            _inventory.inventory.Add(UpgradeManager.playerInventory.inventory[i]);
             Debug.Log(_inventory.inventory.Count);
-            Debug.Log(_upgradeManager.playerInventory.inventory.Count); 
+            Debug.Log(UpgradeManager.playerInventory.inventory.Count); 
         }
 
         Debug.Log("Inventory Upgraded"); 

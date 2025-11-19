@@ -25,17 +25,19 @@ public class UpgradeManager : MonoBehaviour
     public int speedIndex = 0;
     public int knockbackIndex = 0;
 
-    public Inventory playerInventory = new Inventory();
+    public static Inventory playerInventory = new Inventory();
 
     public int playerCurrency {  get; private set; }
-    private SoundsManager soundManager; 
+    private SoundsManager soundManager;
+    [SerializeField] private GameObject inventoryDisplay; 
+    public ItemDisplayHandler itemDisplayHandler;
 
-    
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        soundManager = FindFirstObjectByType<SoundsManager>(); 
+        soundManager = FindFirstObjectByType<SoundsManager>();        
         gameUpgrades = new Upgrades();
 
         playerInventory.SetInventorySlots(3);
@@ -57,7 +59,11 @@ public class UpgradeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(itemDisplayHandler == null) 
+        {
+            inventoryDisplay = GameObject.Find("UpgradeItemDisplay");
+            itemDisplayHandler = inventoryDisplay.GetComponent<ItemDisplayHandler>();
+        }
 
     }
 
@@ -67,6 +73,11 @@ public class UpgradeManager : MonoBehaviour
         gameUpgrades.AddHealthUpgrades();
         gameUpgrades.AddSpeedUpgrades();
         gameUpgrades.AddPushUpgrades(); 
+    }
+
+    public void DisplayItemsOnScreen() 
+    {
+        itemDisplayHandler.UpdateItemImages(playerInventory);
     }
 
     public Upgrade ChangeTier(Upgrades listUpgrades, Upgrade _upgrade) 
@@ -224,6 +235,8 @@ public class UpgradeManager : MonoBehaviour
 
             playerInventory.GetAnItem(new FreezeMagic());
             Debug.Log("Buy a freeze magic");
+
+            DisplayItemsOnScreen();
         }
     }
 
@@ -239,6 +252,8 @@ public class UpgradeManager : MonoBehaviour
 
             playerInventory.GetAnItem(new WindSlash());
             Debug.Log("Buy Wind Slash");
+
+            DisplayItemsOnScreen(); 
         }
     }
 

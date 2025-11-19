@@ -27,7 +27,15 @@ public class UIUpgradeManager : MonoBehaviour
     public TextMeshProUGUI knockbackUpgradeDescription;
     public TextMeshProUGUI knockbackUpgradeCost;
     public TextMeshProUGUI knockbackUpgradeLevel;
-    [SerializeField] private int currentKnockbackTier; 
+    [SerializeField] private int currentKnockbackTier;
+
+    [Header("Ice Magic Upgrade Reference")]
+    public TextMeshProUGUI iceMagicDescription;
+    public TextMeshProUGUI iceMagicCost;
+
+    [Header("Wind Slash Upgrade Reference")]
+    public TextMeshProUGUI windSlashDescription;
+    public TextMeshProUGUI windSlashCost; 
 
     public TextMeshProUGUI currencyText;
 
@@ -38,6 +46,7 @@ public class UIUpgradeManager : MonoBehaviour
 
     [Header("Upgrade Manager Reference")]
     [SerializeField] private UpgradeManager upgradeManager;
+     
 
     private void Start()
     {    
@@ -63,38 +72,39 @@ public class UIUpgradeManager : MonoBehaviour
 
         if(upgradeManager.nextSwordUpgrade.cost > upgradeManager.playerCurrency) 
         {
-            swordUpgradeButton.image.color = Color.gray; 
+            //swordUpgradeButton.image.color = Color.gray; 
+            swordUpgradeButton.interactable = false; 
         }
         else 
-        {
-            swordUpgradeButton.image.color = Color.white;
+        {            
+            swordUpgradeButton.interactable = true;
         }
 
         if (upgradeManager.nextHealthUpgrade.cost > upgradeManager.playerCurrency)
-        {
-            healthUpgradeButton.image.color = Color.gray;
+        {            
+            healthUpgradeButton.interactable = false; 
         }
         else
-        {
-            healthUpgradeButton.image.color = Color.white;
+        {            
+            healthUpgradeButton.interactable = true; 
         }
 
         if (upgradeManager.nextSpeedUpgrade.cost > upgradeManager.playerCurrency)
-        {
-            speedUpgradeButton.image.color = Color.gray;
+        {            
+            speedUpgradeButton.interactable = false;
         }
         else
-        {
-            speedUpgradeButton.image.color = Color.white;
+        {          
+            speedUpgradeButton.interactable = true; 
         }
 
         if(upgradeManager.nextKnockbackUpgrade.cost > upgradeManager.playerCurrency) 
         {
-            knockbackUpgradeButton.image.color = Color.gray;
+            knockbackUpgradeButton.interactable = false;
         }
         else 
-        {
-            speedUpgradeButton.image.color = Color.white; 
+        {            
+            knockbackUpgradeButton.interactable = true; 
         }
 
     }
@@ -162,6 +172,18 @@ public class UIUpgradeManager : MonoBehaviour
     {
         SettingTiers();
         UpdateUpgradeUI();
+    }
+
+    public void FillingItemInfo() 
+    {
+        FreezeMagic iceMagicRef = new FreezeMagic();
+        WindSlash windSlashRef = new WindSlash();
+
+        windSlashDescription.text = "Unleash a Range Wind attack";
+        windSlashCost.text = "Cost: $ " + windSlashRef.itemCost;
+
+        iceMagicDescription.text = "Freeze all the enemies";
+        iceMagicCost.text = "Cost: $ " + iceMagicRef.itemCost; 
     }
 
 

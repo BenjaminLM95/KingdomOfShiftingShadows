@@ -76,7 +76,9 @@ public class LevelManager : MonoBehaviour
     {
         ChangeScene(SceneNames.UpgradeScene); 
         gameStateManager.ChangeState(GameStateManager.GameState.Upgrade);
-       
+        upgradeManager.DisplayItemsOnScreen(); 
+
+
     }
 
     public void GoToSettings() 

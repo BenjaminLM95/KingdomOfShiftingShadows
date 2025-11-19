@@ -37,6 +37,7 @@ public class Inventory
             {
                 inventory[index].Effect();
                 inventory.Remove(inventory.ElementAt(index));
+                UpgradeManager.playerInventory.inventory.Remove(UpgradeManager.playerInventory.inventory.ElementAt(index)); 
             }
         }
     }

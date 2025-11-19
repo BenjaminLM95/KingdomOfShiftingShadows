@@ -405,7 +405,6 @@ MonoBehaviour:
   enemyTypeOne: {fileID: 3819979465790774841, guid: 8df59a8f093e91a448a9987d3c1f1406, type: 3}
   enemyTypeTwo: {fileID: 3819979465790774841, guid: d3b64f47ad424e149a13961c324fe83f, type: 3}
   currentEnemyType: {fileID: 0}
-  enemyList: []
   enemyDeployed: 0
   timeSpawn: 5
   _kingdomGate: {fileID: 578204449}
@@ -1366,7 +1365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1116472957
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2379,7 +2378,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1957317166
 RectTransform:
   m_ObjectHideFlags: 0
