@@ -5,29 +5,42 @@ public class UIUpgradeManager : MonoBehaviour
 {
 
     [Header("Sword Upgrade References")]
-   public TextMeshProUGUI swordUpgradeDescription;
+    public TextMeshProUGUI swordUpgradeDescription;
     public TextMeshProUGUI swordUpgradeCost;
-    public TextMeshProUGUI swordUpgradeLevel; 
+    
     [SerializeField] private int currentSwordTier;
+    public GameObject swordTier1;
+    public GameObject swordTier2;
+    public GameObject swordTier3;
+    public GameObject swordTier4;
 
 
     [Header("Health Upgrade Reference")]
     public TextMeshProUGUI healthUpgradeDescription;
-    public TextMeshProUGUI healthUpgradeCost;
-    public TextMeshProUGUI healthUpgradeLevel; 
+    public TextMeshProUGUI healthUpgradeCost;    
     [SerializeField] private int currentHealthTier;
+    public GameObject healthTier1; 
+    public GameObject healthTier2;
+    public GameObject healthTier3;
+    public GameObject healthTier4;
 
     [Header("Speed Upgrade Reference")]
     public TextMeshProUGUI speedUpgradeDescription;
-    public TextMeshProUGUI speedUpgradeCost;
-    public TextMeshProUGUI speedUpgradeLevel; 
+    public TextMeshProUGUI speedUpgradeCost;    
     [SerializeField] private int currentSpeedTier;
+    public GameObject speedTier1;
+    public GameObject speedTier2;
+    public GameObject speedTier3;
+    public GameObject speedTier4;
 
     [Header("KnockBack Upgrade Reference")]
     public TextMeshProUGUI knockbackUpgradeDescription;
-    public TextMeshProUGUI knockbackUpgradeCost;
-    public TextMeshProUGUI knockbackUpgradeLevel;
+    public TextMeshProUGUI knockbackUpgradeCost;    
     [SerializeField] private int currentKnockbackTier;
+    public GameObject knockbackTier1;
+    public GameObject knockbackTier2;
+    public GameObject knockbackTier3;
+    public GameObject knockbackTier4;
 
     [Header("Ice Magic Upgrade Reference")]
     public TextMeshProUGUI iceMagicDescription;
@@ -43,9 +56,14 @@ public class UIUpgradeManager : MonoBehaviour
     public Button healthUpgradeButton;
     public Button speedUpgradeButton;
     public Button knockbackUpgradeButton; 
+    public Button iceMagicButton;
+    public Button windSlashButton;
 
     [Header("Upgrade Manager Reference")]
     [SerializeField] private UpgradeManager upgradeManager;
+
+    private FreezeMagic fmRef = new FreezeMagic();
+    private WindSlash wsRef = new WindSlash();
      
 
     private void Start()
@@ -107,6 +125,24 @@ public class UIUpgradeManager : MonoBehaviour
             knockbackUpgradeButton.interactable = true; 
         }
 
+        if(upgradeManager.playerCurrency < fmRef.itemCost) 
+        {
+            iceMagicButton.interactable = false;
+        }
+        else 
+        {
+            iceMagicButton.interactable = true;
+        }
+
+        if(upgradeManager.playerCurrency < wsRef.itemCost) 
+        {
+            windSlashButton.interactable = false;
+        }
+        else 
+        {
+            windSlashButton.interactable = true;
+        }
+
     }
 
     public void UpdateUpgradeUI() 
@@ -119,9 +155,7 @@ public class UIUpgradeManager : MonoBehaviour
             swordUpgradeCost.text = "Cost: " + " $:" + (upgradeManager.nextSwordUpgrade.cost).ToString();
         }
         else
-            swordUpgradeCost.text = " - ";
-
-        swordUpgradeLevel.text = (currentSwordTier-1).ToString() + "/4"; 
+            swordUpgradeCost.text = " - ";        
 
             // For health upgrade        
         healthUpgradeDescription.text = upgradeManager.nextHealthUpgrade.description;
@@ -131,9 +165,7 @@ public class UIUpgradeManager : MonoBehaviour
             healthUpgradeCost.text = "Cost: " + "$ " + (upgradeManager.nextHealthUpgrade.cost).ToString();
         }
         else
-            healthUpgradeCost.text = " - ";
-
-        healthUpgradeLevel.text = (currentHealthTier-1).ToString() + "/4"; 
+            healthUpgradeCost.text = " - ";        
 
             // For speed upgrade        
         speedUpgradeDescription.text = upgradeManager.nextSpeedUpgrade.description;
@@ -143,9 +175,7 @@ public class UIUpgradeManager : MonoBehaviour
             speedUpgradeCost.text = "Cost: " + "$ " + (upgradeManager.nextSpeedUpgrade.cost).ToString();
         }
         else
-            speedUpgradeCost.text = " - ";
-
-        speedUpgradeLevel.text = (currentSpeedTier-1).ToString() + "/4";
+            speedUpgradeCost.text = " - ";        
 
         // For Knockback Upgrade
         knockbackUpgradeDescription.text = upgradeManager.nextKnockbackUpgrade.description;
@@ -155,9 +185,13 @@ public class UIUpgradeManager : MonoBehaviour
             knockbackUpgradeCost.text = "Cost: " + "$ " + (upgradeManager.nextKnockbackUpgrade.cost).ToString();
         }
         else
-            knockbackUpgradeCost.text = " - ";
+            knockbackUpgradeCost.text = " - ";        
 
-        knockbackUpgradeLevel.text = (currentKnockbackTier - 1).ToString() + "/4"; 
+        DisactivateAllTiers();
+        ActivateSwordTiers(currentSwordTier - 1);
+        ActivateHealthTier(currentHealthTier - 1);
+        ActivateSpeedTier(currentSpeedTier - 1);
+        ActivatePushTier(currentKnockbackTier - 1);
     }
 
     public void SettingTiers() 
@@ -186,5 +220,151 @@ public class UIUpgradeManager : MonoBehaviour
         iceMagicCost.text = "Cost: $ " + iceMagicRef.itemCost; 
     }
 
+
+    private void DisactivateAllSwordTiers() 
+    {
+        swordTier1.SetActive(false); 
+        swordTier2.SetActive(false);
+        swordTier3.SetActive(false);
+        swordTier4.SetActive(false);
+    }
+
+    private void DisactivateAllHealthTiers() 
+    {
+        healthTier1.SetActive(false); 
+        healthTier2.SetActive(false);
+        healthTier3.SetActive(false); 
+        healthTier4.SetActive(false);
+    }
+
+    private void DisactivateAllSpeedTiers() 
+    {
+        speedTier1.SetActive(false);
+        speedTier2.SetActive(false);
+        speedTier3.SetActive(false);
+        speedTier4.SetActive(false);
+    }
+
+    private void DisactivateAllKnockbackTiers() 
+    {
+        knockbackTier1.SetActive(false);
+        knockbackTier2.SetActive(false);
+        knockbackTier3.SetActive(false);
+        knockbackTier4.SetActive(false);
+    }
+
+    private void DisactivateAllTiers() 
+    {
+        DisactivateAllSwordTiers();
+        DisactivateAllHealthTiers();
+        DisactivateAllSpeedTiers();
+        DisactivateAllKnockbackTiers(); 
+    }
+
+    private void ActivateSwordTiers(int nTier) 
+    {
+        if (nTier == 1)
+        {
+            swordTier1.SetActive(true);
+        }
+        else if (nTier == 2) 
+        {
+            swordTier1.SetActive(true);
+            swordTier2.SetActive(true);
+        }
+        else if(nTier == 3) 
+        {
+            swordTier1.SetActive(true);
+            swordTier2.SetActive(true);
+            swordTier3.SetActive(true);
+        }
+        else if(nTier == 4) 
+        {
+            swordTier1.SetActive(true);
+            swordTier2.SetActive(true);
+            swordTier3.SetActive(true);
+            swordTier4.SetActive(true);
+        }
+    }
+
+    private void ActivateHealthTier(int nTier) 
+    {
+        if (nTier == 1)
+        {
+            healthTier1.SetActive(true);
+        }
+        else if (nTier == 2)
+        {
+            healthTier1.SetActive(true);
+            healthTier2.SetActive(true);
+        }
+        else if (nTier == 3)
+        {
+            healthTier1.SetActive(true);
+            healthTier2.SetActive(true);
+            healthTier3.SetActive(true);
+        }
+        else if (nTier == 4)
+        {
+            healthTier1.SetActive(true);
+            healthTier2.SetActive(true);
+            healthTier3.SetActive(true);
+            healthTier4.SetActive(true);
+        }
+    }
+
+    private void ActivateSpeedTier(int nTier) 
+    {
+        if (nTier == 1)
+        {
+            speedTier1.SetActive(true);
+        }
+        else if (nTier == 2)
+        {
+            speedTier1.SetActive(true);
+            speedTier2.SetActive(true);
+        }
+        else if (nTier == 3)
+        {
+            speedTier1.SetActive(true);
+            speedTier2.SetActive(true);
+            speedTier3.SetActive(true);
+        }
+        else if (nTier == 4)
+        {
+            speedTier1.SetActive(true);
+            speedTier2.SetActive(true);
+            speedTier3.SetActive(true);
+            speedTier4.SetActive(true);
+        }
+    }
+
+    private void ActivatePushTier(int nTier) 
+    {
+        if (nTier == 1)
+        {
+            knockbackTier1.SetActive(true);
+        }
+        else if (nTier == 2)
+        {
+            knockbackTier1.SetActive(true);
+            knockbackTier2.SetActive(true);
+        }
+        else if (nTier == 3)
+        {
+            knockbackTier1.SetActive(true);
+            knockbackTier2.SetActive(true);
+            knockbackTier3.SetActive(true);
+        }
+        else if (nTier == 4)
+        {
+            knockbackTier1.SetActive(true);
+            knockbackTier2.SetActive(true);
+            knockbackTier3.SetActive(true);
+            knockbackTier4.SetActive(true);
+        }
+    }
+
+   
 
 }

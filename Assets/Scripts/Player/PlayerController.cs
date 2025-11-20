@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
         switch (playerState) 
         {
             case PlayerState.Still:
-                PlayerMovement();
+                PlayerMovement();                 
                 break;
             case PlayerState.Walk:
                 PlayerMovement();
@@ -271,7 +271,7 @@ public class PlayerController : MonoBehaviour
    
     public void PlayerDeath() 
     {
-        playerState = PlayerState.Death;
+        playerState = PlayerState.Death;        
     }
 
     public void WindSlashAttack() 

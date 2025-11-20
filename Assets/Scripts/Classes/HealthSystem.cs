@@ -117,7 +117,7 @@ public class HealthSystem
     public void resetStats()
     {
         health = maxHealth;
-        shield -= maxShield;
+        shield = maxShield;
     }
 
     public void setMaxHP(int _maxhp)

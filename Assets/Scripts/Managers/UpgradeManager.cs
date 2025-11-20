@@ -227,7 +227,7 @@ public class UpgradeManager : MonoBehaviour
     public void AddIceMagic() 
     {
         FreezeMagic refItem = new FreezeMagic();
-        if (playerCurrency >= refItem.itemCost)
+        if (playerCurrency >= refItem.itemCost && playerInventory.inventory.Count < 3)
         {
             playerCurrency -= refItem.itemCost;
 
@@ -244,7 +244,7 @@ public class UpgradeManager : MonoBehaviour
     {
         WindSlash refItem = new WindSlash();
 
-        if (playerCurrency >= refItem.itemCost)
+        if (playerCurrency >= refItem.itemCost && playerInventory.inventory.Count < 3)
         {
             playerCurrency -= refItem.itemCost;
 

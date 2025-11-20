@@ -207,15 +207,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6768104230059079462}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.02, y: -0.57, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.3027847, w: 0.953059}
+  m_LocalPosition: {x: -5.4345727, y: -0.49181423, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 880766068836464269}
   - {fileID: 7422113827192636747}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 35.25}
 --- !u!212 &3566994322049730366
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -288,6 +288,8 @@ MonoBehaviour:
   speedMove: 0
   upgradeSpeedMove: 1
   sprintSpeed: 5
+  baseknockbackForce: 1.5
+  upgradeKnockback: 0
   knockBackForce: 1.5
   sword: {fileID: 6757053921615204007}
   slashCollider: {fileID: 5705028957381102069}
@@ -306,6 +308,7 @@ MonoBehaviour:
   playerHealth: {fileID: 4576890133481530474}
   soundManager: {fileID: 0}
   dayNightManager: {fileID: 0}
+  windSlashObj: {fileID: 0}
 --- !u!114 &4576890133481530474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +326,8 @@ MonoBehaviour:
   vulnerabilityCooldown: 1.5
   healthText: {fileID: 0}
   healthSlider: {fileID: 0}
+  shieldSlider: {fileID: 0}
+  playerShield: 0
   attackingEnemy: {fileID: 0}
   upgradeManager: {fileID: 0}
   playerHealthAnimator: {fileID: 0}
@@ -341,6 +346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ad25a48e6b96e459bf5816db008031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemDisplay: {fileID: 0}
+  _upgradeManager: {fileID: 0}
 --- !u!114 &1932960855457498605
 MonoBehaviour:
   m_ObjectHideFlags: 0
