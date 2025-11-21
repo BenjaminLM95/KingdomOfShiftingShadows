@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     [Header("Abilities")]
     [SerializeField] private bool canMove = false;
     [SerializeField] private bool canSprint = true;
-    private bool _canAttack = true;
+    public bool _canAttack = true;
     [SerializeField] private bool canAttack
     {
         get
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
         {
             if (canAttack)
             {
-                soundManager.PlaySoundFXClip("SlashSword", transform);
+                soundManager.PlaySoundFXClip("WindSlash", transform);
                 playerState = PlayerState.Attack;
                 WindSlashAttack();
                 windSlash = false; 
@@ -169,6 +169,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.Death:
                 canAttack = true;
+                playerAnimator.SetBool("isDead", false);
                 //playerAnimator.SetBool("isAttacking", false);                
                 break; 
         }
@@ -260,6 +261,7 @@ public class PlayerController : MonoBehaviour
         upgradeKnockback = 0; 
         UpdatingSwordMight();
         UpdatingSpeed();
+        UpdatingKnockback();
         playerHealth.SettingInitialStats(); 
     }
      
@@ -271,7 +273,9 @@ public class PlayerController : MonoBehaviour
    
     public void PlayerDeath() 
     {
-        playerState = PlayerState.Death;        
+        playerAnimator.SetBool("isDead", true);        
+        playerState = PlayerState.Death;
+        
     }
 
     public void WindSlashAttack() 

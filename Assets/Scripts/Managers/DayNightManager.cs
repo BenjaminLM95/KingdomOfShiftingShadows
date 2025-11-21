@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI; 
 
 public enum DiurnalCycle 
 {
@@ -25,14 +26,18 @@ public class DayNightManager : MonoBehaviour
     public DiurnalCycle cycle;
     [SerializeField] private int currentHour;
     [SerializeField] private int previousHour;
-    private bool nextDay = false; 
+    private bool nextDay = false;
+    private GameObject timerSlider; 
+    public Slider timeDisplaySl; 
 
 
     [Header("Day and Night Background Images")]
     public GameObject dayImg;
     public GameObject nightImg;
     public GameObject sunImg;
+    public GameObject sunImg2;
     public GameObject moonImg; 
+    public GameObject moonImg2;
 
     private EnemyManager enemyManager;
     public TextMeshProUGUI dayNotificationText; 
@@ -53,8 +58,10 @@ public class DayNightManager : MonoBehaviour
         gameState = FindFirstObjectByType<GameStateManager>();
         InitialDaySetup();
         currentHour = (int)GetHour();
-
-        
+        timerSlider = GameObject.Find("TimeSlider");
+        timeDisplaySl = timerSlider.GetComponent<Slider>();
+        DisplayTimeOnSlider();
+        DisplayTime();
 
     }
 
@@ -74,7 +81,9 @@ public class DayNightManager : MonoBehaviour
         if(currentHour != (int)GetHour()) 
         {
             previousHour = currentHour;
-            currentHour = (int)GetHour(); 
+            currentHour = (int)GetHour();
+            DisplayTimeOnSlider();
+            DisplayTime();
         }
 
         if(previousHour == 23 && currentHour == 0 && !nextDay) 
@@ -97,15 +106,14 @@ public class DayNightManager : MonoBehaviour
             {
                 levelManager.ResumeGamePlay(); 
             }
-        }
-
-        DisplayTime();
+        }        
 
         if (gameState.currentGameState == GameStateManager.GameState.Paused)
         {
             dayNotificationText.gameObject.SetActive(false);
         }
 
+        
     }
 
     public void InitialDaySetup() 
@@ -158,7 +166,9 @@ public class DayNightManager : MonoBehaviour
         dayImg.gameObject.SetActive(false);
         nightImg.gameObject.SetActive(false);
         sunImg.gameObject.SetActive(false);
+        sunImg2.gameObject.SetActive(false);
         moonImg.gameObject.SetActive(false); 
+        moonImg2.gameObject.SetActive(false);
     }
 
     public void setDayImg() 
@@ -166,6 +176,7 @@ public class DayNightManager : MonoBehaviour
         DisableImages();
         dayImg.gameObject.SetActive(true);
         sunImg.gameObject.SetActive(true); 
+        moonImg2.gameObject.SetActive(true);
     }
 
     public void setNightImg() 
@@ -173,12 +184,13 @@ public class DayNightManager : MonoBehaviour
         DisableImages();
         nightImg.gameObject.SetActive(true);
         moonImg.gameObject.SetActive(true); 
+        sunImg2.gameObject.SetActive(true);
     }
 
     public void DisplayTime() 
     {
         timeDisplay.dayCount = dayCount; 
-        timeDisplay.timeText = "Day: " + dayCount + " - " + GetTimeString();
+        timeDisplay.timeText = "Day: " + dayCount;
     }
 
     public void DayNotification() 
@@ -223,5 +235,38 @@ public class DayNightManager : MonoBehaviour
     public void DayTextDisapear() 
     {
         dayNotificationText.gameObject.SetActive(false);
+    }
+
+    public void DisplayTimeOnSlider() 
+    {
+        float ratioTime; 
+        Image fillImage = timeDisplaySl.fillRect.GetComponent<Image>();
+        Image backgroundImage = timeDisplaySl.GetComponentInChildren<Image>();
+
+
+        if (isDay) 
+        {
+            ratioTime = (GetHour() - 6) / 12;
+            fillImage.color = new Color32(195, 230, 255, 255); 
+            backgroundImage.color = new Color32(4, 35, 74, 255);
+
+        }
+        else 
+        {
+            if (GetHour() >= 18) 
+            {
+                ratioTime = (GetHour() - 18)/ 12; 
+            }
+            else 
+            {
+                ratioTime = (GetHour() + 6) / 12; 
+            }
+            fillImage.color = new Color32(4, 35, 74, 255);
+            backgroundImage.color = new Color32(195, 230, 255, 255);
+        }
+
+        Debug.Log(ratioTime); 
+        timeDisplaySl.value = ratioTime;
+
     }
 }

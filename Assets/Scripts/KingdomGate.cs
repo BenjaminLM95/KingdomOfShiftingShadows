@@ -14,6 +14,7 @@ public class KingdomGate : MonoBehaviour
     [SerializeField] private ResultInformation resultInfo;
     [SerializeField] private DayNightManager dayNightManager;
     [SerializeField] private MusicManager musicManager;
+    [SerializeField] private SoundsManager soundManager; 
     [SerializeField] private GameStateManager gameStateManager;
     [SerializeField] private PlayerHealth playerHealth;
     
@@ -27,6 +28,7 @@ public class KingdomGate : MonoBehaviour
         resultInfo = FindFirstObjectByType<ResultInformation>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         musicManager = FindFirstObjectByType<MusicManager>();
+        soundManager = FindFirstObjectByType<SoundsManager>(); 
         gameStateManager = FindFirstObjectByType<GameStateManager>();
         playerHealth = FindFirstObjectByType<PlayerHealth>(); 
         dayMax = 6; 
@@ -37,7 +39,8 @@ public class KingdomGate : MonoBehaviour
         if(playerController.playerState == PlayerState.Death && !gameOver) 
         {           
             playerHealth.vulnerability();            
-            Invoke("SetGameOver", 0.25f);             
+            gameOver = true; 
+            Invoke("SetGameOver", 1f);             
         }
 
         if(dayNightManager.dayCount >= dayMax && dayNightManager.GetHour() >= 6 && !gameOver && !gameWin) 
@@ -52,7 +55,7 @@ public class KingdomGate : MonoBehaviour
         {
             if (!gameOver)
             {
-                playerHealth.vulnerability();
+                playerHealth.vulnerability();                
                 Invoke("SetGameOver", 0.25f);
             }
         }
@@ -60,10 +63,10 @@ public class KingdomGate : MonoBehaviour
 
     private void SetGameOver() 
     {
-        Debug.Log("Game Over");         
+        Debug.Log("Game Over");        
         gameOver = true;
-        gameStateManager.ChangeState(GameState.Result); 
         musicManager.PlayMusic(true, "Result");
+        gameStateManager.ChangeState(GameState.Result);         
         playerController.FreezePlayer();
 
         if(resultInfo == null)

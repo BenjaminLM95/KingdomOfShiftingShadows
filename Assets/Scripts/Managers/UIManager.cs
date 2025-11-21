@@ -22,12 +22,14 @@ public class UIManager : MonoBehaviour
     {
         DisableAllUI();
         titleScreenUI.SetActive(true);
+        player.gameObject.SetActive(false);
     }
 
     public void EnableMenuUI() 
     {
         DisableAllUI();
-        menuUI.gameObject.SetActive(true); 
+        menuUI.gameObject.SetActive(true);
+        player.gameObject.SetActive(false);
     }
 
     public void EnableGameplayUI() 
@@ -41,36 +43,42 @@ public class UIManager : MonoBehaviour
     {
         DisableAllUI();
         pauseUI.gameObject.SetActive(true);
+        player.gameObject.SetActive(false);
     }
     
     public void EnableUpgradeUI() 
     {
         DisableAllUI();
         upgradeUI.gameObject.SetActive(true);
+        player.gameObject.SetActive(false);
     }
 
     public void EnableSettingsUI() 
     {
         DisableAllUI();
-        settingsUI.gameObject.SetActive(true); 
+        settingsUI.gameObject.SetActive(true);
+        player.gameObject.SetActive(false);
     }
 
     public void EnableIntroductionUI() 
     {
         DisableAllUI();
         introductionUI.gameObject.SetActive(true);
+        player.gameObject.SetActive(false);
     }
 
     public void EnableCreditsUI() 
     {
         DisableAllUI();
         creditUI.gameObject.SetActive(true);
+        player.gameObject.SetActive(false);
     }
 
     public void EnableResultsUI() 
     {
         DisableAllUI();
         resultUI.gameObject.SetActive(true);
+        player.gameObject.SetActive(true); 
     }
 
     public void EnableGameWinUI() 
@@ -91,7 +99,6 @@ public class UIManager : MonoBehaviour
         introductionUI.gameObject.SetActive(false);
         creditUI.gameObject.SetActive(false);
         resultUI.gameObject.SetActive(false);
-        gameWinUI.gameObject.SetActive(false);
-        player.gameObject.SetActive(false);
+        gameWinUI.gameObject.SetActive(false);        
     }
 }

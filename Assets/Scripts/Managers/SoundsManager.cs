@@ -18,6 +18,9 @@ public class SoundsManager : MonoBehaviour
     [SerializeField] private AudioClip useCoinClip; // The sound when you buy something; 
     [SerializeField] private AudioClip skyHurtClip; // The sound when Sky (the player) get hit by the enemy
     [SerializeField] private AudioClip iceSpellClip; // The sound effect when the enemies are frozen
+    [SerializeField] private AudioClip windSlashClip; // The sound effect when the player unleash a wind attack    
+    [SerializeField] private AudioClip startGameClip; // The sound when you start the gameplay
+    [SerializeField] private AudioClip buttonSoundClip; // the sound when you press a button
     [SerializeField] private bool isPlaying = false; // Flag to check if music is playing
     public AudioMixer audioMixer; // Reference to the AudioMixer for volume control
 
@@ -67,6 +70,15 @@ public class SoundsManager : MonoBehaviour
                 break;
             case "IceSpell":
                 _audioSource.clip = iceSpellClip;
+                break;
+            case "WindSlash":
+                _audioSource.clip = windSlashClip;
+                break;
+            case "StartGame":
+                _audioSource.clip = startGameClip;
+                break;
+            case "ButtonPressed":
+                _audioSource.clip = buttonSoundClip;
                 break; 
         }
         

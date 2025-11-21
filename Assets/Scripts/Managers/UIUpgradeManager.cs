@@ -125,7 +125,7 @@ public class UIUpgradeManager : MonoBehaviour
             knockbackUpgradeButton.interactable = true; 
         }
 
-        if(upgradeManager.playerCurrency < fmRef.itemCost) 
+        if(upgradeManager.playerCurrency < fmRef.itemCost || UpgradeManager.playerInventory.inventory.Count > 2) 
         {
             iceMagicButton.interactable = false;
         }
@@ -134,7 +134,7 @@ public class UIUpgradeManager : MonoBehaviour
             iceMagicButton.interactable = true;
         }
 
-        if(upgradeManager.playerCurrency < wsRef.itemCost) 
+        if(upgradeManager.playerCurrency < wsRef.itemCost || UpgradeManager.playerInventory.inventory.Count > 2) 
         {
             windSlashButton.interactable = false;
         }
@@ -185,7 +185,9 @@ public class UIUpgradeManager : MonoBehaviour
             knockbackUpgradeCost.text = "Cost: " + "$ " + (upgradeManager.nextKnockbackUpgrade.cost).ToString();
         }
         else
-            knockbackUpgradeCost.text = " - ";        
+            knockbackUpgradeCost.text = " - ";
+
+        FillingItemInfo(); 
 
         DisactivateAllTiers();
         ActivateSwordTiers(currentSwordTier - 1);

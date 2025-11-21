@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
 
         if (enemyType == EnemyType.DayEnemy)
         {
-            SetBaseStats(1 + nDay * 5, 3 + nDay, 1.5f + (nDay / 2), 1000 + ((nDay+1) * (nDay+1)) + (4*(nDay+1)));
+            SetBaseStats(1 + nDay * 5, 3 + nDay, 1.5f + (nDay / 2), 10 + ((nDay+1) * (nDay+1)) + (4*(nDay+1)));
         }
         else if (enemyType == EnemyType.NightEnemy)
         {
@@ -459,9 +459,9 @@ public class Enemy : MonoBehaviour
                 {
                     return false;
                 }
-                else if (hitEnemyState != EnemyState.Collapse)
+                else if (hitEnemyState == EnemyState.Running)
                 {
-                    //Debug.Log(hitEnemyState.ToString());
+                    Debug.Log(hitEnemyState.ToString());
                     return true; 
                 }
             }
@@ -477,11 +477,12 @@ public class Enemy : MonoBehaviour
                 {
                     return false;
                 }
-                else if (hitEnemyState != EnemyState.Collapse)
+                else if (hitEnemyState == EnemyState.Running)
                 {
-                    //Debug.Log(hitEnemyState.ToString());
+                    Debug.Log(hitEnemyState.ToString());
                     return true; 
                 }
+
             }
             
 
@@ -497,9 +498,9 @@ public class Enemy : MonoBehaviour
                 {
                     return false;
                 }
-                else if (hitEnemyState != EnemyState.Collapse)
+                else if (hitEnemyState == EnemyState.Running)
                 {
-                    //Debug.Log(hitEnemyState.ToString()); 
+                    Debug.Log(hitEnemyState.ToString()); 
                     return true; 
                 }
             }

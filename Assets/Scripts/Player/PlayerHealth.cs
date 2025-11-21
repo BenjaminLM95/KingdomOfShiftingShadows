@@ -73,6 +73,7 @@ public class PlayerHealth : MonoBehaviour
         if (healthSystem.health <= 0) 
         {
             _playerController.PlayerDeath(); 
+            
         }
                
         if(playerShield != healthSystem.shield) 
@@ -116,19 +117,31 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Enemy")) 
+        ReceiveDamageByEnemy(col);
+    }
+
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        ReceiveDamageByEnemy(collision);
+    }
+
+    private void ReceiveDamageByEnemy(Collision2D col) 
+    {
+        if (col.gameObject.CompareTag("Enemy"))
         {
-            
-            if (attackingEnemy == null && !invincibility) 
+
+            if (attackingEnemy == null && !invincibility)
             {
-                 
+
                 attackingEnemy = col.gameObject.GetComponent<Enemy>();
-                if ((attackingEnemy.alive || attackingEnemy.enemyType == EnemyType.DayEnemy) && attackingEnemy.enemyState != EnemyState.Collapse 
-                    &&  !attackingEnemy.isDefeat)
-                {                   
-                    attackingEnemy.SetAttackAnimation();                   
+                if ((attackingEnemy.alive || attackingEnemy.enemyType == EnemyType.DayEnemy) && attackingEnemy.enemyState != EnemyState.Collapse
+                    && !attackingEnemy.isDefeat)
+                {
+                    attackingEnemy.SetAttackAnimation();
                     healthSystem.TakeDamage(attackingEnemy.healthSystem.baseAttack);
-                    _playerController.soundManager.PlaySoundFXClip("PlayerHurt", transform); 
+                    _playerController._canAttack = false;
+                    _playerController.soundManager.PlaySoundFXClip("PlayerHurt", transform);
 
                     if (cameraShaking == null)
                     {
@@ -138,11 +151,14 @@ public class PlayerHealth : MonoBehaviour
                     if (cameraShaking != null)
                     {
                         myCoroutineReference = StartCoroutine(cameraShaking.Shake2(0.25f, 0.125f));
-                    }                    
+                    }
 
-                    if (attackingEnemy.enemyType == EnemyType.DayEnemy && healthSystem.health <= 0) 
+                    if (attackingEnemy.enemyType == EnemyType.DayEnemy && healthSystem.health <= 0 && _playerController.playerState != PlayerState.Death)
                     {
-                       _playerController.soundManager.PlaySoundFXClip("WitchLaugh", transform);
+                        _playerController.soundManager.PlaySoundFXClip("WitchLaugh", transform);
+                        invincibility = false; 
+                        Debug.Log(invincibility);
+                        return; 
                     }
 
                     playerHealthAnimator.SetBool("isDamaged", true);
@@ -152,15 +168,16 @@ public class PlayerHealth : MonoBehaviour
                 }
 
                 if (attackingEnemy != null)
-                    attackingEnemy = null; 
+                    attackingEnemy = null;
             }
-            
+
         }
     }
 
     public void vulnerability() 
     {
         invincibility = false;
+        _playerController._canAttack = true; 
         playerHealthAnimator.SetBool("isDamaged", false);
     }
 
@@ -204,7 +221,7 @@ public class PlayerHealth : MonoBehaviour
     private void SetShieldBarColor() 
     {
         Image fillImage = shieldBar.fillRect.GetComponent<Image>();
-        Color orangeColor = new Color(255f, 165f, 0f);
+        Color orangeColor = new Color32(255, 165, 0, 255);
 
         fillImage.color = orangeColor;
     }

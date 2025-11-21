@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,8 @@ public class LevelManager : MonoBehaviour
     public PlayerHealth playerHealth;
     public PlayerController playerController;
     [SerializeField] private UpgradeManager upgradeManager;
-    public UIUpgradeManager uiUpgradeManager;    
+    public UIUpgradeManager uiUpgradeManager;
+    [SerializeField] private SoundsManager soundManager;
     
 
     public int playerCurrency; 
@@ -34,6 +36,7 @@ public class LevelManager : MonoBehaviour
     {
         _musicManager = FindFirstObjectByType<MusicManager>();
         upgradeManager = FindFirstObjectByType<UpgradeManager>();
+        soundManager = FindFirstObjectByType<SoundsManager>(); 
         ChangeToMainMenu();
 
 
@@ -47,6 +50,7 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeToMainMenu() 
     {
+        soundManager.PlaySoundFXClip("ButtonPressed", transform);
         SceneManager.LoadScene(SceneNames.MainMenu.ToString());
         gameStateManager.ChangeState(GameStateManager.GameState.Menu_State);
         _musicManager.PlayMusic(true, "mainmenu"); 
@@ -54,17 +58,19 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeToGameplay() 
     {
+        soundManager.PlaySoundFXClip("ButtonPressed", transform);
         SceneManager.LoadScene(SceneNames.Gameplay.ToString());
         gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State);
         playerHealth.healthSystem.resetStats();
-        playerController.SetStartingPosition(); 
+        playerController.SetStartingPosition();
+        soundManager.PlaySoundFXClip("StartGame", transform);
         _musicManager.PlayMusic(true, "Gameplay");
     }
 
     public void ResumeGamePlay() 
     {
-        gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State); 
-        
+        soundManager.PlaySoundFXClip("ButtonPressed", transform);
+        gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State);         
     }
 
     public void ChangeToPause() 
@@ -74,6 +80,7 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeToUpgrade() 
     {
+        soundManager.PlaySoundFXClip("ButtonPressed", transform);
         ChangeScene(SceneNames.UpgradeScene); 
         gameStateManager.ChangeState(GameStateManager.GameState.Upgrade);
         upgradeManager.DisplayItemsOnScreen(); 
@@ -83,8 +90,9 @@ public class LevelManager : MonoBehaviour
 
     public void GoToSettings() 
     {
-        //ChangeScene(SceneNames.Settings);
-        gameStateManager.ChangeState(GameStateManager.GameState.Settings); 
+        soundManager.PlaySoundFXClip("ButtonPressed", transform);
+        gameStateManager.ChangeState(GameStateManager.GameState.Settings);
+        
     }
 
     public void InGameSetting() 
@@ -94,13 +102,15 @@ public class LevelManager : MonoBehaviour
 
     public void BackState() 
     {
+        soundManager.PlaySoundFXClip("ButtonPressed", transform);
         gameStateManager.ChangeState(gameStateManager.GivePreviousGameState()); 
     }
 
     public void StartNewGame() 
-    {
+    {        
         ChangeToGameplay();
-        Invoke("StartingValues", 0.25f);      
+        StartingValues(); 
+             
 
     }
 
@@ -112,6 +122,7 @@ public class LevelManager : MonoBehaviour
 
     public void GoToIntroduction() 
     {
+        soundManager.PlaySoundFXClip("ButtonPressed", transform);
         ChangeScene(SceneNames.Introduction);
         gameStateManager.ChangeState(GameStateManager.GameState.Introduction);
         
@@ -119,6 +130,7 @@ public class LevelManager : MonoBehaviour
         
     public void GoToCredits() 
     {
+        soundManager.PlaySoundFXClip("ButtonPressed", transform);
         ChangeScene(SceneNames.Credits);
         gameStateManager.ChangeState(GameStateManager.GameState.Credit); 
     }
@@ -129,7 +141,14 @@ public class LevelManager : MonoBehaviour
         
     }
 
-    
+    IEnumerator BeingGameplay() 
+    {
+        
+        soundManager.PlaySoundFXClip("StartGame", transform);
+        yield return new WaitForSeconds(1);
+        ChangeToGameplay(); 
+        StartingValues();
+    }
 
 
     public void ExitGame() 

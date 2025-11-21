@@ -1,0 +1,325 @@
+fileFormatVersion: 2
+guid: c2d276d5b389c854bb1ad3bbcbf603af
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 288100684174172951
+    second: SkyFemaledieSpriteSheet_0
+  - first:
+      213: -2672470018063452247
+    second: SkyFemaledieSpriteSheet_1
+  - first:
+      213: 6556739509525994320
+    second: SkyFemaledieSpriteSheet_2
+  - first:
+      213: 6203792143326889695
+    second: SkyFemaledieSpriteSheet_3
+  - first:
+      213: -7185624801718943025
+    second: SkyFemaledieSpriteSheet_4
+  - first:
+      213: -5949044665022667481
+    second: SkyFemaledieSpriteSheet_5
+  - first:
+      213: -2999698760554150597
+    second: SkyFemaledieSpriteSheet_6
+  - first:
+      213: -7282900502223830874
+    second: SkyFemaledieSpriteSheet_7
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SkyFemaledieSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 75
+        width: 143
+        height: 185
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 713afbbbb0a8ff300800000000000000
+      internalID: 288100684174172951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkyFemaledieSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 73
+        width: 138
+        height: 187
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a7327c8daa79ead0800000000000000
+      internalID: -2672470018063452247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkyFemaledieSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 72
+        width: 178
+        height: 187
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05bd01648d73efa50800000000000000
+      internalID: 6556739509525994320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkyFemaledieSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1252
+        y: 84
+        width: 215
+        height: 164
+      alignment: 9
+      pivot: {x: 0.70296544, y: 0.060651686}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd6cb53d51c481650800000000000000
+      internalID: 6203792143326889695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkyFemaledieSpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 79
+        width: 239
+        height: 139
+      alignment: 9
+      pivot: {x: 0.6698463, y: 0.26636934}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc24e4c5058874c90800000000000000
+      internalID: -7185624801718943025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkyFemaledieSpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 2051
+        y: 30
+        width: 239
+        height: 139
+      alignment: 9
+      pivot: {x: 0.8694154, y: 0.47079605}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7252464856fb07da0800000000000000
+      internalID: -5949044665022667481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkyFemaledieSpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 58
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b358dffceddee56d0800000000000000
+      internalID: -2999698760554150597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkyFemaledieSpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1382
+        y: 55
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a04f666490fdea90800000000000000
+      internalID: -7282900502223830874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 200ebad30df5963429a12e8570b59f53
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SkyFemaledieSpriteSheet_0: 288100684174172951
+      SkyFemaledieSpriteSheet_1: -2672470018063452247
+      SkyFemaledieSpriteSheet_2: 6556739509525994320
+      SkyFemaledieSpriteSheet_3: 6203792143326889695
+      SkyFemaledieSpriteSheet_4: -7185624801718943025
+      SkyFemaledieSpriteSheet_5: -5949044665022667481
+      SkyFemaledieSpriteSheet_6: -2999698760554150597
+      SkyFemaledieSpriteSheet_7: -7282900502223830874
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
