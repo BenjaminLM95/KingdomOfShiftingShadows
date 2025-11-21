@@ -38,7 +38,7 @@ public class FreezeMagic : ConsumableItem
     public FreezeMagic() 
     {
         itemName = "Freeze Magic";
-        itemCost = 25; 
+        itemCost = 100; 
     }
 
     public override void Effect() 
@@ -65,7 +65,7 @@ public class WindSlash : ConsumableItem
     public WindSlash() 
     {
         itemName = "Wind Slash";
-        itemCost = 15; 
+        itemCost = 50; 
     }
 
     public override void Effect()

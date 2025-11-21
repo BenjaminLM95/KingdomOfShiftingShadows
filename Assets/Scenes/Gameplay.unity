@@ -714,6 +714,7 @@ MonoBehaviour:
   resultInfo: {fileID: 0}
   dayNightManager: {fileID: 0}
   musicManager: {fileID: 0}
+  soundManager: {fileID: 0}
   gameStateManager: {fileID: 0}
   playerHealth: {fileID: 0}
 --- !u!1 &589438240
@@ -1151,7 +1152,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Defend the bridge!!
 
-    Survive 6 days!!
+    Survive 5 days!!
 
 '
   m_isRightToLeft: 0
