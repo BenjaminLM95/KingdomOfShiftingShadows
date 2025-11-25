@@ -2,21 +2,39 @@ using UnityEngine;
 
 public class WindSlashBehavior : MonoBehaviour
 {
-    private float slashMovX;
+    public float slashMovX;
 
-    private int direction;    
+    private int direction;  
+    
+    private float velValue = 8f; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        slashMovX = 8;
-        direction = 1; 
-
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(transform.position.x + slashMovX * Time.deltaTime * direction, transform.position.y, transform.position.z); 
+        transform.position = new Vector3(transform.position.x + slashMovX * Time.deltaTime, transform.position.y, transform.position.z); 
+    }
+
+    public void GetDirection(bool isRight) 
+    {
+        Debug.Log("Moving Wind Slash"); 
+
+        if (!isRight) 
+        {
+            slashMovX = -8f;
+            transform.localScale = new Vector3(-0.333f, 0.333f, 1);
+            Debug.Log("Moving Left"); 
+        }
+        else 
+        {
+            slashMovX = 8f;
+            transform.localScale = new Vector3(0.333f, 0.333f, 1);
+            Debug.Log("Moving Right"); 
+        }
     }
 }

@@ -88,7 +88,7 @@ public class UIUpgradeManager : MonoBehaviour
         currencyText.text = upgradeManager.playerCurrency.ToString(); 
 
 
-        if(upgradeManager.nextSwordUpgrade.cost > upgradeManager.playerCurrency || upgradeManager.currentSwordUpgrade.tier >= 5) 
+        if(upgradeManager.nextSwordUpgrade.cost > upgradeManager.playerCurrency || upgradeManager.swordIndex >= 4) 
         {
             swordUpgradeButton.interactable = false; 
         }
@@ -97,7 +97,7 @@ public class UIUpgradeManager : MonoBehaviour
             swordUpgradeButton.interactable = true;
         }
 
-        if (upgradeManager.nextHealthUpgrade.cost > upgradeManager.playerCurrency || upgradeManager.currentHealthUpgrade.tier >= 5)
+        if (upgradeManager.nextHealthUpgrade.cost > upgradeManager.playerCurrency || upgradeManager.healthIndex >= 4)
         {            
             healthUpgradeButton.interactable = false; 
         }
@@ -106,7 +106,7 @@ public class UIUpgradeManager : MonoBehaviour
             healthUpgradeButton.interactable = true; 
         }
 
-        if (upgradeManager.nextSpeedUpgrade.cost > upgradeManager.playerCurrency || upgradeManager.currentSpeedUpgrade.tier >= 5)
+        if (upgradeManager.nextSpeedUpgrade.cost > upgradeManager.playerCurrency || upgradeManager.speedIndex >= 4)
         {            
             speedUpgradeButton.interactable = false;
         }
@@ -115,7 +115,7 @@ public class UIUpgradeManager : MonoBehaviour
             speedUpgradeButton.interactable = true; 
         }
 
-        if(upgradeManager.nextKnockbackUpgrade.cost > upgradeManager.playerCurrency || upgradeManager.currentKnockbackUpgrade.tier >= 5) 
+        if(upgradeManager.nextKnockbackUpgrade.cost > upgradeManager.playerCurrency || upgradeManager.knockbackIndex >= 4) 
         {
             knockbackUpgradeButton.interactable = false;
         }

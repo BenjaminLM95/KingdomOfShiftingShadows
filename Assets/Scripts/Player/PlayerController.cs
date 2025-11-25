@@ -281,6 +281,20 @@ public class PlayerController : MonoBehaviour
     public void WindSlashAttack() 
     {
         GameObject windSlashTemp = Instantiate(windSlashObj, transform.position, Quaternion.identity);
+
+        // This change the direction and the x scale of the wind depending on where the player is facing (Right or left)
+        // True if its facing right and false if it's facing left
+        if(transform.localScale.x >= 0) 
+        {
+            Debug.Log("Going Right"); 
+            windSlashTemp.GetComponent<WindSlashBehavior>().GetDirection(true);
+        }
+        else 
+        {
+            Debug.Log("Going Left"); 
+            windSlashTemp.GetComponent<WindSlashBehavior>().GetDirection(false);
+        }
+            
         Debug.Log("Wind Slash!!!");
         Destroy(windSlashTemp, 5f); 
     }
