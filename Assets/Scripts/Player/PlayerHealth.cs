@@ -141,7 +141,7 @@ public class PlayerHealth : MonoBehaviour
                     attackingEnemy.SetAttackAnimation();
                     healthSystem.TakeDamage(attackingEnemy.healthSystem.baseAttack);
                     _playerController._canAttack = false;
-                    _playerController.soundManager.PlaySoundFXClip("PlayerHurt", transform);
+                    _playerController.soundManager.PlaySoundFXClip("PlayerHurt");
 
                     if (cameraShaking == null)
                     {
@@ -155,7 +155,7 @@ public class PlayerHealth : MonoBehaviour
 
                     if (attackingEnemy.enemyType == EnemyType.DayEnemy && healthSystem.health <= 0 && _playerController.playerState != PlayerState.Death)
                     {
-                        _playerController.soundManager.PlaySoundFXClip("WitchLaugh", transform);
+                        _playerController.soundManager.PlaySoundFXClip("WitchLaugh");
                         invincibility = false; 
                         Debug.Log(invincibility);
                         return; 

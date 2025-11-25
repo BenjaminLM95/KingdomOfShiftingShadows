@@ -138,7 +138,7 @@ public class UpgradeManager : MonoBehaviour
         if (playerCurrency >= nextSwordUpgrade.cost)
         {
             playerCurrency -= nextSwordUpgrade.cost;
-            soundManager.PlaySoundFXClip("BuySound", transform);
+            soundManager.PlaySoundFXClip("BuySound");
 
             if (!isSwordUpgrade)
                 isSwordUpgrade = true;
@@ -155,7 +155,7 @@ public class UpgradeManager : MonoBehaviour
         if (playerCurrency >= nextHealthUpgrade.cost)
         {
             playerCurrency -= nextHealthUpgrade.cost;
-            soundManager.PlaySoundFXClip("BuySound", transform);
+            soundManager.PlaySoundFXClip("BuySound");
 
             if (!isHealthUpgrade)
                 isHealthUpgrade = true;
@@ -171,7 +171,7 @@ public class UpgradeManager : MonoBehaviour
         if (playerCurrency >= nextSpeedUpgrade.cost)
         {
             playerCurrency -= nextSpeedUpgrade.cost;
-            soundManager.PlaySoundFXClip("BuySound", transform);
+            soundManager.PlaySoundFXClip("BuySound");
 
             if (!isSpeedUpgrade)
                 isSpeedUpgrade = true;
@@ -187,7 +187,7 @@ public class UpgradeManager : MonoBehaviour
         if(playerCurrency >= nextKnockbackUpgrade.cost) 
         {
             playerCurrency -= nextKnockbackUpgrade.cost;
-            soundManager.PlaySoundFXClip("BuySound", transform);
+            soundManager.PlaySoundFXClip("BuySound");
 
             if (!isKnockbackUpgrade)
                 isKnockbackUpgrade = true;
@@ -231,7 +231,7 @@ public class UpgradeManager : MonoBehaviour
         {
             playerCurrency -= refItem.itemCost;
 
-            soundManager.PlaySoundFXClip("BuySound", transform);
+            soundManager.PlaySoundFXClip("BuySound");
 
             playerInventory.GetAnItem(new FreezeMagic());
             Debug.Log("Buy a freeze magic");
@@ -248,7 +248,7 @@ public class UpgradeManager : MonoBehaviour
         {
             playerCurrency -= refItem.itemCost;
 
-            soundManager.PlaySoundFXClip("BuySound", transform);
+            soundManager.PlaySoundFXClip("BuySound");
 
             playerInventory.GetAnItem(new WindSlash());
             Debug.Log("Buy Wind Slash");

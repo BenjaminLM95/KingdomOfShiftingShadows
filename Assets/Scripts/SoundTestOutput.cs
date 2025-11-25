@@ -18,7 +18,7 @@ public class SoundTestOutput : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         Debug.Log("PointUp");
         if (changeSFXVolume)
         {
-            soundManager.PlaySoundFXClip("SlashSword", transform);
+            soundManager.PlaySoundFXClip("SlashSword");
             changeSFXVolume = false;
         }
     }

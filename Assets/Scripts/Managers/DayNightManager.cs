@@ -40,7 +40,8 @@ public class DayNightManager : MonoBehaviour
     public GameObject moonImg2;
 
     private EnemyManager enemyManager;
-    public TextMeshProUGUI dayNotificationText; 
+    public TextMeshProUGUI dayNotificationText;
+    public float timeTotal; 
 
     [Header("References")]
     [SerializeField] private LevelManager levelManager;
@@ -86,7 +87,9 @@ public class DayNightManager : MonoBehaviour
             DisplayTime();
         }
 
-        if(previousHour == 23 && currentHour == 0 && !nextDay) 
+         
+
+        if (previousHour == 23 && currentHour == 0 && !nextDay) 
         {          
                 dayCount++;
                 nextDay = true;           
@@ -189,8 +192,33 @@ public class DayNightManager : MonoBehaviour
 
     public void DisplayTime() 
     {
-        timeDisplay.dayCount = dayCount; 
-        timeDisplay.timeText = "Day: " + dayCount;
+        timeDisplay.dayCount = dayCount;
+
+        switch (dayCount) 
+        {
+            case 1:
+                timeDisplay.timeText = "1st Day";
+                break;
+            case 2:
+                timeDisplay.timeText = "2nd Day";
+                break;
+            case 3:
+                timeDisplay.timeText = "3rd Day";
+                break;
+            case 4:
+                timeDisplay.timeText = "4th Day";
+                break;
+            case 5:
+                timeDisplay.timeText = "5th Day";
+                break;
+            case 6:
+                timeDisplay.timeText = "6th Day";
+                break;
+            default:
+                timeDisplay.timeText = "Day" + dayCount;
+                break; 
+        }
+        
     }
 
     public void DayNotification() 
@@ -255,7 +283,7 @@ public class DayNightManager : MonoBehaviour
         {
             if (GetHour() >= 18) 
             {
-                ratioTime = (GetHour() - 18)/ 12; 
+                ratioTime = (GetHour() - 18) / 12; 
             }
             else 
             {
@@ -264,7 +292,7 @@ public class DayNightManager : MonoBehaviour
             fillImage.color = new Color32(4, 35, 74, 255);
             backgroundImage.color = new Color32(195, 230, 255, 255);
         }
-
+               
         Debug.Log(ratioTime); 
         timeDisplaySl.value = ratioTime;
 

@@ -92,16 +92,16 @@ public class SoundsManager : MonoBehaviour
 
     
 
-    public void PlaySoundFXClip(string clipName, Transform spawnTransform) 
+    public void PlaySoundFXClip(string clipName) 
     {
-        // Spawn the gameObject
-        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        // Spawn the gameObject, in this case is child of this manager
+        AudioSource audioSource = Instantiate(soundFXObject, Vector3.zero, Quaternion.identity, transform);
 
         // assign the audioClip
         SetSound(clipName, audioSource);
 
         // Assign Volume
-        audioSource.volume = sfxVolume; 
+        audioSource.volume = sfxVolume;
 
         // play Sound
         audioSource.Play();
@@ -110,13 +110,13 @@ public class SoundsManager : MonoBehaviour
         float clipLength = audioSource.clip.length;
 
         //destroy the clip after it is done playing
-        Destroy(audioSource.gameObject, clipLength); 
-
+        Destroy(audioSource.gameObject, clipLength);
 
     }
 
     public void TestSFX() 
     {
-        PlaySoundFXClip("SlashSword", transform); 
+        PlaySoundFXClip("SlashSword"); 
     }
+       
 }

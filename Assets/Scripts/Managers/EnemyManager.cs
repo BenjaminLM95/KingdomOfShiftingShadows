@@ -23,6 +23,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObject spawnPoint2;
     [SerializeField] private GameObject spawnPoint3;
     [SerializeField] private GameObject spawnPoint4;
+    public GameObject targetPoint1;
+    public GameObject targetPoint2;
+    public GameObject targetPoint3; 
     [SerializeField] private SoundsManager soundManager;
     private DayNightManager dayNightManager;
     private NewGameScene newGameScene; 
@@ -66,7 +69,8 @@ public class EnemyManager : MonoBehaviour
         }
 
         GameObject newEnemy = Instantiate(currentEnemyType, GetRandomSpawnPosition(), Quaternion.identity);
-        enemyList.Add(newEnemy.GetComponent<Enemy>());     
+        enemyList.Add(newEnemy.GetComponent<Enemy>());
+        newEnemy.GetComponent<Enemy>().SetTheRandomTarget(GetTargetPointObj()); 
         enemyDeployed++; 
         timer = Time.time + timeSpawn;        
 
@@ -122,7 +126,7 @@ public class EnemyManager : MonoBehaviour
 
         if (numZombies > 0)
         {
-            soundManager.PlaySoundFXClip("ZombieScreams", transform);
+            soundManager.PlaySoundFXClip("ZombieScreams");
 
             for (int i = 0; i < enemyList.Count; i++)
             {
@@ -133,6 +137,25 @@ public class EnemyManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public GameObject GetTargetPointObj() 
+    {
+        int rndNum = Random.Range(0, 100); 
+
+        if(rndNum < 33) 
+        {
+            return targetPoint1;
+        }
+        else if(rndNum < 66) 
+        {
+            return targetPoint2;
+        }
+        else 
+        {
+            return targetPoint3; 
+        }
+
     }
 
 }

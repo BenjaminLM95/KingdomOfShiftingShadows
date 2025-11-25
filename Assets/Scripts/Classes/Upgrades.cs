@@ -41,10 +41,10 @@ public class Upgrades
 
     public void AddSpeedUpgrades() 
     {
-        speedUpgrades.Add(new Upgrade(8, "Speedy Boots", "Increases Speed by 25% the original speed", 1, 50, 1, typeUpgrade.Speed));
-        speedUpgrades.Add(new Upgrade(9, "Speedy Boots+", "Increases Speed by 50% the original speed", 2, 125, 2, typeUpgrade.Speed));
-        speedUpgrades.Add(new Upgrade(10, "Light Boots", "Increases Speed 75% times the original speed", 3, 300, 3, typeUpgrade.Speed));
-        speedUpgrades.Add(new Upgrade(11, "Light Boots+", "Increases Speed 2 times the original speed", 4, 700, 4, typeUpgrade.Speed));
+        speedUpgrades.Add(new Upgrade(8, "Speedy Boots", "Increases Speed +25%", 1, 50, 1, typeUpgrade.Speed));
+        speedUpgrades.Add(new Upgrade(9, "Speedy Boots+", "Increases Speed +50%", 2, 125, 2, typeUpgrade.Speed));
+        speedUpgrades.Add(new Upgrade(10, "Light Boots", "Increases Speed +75%", 3, 300, 3, typeUpgrade.Speed));
+        speedUpgrades.Add(new Upgrade(11, "Light Boots+", "Increases Speed x2", 4, 700, 4, typeUpgrade.Speed));
         speedUpgrades.Add(new Upgrade(97, "MAX OUT", "MAX OUT", 5, 0, 0, typeUpgrade.Speed)); 
         
     }

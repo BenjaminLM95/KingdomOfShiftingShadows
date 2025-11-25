@@ -20,21 +20,18 @@ public class EnemyAlert : MonoBehaviour
         {
             Enemy enemy = other.GetComponent<Enemy>();
 
-            if (enemy.enemyType == EnemyType.DayEnemy)
+            if (enemy.enemyType == EnemyType.DayEnemy && enemy.enemyState == EnemyState.Running)
             {
                 Debug.Log("Day Enemy appears"); 
                 alertWitchObj.SetActive(true);
                 Invoke("SetOffWitchAlert", alertCooldown);
             }
-            else if(enemy.enemyType == EnemyType.NightEnemy) 
+            else if(enemy.enemyType == EnemyType.NightEnemy && enemy.enemyState == EnemyState.Running) 
             {
                 alertZombieObj.SetActive(true);
                 Invoke("SetOffZombieAlert", alertCooldown); 
             }
-            else 
-            {
-                Debug.LogWarning("No Enemy component found on " + other.name);
-            }
+            
         }
     }
 

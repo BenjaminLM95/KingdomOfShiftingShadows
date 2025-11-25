@@ -70,7 +70,7 @@ public class VolumesSlide : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         Debug.Log("PointUp");
         if (changeSFXVolume)
         {
-            soundManager.PlaySoundFXClip("SlashSword", transform);
+            soundManager.PlaySoundFXClip("SlashSword");
             changeSFXVolume = false;
         }
     }

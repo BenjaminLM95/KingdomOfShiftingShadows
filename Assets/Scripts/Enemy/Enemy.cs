@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UIElements;
 using System;
 using Unity.VisualScripting;
+using Unity.Mathematics;
 
 
 public enum EnemyState 
@@ -43,8 +44,8 @@ public class Enemy : MonoBehaviour
 
     [Header("Reference")]
     [SerializeField] GameObject _player; 
-    [SerializeField] PlayerController playerController;
-    [SerializeField] GameObject kingdomsGate;
+    [SerializeField] PlayerController playerController;    
+    private GameObject pointTarget; 
     public TextMeshPro hpText;
     [SerializeField] DayNightManager dayNightManager;
     [SerializeField] CameraShaking cameraShaking; 
@@ -74,8 +75,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        playerController = FindFirstObjectByType<PlayerController>();
-        kingdomsGate = GameObject.Find("KingdomGate");
+        playerController = FindFirstObjectByType<PlayerController>();        
         enemyAnimator = GetComponent<Animator>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         soundManager = FindFirstObjectByType<SoundsManager>();
@@ -87,11 +87,11 @@ public class Enemy : MonoBehaviour
 
         if (enemyType == EnemyType.DayEnemy)
         {
-            SetBaseStats(1 + nDay * 5, 3 + nDay, 1.5f + (nDay / 2), 10 + ((nDay+1) * (nDay+1)) + (4*(nDay+1)));
+            SetBaseStats(nDay * 8 - 2, 3 + nDay, 2f + (nDay/2), 10 + (5 * nDay * nDay) + (4*(nDay+1)));
         }
         else if (enemyType == EnemyType.NightEnemy)
         {
-            SetBaseStats(nDay * 4 - 1 , 2 + nDay, 0.8f + (nDay / 4), 0);
+            SetBaseStats(nDay * 4 - 1 , 2 + nDay, 1.5f + (nDay / 4), 0);
         }
 
     }
@@ -176,7 +176,7 @@ public class Enemy : MonoBehaviour
             {
                 isDefeat = true;
                 enemyAnimator.SetBool("isFainted", true);
-                soundManager.PlaySoundFXClip("WitchDead", transform);                  
+                soundManager.PlaySoundFXClip("WitchDead");                  
                 playerController.numKill++;
                 //playerController.upgradeManager.ObtainingMoneyReward(moneyValue);
                 //soundManager.PlaySoundFXClip("GetMoney", transform); 
@@ -185,10 +185,15 @@ public class Enemy : MonoBehaviour
             }
             else 
             {
-                soundManager.PlaySoundFXClip("ZombieDefeated", transform);                 
+                soundManager.PlaySoundFXClip("ZombieDefeated");                 
                 DeathBehavior(); 
             }
         }
+    }
+
+    public void SetTheRandomTarget(GameObject gameObj) 
+    {
+        pointTarget = gameObj; 
     }
 
     public void SetBaseStats(int bMaxHp, int bAtk, float bSpeed, int bMoneyValue) 
@@ -222,9 +227,9 @@ public class Enemy : MonoBehaviour
         //Debug.Log("Collision");
         if (collision.gameObject.CompareTag("Sword") && !invincibility) 
         {
-            //StartCoroutine(cameraShaking.Shake(0.25f, 0.125f));           
+                      
             isHit = true;
-            rb2.bodyType = RigidbodyType2D.Dynamic;
+            rb2.bodyType = RigidbodyType2D.Dynamic;            
             isWalking = false;            
             enemyAnimator.SetBool("isWalking", false);        
             healthSystem.TakeDamage(playerController.swordPower);            
@@ -313,7 +318,7 @@ public class Enemy : MonoBehaviour
 
     public void BeFrozen() 
     {
-        soundManager.PlaySoundFXClip("IceSpell", transform); 
+        soundManager.PlaySoundFXClip("IceSpell"); 
         enemyState = EnemyState.Frozen;
         enemyAnimator.SetBool("isFrozen", true); 
     }
@@ -352,7 +357,7 @@ public class Enemy : MonoBehaviour
         }
         else 
         {
-            velocity = (kingdomsGate.transform.position - transform.position).normalized;
+            velocity = (pointTarget.transform.position - transform.position).normalized;
         }
                     
         EnemyMove(); 

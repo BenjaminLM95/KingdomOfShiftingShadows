@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speedMove = 0;
     public float upgradeSpeedMove = 1; 
     [SerializeField] private float sprintSpeed = 5;
-    public float baseknockbackForce = 1.5f;
+    public float baseknockbackForce = 10f;
     public float upgradeKnockback = 0;
     public float knockBackForce = 0; 
     private Vector3 initialPos = new Vector3(-6f, -0.5f);
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
         {
             if (canAttack)
             {
-                soundManager.PlaySoundFXClip("SlashSword", transform);
+                soundManager.PlaySoundFXClip("SlashSword");
                 playerState = PlayerState.Attack;                
             }
         }
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
         {
             if (canAttack)
             {
-                soundManager.PlaySoundFXClip("WindSlash", transform);
+                soundManager.PlaySoundFXClip("WindSlash");
                 playerState = PlayerState.Attack;
                 WindSlashAttack();
                 windSlash = false; 

@@ -30,7 +30,7 @@ public class CoinBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log(value);
-            soundManager.PlaySoundFXClip("GetMoney", transform);
+            soundManager.PlaySoundFXClip("GetMoney");
             playerObj.GetComponent<PlayerController>().upgradeManager.ObtainingMoneyReward(value);
             this.gameObject.SetActive(false);
         }

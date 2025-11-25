@@ -25,8 +25,7 @@ public class LevelManager : MonoBehaviour
         Credits
 
     }
-
-    private SceneNames _sceneName;  // Don't think I will need it
+    
 
     [Header("Reference")]
     [SerializeField] private MusicManager _musicManager;
@@ -50,7 +49,7 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeToMainMenu() 
     {
-        soundManager.PlaySoundFXClip("ButtonPressed", transform);
+        soundManager.PlaySoundFXClip("ButtonPressed");
         SceneManager.LoadScene(SceneNames.MainMenu.ToString());
         gameStateManager.ChangeState(GameStateManager.GameState.Menu_State);
         _musicManager.PlayMusic(true, "mainmenu"); 
@@ -58,18 +57,18 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeToGameplay() 
     {
-        soundManager.PlaySoundFXClip("ButtonPressed", transform);
+        //soundManager.PlaySoundFXClip("ButtonPressed");
         SceneManager.LoadScene(SceneNames.Gameplay.ToString());
+        Debug.Log("Change to gameplay scene"); 
         gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State);
         playerHealth.healthSystem.resetStats();
-        playerController.SetStartingPosition();
-        soundManager.PlaySoundFXClip("StartGame", transform);
+        playerController.SetStartingPosition();        
         _musicManager.PlayMusic(true, "Gameplay");
     }
 
     public void ResumeGamePlay() 
     {
-        soundManager.PlaySoundFXClip("ButtonPressed", transform);
+        soundManager.PlaySoundFXClip("ButtonPressed");
         gameStateManager.ChangeState(GameStateManager.GameState.Gameplay_State);         
     }
 
@@ -80,7 +79,7 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeToUpgrade() 
     {
-        soundManager.PlaySoundFXClip("ButtonPressed", transform);
+        soundManager.PlaySoundFXClip("ButtonPressed");
         ChangeScene(SceneNames.UpgradeScene); 
         gameStateManager.ChangeState(GameStateManager.GameState.Upgrade);
         upgradeManager.DisplayItemsOnScreen(); 
@@ -90,7 +89,7 @@ public class LevelManager : MonoBehaviour
 
     public void GoToSettings() 
     {
-        soundManager.PlaySoundFXClip("ButtonPressed", transform);
+        soundManager.PlaySoundFXClip("ButtonPressed");
         gameStateManager.ChangeState(GameStateManager.GameState.Settings);
         
     }
@@ -102,15 +101,13 @@ public class LevelManager : MonoBehaviour
 
     public void BackState() 
     {
-        soundManager.PlaySoundFXClip("ButtonPressed", transform);
+        soundManager.PlaySoundFXClip("ButtonPressed");
         gameStateManager.ChangeState(gameStateManager.GivePreviousGameState()); 
     }
 
     public void StartNewGame() 
-    {        
-        ChangeToGameplay();
-        StartingValues(); 
-             
+    {
+        StartCoroutine(BeginGameplay());                  
 
     }
 
@@ -122,7 +119,7 @@ public class LevelManager : MonoBehaviour
 
     public void GoToIntroduction() 
     {
-        soundManager.PlaySoundFXClip("ButtonPressed", transform);
+        soundManager.PlaySoundFXClip("ButtonPressed");
         ChangeScene(SceneNames.Introduction);
         gameStateManager.ChangeState(GameStateManager.GameState.Introduction);
         
@@ -130,7 +127,7 @@ public class LevelManager : MonoBehaviour
         
     public void GoToCredits() 
     {
-        soundManager.PlaySoundFXClip("ButtonPressed", transform);
+        soundManager.PlaySoundFXClip("ButtonPressed");
         ChangeScene(SceneNames.Credits);
         gameStateManager.ChangeState(GameStateManager.GameState.Credit); 
     }
@@ -141,13 +138,14 @@ public class LevelManager : MonoBehaviour
         
     }
 
-    IEnumerator BeingGameplay() 
+    IEnumerator BeginGameplay() 
     {
-        
-        soundManager.PlaySoundFXClip("StartGame", transform);
-        yield return new WaitForSeconds(1);
+        soundManager.PlaySoundFXClip("StartGame");         
+        Debug.Log("Change gamescene");
+        yield return new WaitForSecondsRealtime(1); 
         ChangeToGameplay(); 
         StartingValues();
+        yield return null; 
     }
 
 
