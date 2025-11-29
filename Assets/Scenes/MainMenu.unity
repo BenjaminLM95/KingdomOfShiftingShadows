@@ -6945,7 +6945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &991094598
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15317,7 +15317,7 @@ PrefabInstance:
     - target: {fileID: 8776361553925642626, guid: c986269dd60704549b334c86b649d1f8, type: 3}
       propertyPath: windSlashObj
       value: 
-      objectReference: {fileID: 6555417076458491955, guid: cda014324a2543f47bf234e827e4d47d, type: 3}
+      objectReference: {fileID: 9030822671878087379, guid: b38c929f80621804d81a71cddbcb78b6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

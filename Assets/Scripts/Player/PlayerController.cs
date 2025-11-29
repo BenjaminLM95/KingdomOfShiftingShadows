@@ -280,7 +280,22 @@ public class PlayerController : MonoBehaviour
 
     public void WindSlashAttack() 
     {
-        GameObject windSlashTemp = Instantiate(windSlashObj, transform.position, Quaternion.identity);
+        Vector3 slashPos = new Vector3();
+        float slashOffSetX = 0;
+
+
+        if (transform.localScale.x > 0)
+        {
+            slashOffSetX = transform.position.x + 1;
+        }
+        else 
+        {
+            slashOffSetX = transform.position.x - 1;
+        }
+
+        slashPos = new Vector3(slashOffSetX, transform.position.y + 0.75f, transform.position.z);
+
+        GameObject windSlashTemp = Instantiate(windSlashObj, slashPos, Quaternion.identity);
 
         // This change the direction and the x scale of the wind depending on where the player is facing (Right or left)
         // True if its facing right and false if it's facing left

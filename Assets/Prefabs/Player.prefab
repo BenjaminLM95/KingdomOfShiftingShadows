@@ -300,6 +300,7 @@ MonoBehaviour:
   attackCooldown: 0
   canMove: 1
   canSprint: 1
+  _canAttack: 1
   numKill: 0
   isStill: 0
   stillCoolDown: 1
@@ -308,7 +309,7 @@ MonoBehaviour:
   playerHealth: {fileID: 4576890133481530474}
   soundManager: {fileID: 0}
   dayNightManager: {fileID: 0}
-  windSlashObj: {fileID: 0}
+  windSlashObj: {fileID: 9030822671878087379, guid: b38c929f80621804d81a71cddbcb78b6, type: 3}
 --- !u!114 &4576890133481530474
 MonoBehaviour:
   m_ObjectHideFlags: 0

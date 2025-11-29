@@ -237,7 +237,7 @@ public class Enemy : MonoBehaviour
             enemyAnimator.SetBool("isDamaged", true);
             rb2.linearVelocity = Vector2.zero;
 
-            if (collision.name != "WindSlash_0(Clone)")
+            if (collision.name != "WindSlashCollider")
             {
                 rb2.AddForceX(playerController.knockBackForce * Mathf.Sign(collision.attachedRigidbody.linearVelocityX), ForceMode2D.Impulse);
             }
@@ -257,6 +257,7 @@ public class Enemy : MonoBehaviour
 
     private void vulnerability() 
     {
+        Debug.Log("Vulnerability"); 
         invincibility = false;
         enemyAnimator.SetBool("isDamaged", false);
         isHit = false;
