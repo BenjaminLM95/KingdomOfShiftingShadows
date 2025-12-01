@@ -257,4 +257,14 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+
+    public void ClearInventory() 
+    {
+        if (playerInventory != null) 
+        {
+            playerInventory.inventory.Clear(); 
+        }
+    }
+
+
 }

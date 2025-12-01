@@ -5,19 +5,21 @@ public class PlayerInventory : MonoBehaviour
     public Inventory _inventory = new Inventory();
     [SerializeField] ItemDisplayHandler itemDisplay;
     [SerializeField] private UpgradeManager _upgradeManager; 
+    private PlayerController _playerController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake ()
     {
         itemDisplay = FindFirstObjectByType<ItemDisplayHandler>();
-        _upgradeManager = FindFirstObjectByType<UpgradeManager>();       
+        _upgradeManager = FindFirstObjectByType<UpgradeManager>(); 
+        _playerController = FindFirstObjectByType<PlayerController>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        if (Input.GetKeyDown(KeyCode.Alpha1) && _playerController.canUseItem) 
         {
             if (_inventory.inventory.Count > 0)
             {
@@ -26,7 +28,7 @@ public class PlayerInventory : MonoBehaviour
                 itemDisplay.UpdateItemImages(_inventory);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && _playerController.canUseItem)
         {
             if (_inventory.inventory.Count > 1)
             {
@@ -35,7 +37,7 @@ public class PlayerInventory : MonoBehaviour
                 itemDisplay.UpdateItemImages(_inventory);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3) && _playerController.canUseItem)
         {
             if (_inventory.inventory.Count > 2)
             {
@@ -73,14 +75,19 @@ public class PlayerInventory : MonoBehaviour
 
     private void OnEnable()
     {
+        InventoryUpdate();        
+    }
+
+    public void InventoryUpdate()
+    {
         if (_upgradeManager == null)
         {
             _upgradeManager = FindFirstObjectByType<UpgradeManager>();
         }
-            
+
         UpgradeInventory();
         ShowItemNames();
         itemDisplay.UpdateItemImages(_inventory);
-        
     }
+
 }

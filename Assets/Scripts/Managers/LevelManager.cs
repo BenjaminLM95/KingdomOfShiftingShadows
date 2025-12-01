@@ -50,6 +50,7 @@ public class LevelManager : MonoBehaviour
     public void ChangeToMainMenu() 
     {
         soundManager.PlaySoundFXClip("ButtonPressed");
+        _musicManager.ChangeSpeed(1); 
         SceneManager.LoadScene(SceneNames.MainMenu.ToString());
         gameStateManager.ChangeState(GameStateManager.GameState.Menu_State);
         _musicManager.PlayMusic(true, "mainmenu"); 
@@ -142,7 +143,8 @@ public class LevelManager : MonoBehaviour
     {
         soundManager.PlaySoundFXClip("StartGame");         
         Debug.Log("Change gamescene");
-        yield return new WaitForSecondsRealtime(1); 
+        yield return new WaitForSecondsRealtime(1);
+        upgradeManager.ClearInventory(); 
         ChangeToGameplay(); 
         StartingValues();
         yield return null; 

@@ -37,7 +37,8 @@ public class KingdomGate : MonoBehaviour
     private void Update()
     {
         if(playerController.playerState == PlayerState.Death && !gameOver) 
-        {           
+        {
+            musicManager.ChangeSpeed(1); 
             playerHealth.vulnerability();            
             gameOver = true; 
             Invoke("SetGameOver", 1f);             
@@ -45,6 +46,7 @@ public class KingdomGate : MonoBehaviour
 
         if(dayNightManager.dayCount >= dayMax && dayNightManager.GetHour() >= 6 && !gameOver && !gameWin) 
         {
+            musicManager.ChangeSpeed(1);
             SetGameWin(); 
         }
     }
@@ -55,6 +57,8 @@ public class KingdomGate : MonoBehaviour
         {
             if (!gameOver)
             {
+                musicManager.ChangeSpeed(1);
+                playerController.playerState = PlayerState.Death;
                 playerHealth.vulnerability();                
                 Invoke("SetGameOver", 0.25f);
             }
@@ -73,6 +77,7 @@ public class KingdomGate : MonoBehaviour
             resultInfo = FindFirstObjectByType<ResultInformation>();
                 
         resultInfo.DisplayResult();
+        playerController.gameObject.SetActive(false);
         gameOver = false; 
         Time.timeScale = 0f;
     }

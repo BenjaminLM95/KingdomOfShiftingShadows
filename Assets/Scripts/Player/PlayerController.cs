@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
     [Header("Abilities")]
     [SerializeField] private bool canMove = false;
     [SerializeField] private bool canSprint = true;
+    public bool canUseItem { get; private set; }
     public bool _canAttack = true;
     [SerializeField] private bool canAttack
     {
@@ -86,7 +88,8 @@ public class PlayerController : MonoBehaviour
         attackCooldown = 0.32f; 
         transform.position = initialPos;
         canMove = false;
-        canAttack = false; 
+        canAttack = false;
+        canUseItem = false; 
         sword.gameObject.SetActive(false);
         body = GetComponent<Rigidbody2D>();
         playerState = PlayerState.Still;
@@ -108,6 +111,7 @@ public class PlayerController : MonoBehaviour
         {
             canMove = true;
             canAttack = true;
+            canUseItem = true; 
             newGameScene.isEnded = false;
         }
 
@@ -161,14 +165,16 @@ public class PlayerController : MonoBehaviour
                 PlayerMovement();
                 playerAnimator.SetBool("isWalking", true);
                 break;
-            case PlayerState.Attack:
-                //body.linearVelocity = new Vector2(0f, 0f); 
+            case PlayerState.Attack:               
+                body.linearVelocity /= (1 + Time.fixedDeltaTime * 4);
                 Attack();
                 break;
             case PlayerState.Idle:
                 break;
             case PlayerState.Death:
-                canAttack = true;
+                canAttack = false;
+                canMove = false;
+                canUseItem = false;
                 playerAnimator.SetBool("isDead", false);
                 //playerAnimator.SetBool("isAttacking", false);                
                 break; 

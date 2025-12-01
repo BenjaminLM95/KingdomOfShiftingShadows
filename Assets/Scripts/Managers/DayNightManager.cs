@@ -48,6 +48,7 @@ public class DayNightManager : MonoBehaviour
     [SerializeField] private TimeDisplay timeDisplay;
     [SerializeField] private NewGameScene newGameScene;
     private GameStateManager gameState;
+    private MusicManager musicManager;
 
 
     private void Awake()
@@ -57,6 +58,7 @@ public class DayNightManager : MonoBehaviour
         timeDisplay = FindFirstObjectByType<TimeDisplay>();
         newGameScene = FindFirstObjectByType<NewGameScene>();
         gameState = FindFirstObjectByType<GameStateManager>();
+        musicManager = FindFirstObjectByType<MusicManager>();
         InitialDaySetup();
         currentHour = (int)GetHour();
         timerSlider = GameObject.Find("TimeSlider");
@@ -90,10 +92,8 @@ public class DayNightManager : MonoBehaviour
          
 
         if (previousHour == 23 && currentHour == 0 && !nextDay) 
-        {          
-                dayCount++;
-                nextDay = true;           
-            
+        {        
+            nextDay = true;          
         }
 
         if (previousHour != 23 && currentHour != 0 && nextDay)
@@ -126,17 +126,20 @@ public class DayNightManager : MonoBehaviour
         cycle = DiurnalCycle.Day;
         isDay = true;
         setDayImg();
+        musicManager.ChangeSpeed(dayCount);
     }
 
     public void CycleChange() 
     {
         if(GetHour() >= 6 && GetHour() < 18 && !isDay) 
-        {            
+        {
+            dayCount++;
+            musicManager.ChangeSpeed(dayCount);
             isDay = true;
             cycle = DiurnalCycle.Day;
             setDayImg();
             DayNotification(); 
-            enemyManager.DestroyNightEnemies();
+            enemyManager.DestroyNightEnemies();            
             Invoke("DayTextDisapear", 2f); 
         }
         else if(GetHour() >= 18 && isDay) 

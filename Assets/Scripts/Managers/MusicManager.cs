@@ -46,4 +46,10 @@ public class MusicManager : MonoBehaviour
         audioSource.volume = volume; 
     }   
     
+
+    public void ChangeSpeed(int nDay) 
+    {
+        float musicSpeed = 1f + ((nDay - 1) * 0.05f); 
+        audioSource.pitch = musicSpeed;
+    }
 }

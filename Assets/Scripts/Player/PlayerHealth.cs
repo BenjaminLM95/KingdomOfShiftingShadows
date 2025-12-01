@@ -65,8 +65,7 @@ public class PlayerHealth : MonoBehaviour
         {                     
             healthText.text = "Player's HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
             playerHealth = healthSystem.health;
-            hpSlider.value = (float)healthSystem.health / (float)healthSystem.maxHealth;
-            ChangingHealthBarColor(hpSlider.value);
+            UpdateHealthBar();
 
         }       
 
@@ -78,17 +77,7 @@ public class PlayerHealth : MonoBehaviour
                
         if(playerShield != healthSystem.shield) 
         {
-            shieldBar.value = (float)healthSystem.shield / (float)healthSystem.maxShield;
-            playerShield = healthSystem.shield; 
-
-            if(playerShield <= 0) 
-            {
-                shieldBar.fillRect.gameObject.SetActive(false); 
-            }
-            else 
-            {
-                shieldBar.fillRect.gameObject.SetActive(true);
-            }
+            UpdateShieldBar();
         }
 
     }
@@ -198,6 +187,8 @@ public class PlayerHealth : MonoBehaviour
         SettingHealth();
         SettingShield(); 
         healthText.text = "Player's HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
+        UpdateHealthBar();
+        UpdateShieldBar();
     }
 
     private void ChangingHealthBarColor(float _value) 
@@ -224,6 +215,27 @@ public class PlayerHealth : MonoBehaviour
         Color orangeColor = new Color32(255, 165, 0, 255);
 
         fillImage.color = orangeColor;
+    }
+
+    private void UpdateHealthBar() 
+    {
+        hpSlider.value = (float)healthSystem.health / (float)healthSystem.maxHealth;
+        ChangingHealthBarColor(hpSlider.value);
+    }
+
+    private void UpdateShieldBar() 
+    {
+        shieldBar.value = (float)healthSystem.shield / (float)healthSystem.maxShield;
+        playerShield = healthSystem.shield;
+
+        if (playerShield <= 0)
+        {
+            shieldBar.fillRect.gameObject.SetActive(false);
+        }
+        else
+        {
+            shieldBar.fillRect.gameObject.SetActive(true);
+        }
     }
 
     private void OnDisable()
