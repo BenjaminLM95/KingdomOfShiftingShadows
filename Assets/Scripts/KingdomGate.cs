@@ -66,8 +66,7 @@ public class KingdomGate : MonoBehaviour
     }
 
     private void SetGameOver() 
-    {
-        Debug.Log("Game Over");        
+    {               
         gameOver = true;
         musicManager.PlayMusic(true, "Result");
         gameStateManager.ChangeState(GameState.Result);         

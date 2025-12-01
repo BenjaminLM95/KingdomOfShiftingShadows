@@ -143,8 +143,7 @@ public class DayNightManager : MonoBehaviour
             Invoke("DayTextDisapear", 2f); 
         }
         else if(GetHour() >= 18 && isDay) 
-        {
-            Debug.Log("Is Night"); 
+        {             
             isDay = false;
             cycle = DiurnalCycle.Night; 
             setNightImg();
@@ -295,8 +294,7 @@ public class DayNightManager : MonoBehaviour
             fillImage.color = new Color32(4, 35, 74, 255);
             backgroundImage.color = new Color32(195, 230, 255, 255);
         }
-               
-        Debug.Log(ratioTime); 
+                        
         timeDisplaySl.value = ratioTime;
 
     }

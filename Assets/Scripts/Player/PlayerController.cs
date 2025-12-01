@@ -268,6 +268,7 @@ public class PlayerController : MonoBehaviour
         UpdatingSwordMight();
         UpdatingSpeed();
         UpdatingKnockback();
+        playerHealth.FindingSlides(); 
         playerHealth.SettingInitialStats(); 
     }
      

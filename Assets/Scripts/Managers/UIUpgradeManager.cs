@@ -214,10 +214,10 @@ public class UIUpgradeManager : MonoBehaviour
         FreezeMagic iceMagicRef = new FreezeMagic();
         WindSlash windSlashRef = new WindSlash();
 
-        windSlashDescription.text = "Unleash a Range Wind attack";
+        windSlashDescription.text = "Unleash a Range Wind attack (1 use only)";
         windSlashCost.text = "Cost: $ " + windSlashRef.itemCost;
 
-        iceMagicDescription.text = "Freeze all the enemies";
+        iceMagicDescription.text = "Freeze all the enemies (1 use only)";
         iceMagicCost.text = "Cost: $ " + iceMagicRef.itemCost; 
     }
 

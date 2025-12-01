@@ -39,21 +39,8 @@ public class PlayerHealth : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SettingInitialStats(); 
-        upgradeManager = FindFirstObjectByType<UpgradeManager>();         
-        playerHealthAnimator = GetComponent<Animator>();
-        // Setting the HP bar
-        healthSlider = GameObject.Find("PlayerHPSlider");
-        hpSlider = healthSlider.GetComponent<Slider>();        
-        hpSlider.value = (float)healthSystem.health / (float)healthSystem.maxHealth;
-        ChangingHealthBarColor(hpSlider.value);
-        // Setting the shield Bar
-        shieldSlider = GameObject.Find("ShieldHPSlider");
-        shieldBar = shieldSlider.GetComponent<Slider>();
-        shieldBar.value = (float)healthSystem.shield / (float)healthSystem.maxShield;
-        SetShieldBarColor(); 
-
-
+        FindingSlides();
+        SettingInitialStats();
     }
 
     // Update is called once per frame
@@ -187,6 +174,8 @@ public class PlayerHealth : MonoBehaviour
         SettingHealth();
         SettingShield(); 
         healthText.text = "Player's HP: " + healthSystem.health + " / " + healthSystem.maxHealth;
+              
+
         UpdateHealthBar();
         UpdateShieldBar();
     }
@@ -236,6 +225,8 @@ public class PlayerHealth : MonoBehaviour
         {
             shieldBar.fillRect.gameObject.SetActive(true);
         }
+
+        SetShieldBarColor(); 
     }
 
     private void OnDisable()
@@ -243,6 +234,23 @@ public class PlayerHealth : MonoBehaviour
         StopAllCoroutines(); 
     }
 
+    public void FindingSlides() 
+    {
+        upgradeManager = FindFirstObjectByType<UpgradeManager>();
+        playerHealthAnimator = GetComponent<Animator>();
+        // Setting the HP bar
+        if (healthSlider == null)
+        {
+            healthSlider = GameObject.Find("PlayerHPSlider");
+            hpSlider = healthSlider.GetComponent<Slider>();
+        }
+        // Setting the shield Bar
+        if (shieldSlider == null)
+        {
+            shieldSlider = GameObject.Find("ShieldHPSlider");
+            shieldBar = shieldSlider.GetComponent<Slider>();
+        }
+    }
 
     
 }

@@ -54,8 +54,8 @@ public class FreezeMagic : ConsumableItem
         {
             Debug.Log("Enemy List Object: " + i);
 
-            enemies[i].BeFrozen(); 
-            enemies[i].healthSystem.TakeDamage(4); 
+            enemies[i].BeFrozen();
+            enemies[i].healthSystem.TakeDamage(4);            
         }
     }
 }

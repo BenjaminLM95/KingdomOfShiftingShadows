@@ -242,8 +242,7 @@ public class Enemy : MonoBehaviour
                 rb2.AddForceX(playerController.knockBackForce * Mathf.Sign(collision.attachedRigidbody.linearVelocityX), ForceMode2D.Impulse);
             }
                         
-            SetAgressiveMode();
-            Debug.Log("Hit"); 
+            SetAgressiveMode();             
             Invoke("vulnerability", 1f);
         }
 
@@ -256,8 +255,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void vulnerability() 
-    {
-        Debug.Log("Vulnerability"); 
+    {        
         invincibility = false;
         enemyAnimator.SetBool("isDamaged", false);
         isHit = false;
@@ -299,7 +297,7 @@ public class Enemy : MonoBehaviour
                 rb2.linearVelocity = Vector2.zero;
                 break;
             case EnemyState.Frozen:                
-                invincibility = true; 
+                invincibility = false; 
                 gameObject.GetComponent<SpriteRenderer>().color = Color.cyan;
                 Invoke("Melt", freezeCoolDown);
                 break; 
@@ -449,9 +447,9 @@ public class Enemy : MonoBehaviour
 
     public bool isAnotherEnemyClose() 
     {
-        RaycastHit2D[] enemyClose = Physics2D.RaycastAll(this.transform.position + Vector3.left, Vector2.left, enemyDistance, enemyLayerMask);
-        RaycastHit2D[] enemyClose2 = Physics2D.RaycastAll(this.transform.position + Vector3.left, new Vector2(-1f, 1.41f), enemyDistance, enemyLayerMask);
-        RaycastHit2D[] enemyClose3 = Physics2D.RaycastAll(this.transform.position + Vector3.left, new Vector2(-1f, -1.41f), enemyDistance, enemyLayerMask);
+        RaycastHit2D[] enemyClose = Physics2D.RaycastAll(this.transform.position, Vector2.left * 2, enemyDistance, enemyLayerMask);
+        RaycastHit2D[] enemyClose2 = Physics2D.RaycastAll(this.transform.position , new Vector2(-1f, 1.41f), enemyDistance, enemyLayerMask);
+        RaycastHit2D[] enemyClose3 = Physics2D.RaycastAll(this.transform.position , new Vector2(-1f, -1.41f), enemyDistance, enemyLayerMask);
                
 
 
@@ -525,8 +523,8 @@ public class Enemy : MonoBehaviour
         Vector2 direction = Vector2.left;
 
         // Draw the ray in the Scene view
-        Gizmos.DrawRay(transform.position + Vector3.left, direction * enemyDistance);
-        Gizmos.DrawRay(transform.position + Vector3.left, new Vector2(-1f, 1.41f) * enemyDistance);
-        Gizmos.DrawRay(transform.position + Vector3.left, new Vector2(-1f, -1.41f) * enemyDistance);
+        Gizmos.DrawRay(transform.position, direction * 2 * enemyDistance);
+        Gizmos.DrawRay(transform.position, new Vector2(-1f, 1.41f) * enemyDistance);
+        Gizmos.DrawRay(transform.position, new Vector2(-1f, -1.41f) * enemyDistance);
     }
 }

@@ -28,8 +28,7 @@ public class CoinBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log(value);
+        {            
             soundManager.PlaySoundFXClip("GetMoney");
             playerObj.GetComponent<PlayerController>().upgradeManager.ObtainingMoneyReward(value);
             this.gameObject.SetActive(false);

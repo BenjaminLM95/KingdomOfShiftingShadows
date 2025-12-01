@@ -14,15 +14,13 @@ public class EnemyAlert : MonoBehaviour
     }    
         
     private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("Trigger!"); 
+    {        
         if (other.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = other.GetComponent<Enemy>();
 
             if (enemy.enemyType == EnemyType.DayEnemy && enemy.enemyState == EnemyState.Running)
-            {
-                Debug.Log("Day Enemy appears"); 
+            {                
                 alertWitchObj.SetActive(true);
                 Invoke("SetOffWitchAlert", alertCooldown);
             }

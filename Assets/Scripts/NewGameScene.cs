@@ -42,8 +42,7 @@ public class NewGameScene : MonoBehaviour
     }
 
     public IEnumerator EndCutScene() 
-    {
-        Debug.Log("EndCutScene");
+    {        
         yield return new WaitForSeconds(2.5f);
         lineAnimator.SetBool("itBegin", false);
         yield return new WaitForSeconds(1f);

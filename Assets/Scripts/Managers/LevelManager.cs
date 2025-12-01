@@ -141,8 +141,7 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator BeginGameplay() 
     {
-        soundManager.PlaySoundFXClip("StartGame");         
-        Debug.Log("Change gamescene");
+        soundManager.PlaySoundFXClip("StartGame");       
         yield return new WaitForSecondsRealtime(1);
         upgradeManager.ClearInventory(); 
         ChangeToGameplay(); 

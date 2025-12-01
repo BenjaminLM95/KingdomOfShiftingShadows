@@ -233,8 +233,7 @@ public class UpgradeManager : MonoBehaviour
 
             soundManager.PlaySoundFXClip("BuySound");
 
-            playerInventory.GetAnItem(new FreezeMagic());
-            Debug.Log("Buy a freeze magic");
+            playerInventory.GetAnItem(new FreezeMagic());            
 
             DisplayItemsOnScreen();
         }
@@ -250,8 +249,7 @@ public class UpgradeManager : MonoBehaviour
 
             soundManager.PlaySoundFXClip("BuySound");
 
-            playerInventory.GetAnItem(new WindSlash());
-            Debug.Log("Buy Wind Slash");
+            playerInventory.GetAnItem(new WindSlash());            
 
             DisplayItemsOnScreen(); 
         }

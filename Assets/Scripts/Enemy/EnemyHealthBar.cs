@@ -23,8 +23,7 @@ public class EnemyHealthBar : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {
-        Debug.Log("Health Scale " + healthScale);
+    {       
         currentEnemyHealth = enemyStats.healthSystem.health;        
     }
 

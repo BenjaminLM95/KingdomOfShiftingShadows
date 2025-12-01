@@ -53,7 +53,7 @@ public class PlayerInventory : MonoBehaviour
     {
         for (int i = 0; i < _inventory.inventory.Count; i++) 
         {
-            Debug.Log(_inventory.inventory[i].itemName + " , " + _inventory.inventory[i].itemCost); 
+            
         }
     }
 
@@ -65,12 +65,8 @@ public class PlayerInventory : MonoBehaviour
 
         for(int i = 0; i < UpgradeManager.playerInventory.inventory.Count; i++) 
         {
-            _inventory.inventory.Add(UpgradeManager.playerInventory.inventory[i]);
-            Debug.Log(_inventory.inventory.Count);
-            Debug.Log(UpgradeManager.playerInventory.inventory.Count); 
-        }
-
-        Debug.Log("Inventory Upgraded"); 
+            _inventory.inventory.Add(UpgradeManager.playerInventory.inventory[i]);             
+        }        
     }
 
     private void OnEnable()
