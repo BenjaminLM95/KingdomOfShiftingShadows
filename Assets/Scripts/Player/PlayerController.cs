@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 initialPos = new Vector3(-6f, -0.5f);
     
 
-    private Rigidbody2D body;
+    public Rigidbody2D body;
 
     [Header("Attack movements")]
     public GameObject sword;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     public int upgradeSwordPower = 0;
     public int swordPower = 0; 
     [SerializeField] private Animator playerAnimator;
-    [SerializeField] private float attackCooldown;
+    public float attackCooldown;
     public static bool windSlash = false; 
 
 
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool canSprint = true;
     public bool canUseItem { get; private set; }
     public bool _canAttack = true;
-    [SerializeField] private bool canAttack
+    public bool canAttack
     {
         get
         {
@@ -71,20 +71,41 @@ public class PlayerController : MonoBehaviour
     public UpgradeManager upgradeManager;
     public PlayerHealth playerHealth;
     public SoundsManager soundManager;
+    public PlayerAnimationHandler playerAnim; 
     [SerializeField] private DayNightManager dayNightManager;
     private NewGameScene newGameScene;
-    public GameObject windSlashObj; 
-    
+    public GameObject windSlashObj;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Player State - State Machine
+    private PlayerStateMachine playerStateMachine; 
+    //States:
+    public PlayerIdleState playerIdleState { get; private set; }
+    public PlayerWalkState playerWalkState { get; private set; }
+    public PlayerAttackState playerAttackState { get; private set; }
+    public PlayerDeathState playerDeathState { get; private set; }
+
+
+
+    private void Awake()
     {
         // Finding all the references 
         upgradeManager = FindFirstObjectByType<UpgradeManager>();
         soundManager = FindFirstObjectByType<SoundsManager>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
         newGameScene = FindFirstObjectByType<NewGameScene>();
+        playerAnim = FindFirstObjectByType<PlayerAnimationHandler>();
 
+        playerIdleState = new PlayerIdleState(playerAnim);
+        playerWalkState = new PlayerWalkState(playerAnim, this); 
+        playerAttackState = new PlayerAttackState(this, playerAnim, soundManager); 
+        playerDeathState = new PlayerDeathState(playerAnim, this); 
+
+    }
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
         attackCooldown = 0.32f; 
         transform.position = initialPos;
         canMove = false;
@@ -172,9 +193,7 @@ public class PlayerController : MonoBehaviour
             case PlayerState.Idle:
                 break;
             case PlayerState.Death:
-                canAttack = false;
-                canMove = false;
-                canUseItem = false;
+                RestrictPlayer(); 
                 playerAnimator.SetBool("isDead", false);
                 //playerAnimator.SetBool("isAttacking", false);                
                 break; 
@@ -227,6 +246,12 @@ public class PlayerController : MonoBehaviour
         }
     }
     
+    public void RestrictPlayer() 
+    {
+        canAttack = false;
+        canMove = false;
+        canUseItem = false;
+    }
 
     public void SaveSword() 
     {        
