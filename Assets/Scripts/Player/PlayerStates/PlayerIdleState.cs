@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class PlayerIdleState : IPlayerState
 {
-    public PlayerAnimationHandler playerAnim; 
+    public PlayerAnimationHandler playerAnim;
+    public PlayerController playerController; 
 
-    public PlayerIdleState (PlayerAnimationHandler _playerAnim) 
+    public PlayerIdleState (PlayerAnimationHandler _playerAnim, PlayerController _playerController) 
     {
         playerAnim = _playerAnim;
+        playerController = _playerController;
     }
 
     public void StateEnter()
@@ -16,16 +18,16 @@ public class PlayerIdleState : IPlayerState
 
     public void StateExit()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void StateFixedUpdate()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void StateUpdate()
     {
-        throw new System.NotImplementedException();
+        playerController.PlayerMovement();
     }
 }

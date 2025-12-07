@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerWalkState : IPlayerState
 {
     public PlayerAnimationHandler playerAnim;
-    public PlayerController playerController; 
-
+    public PlayerController playerController;
+    
     public PlayerWalkState(PlayerAnimationHandler _playerAnim, PlayerController _playerController) 
     {
         playerAnim = _playerAnim;
@@ -23,7 +23,7 @@ public class PlayerWalkState : IPlayerState
 
     public void StateFixedUpdate()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void StateUpdate()

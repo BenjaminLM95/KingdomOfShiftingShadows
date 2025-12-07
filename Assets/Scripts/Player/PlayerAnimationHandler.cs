@@ -32,7 +32,10 @@ public class PlayerAnimationHandler : MonoBehaviour
         playerAnimator.SetBool("isDead", active);
     }
 
-
+    public void PlayerHurtAnim(bool active) 
+    {
+        playerAnimator.SetBool("isDamaged", active); 
+    }
 
     
 

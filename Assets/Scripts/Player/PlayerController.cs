@@ -1,21 +1,8 @@
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Playables;
-
-public enum PlayerState 
-{
-    Walk,
-    Attack,
-    Idle,
-    Death,
-    Still
-
-}
 
 public class PlayerController : MonoBehaviour
 {
-    public PlayerState playerState; 
+    
 
     [Header("Player Movement Variables")]
     private float horizontal;
@@ -37,8 +24,7 @@ public class PlayerController : MonoBehaviour
     public GameObject slashCollider;     
     public int baseSwordPower = 4;
     public int upgradeSwordPower = 0;
-    public int swordPower = 0; 
-    [SerializeField] private Animator playerAnimator;
+    public int swordPower = 0;     
     public float attackCooldown;
     public static bool windSlash = false; 
 
@@ -77,12 +63,14 @@ public class PlayerController : MonoBehaviour
     public GameObject windSlashObj;
 
     // Player State - State Machine
-    private PlayerStateMachine playerStateMachine; 
+    public PlayerStateMachine playerStateMachine;
     //States:
     public PlayerIdleState playerIdleState { get; private set; }
     public PlayerWalkState playerWalkState { get; private set; }
     public PlayerAttackState playerAttackState { get; private set; }
     public PlayerDeathState playerDeathState { get; private set; }
+
+    public PlayerHurtState playerHurtState { get; private set; }
 
 
 
@@ -92,20 +80,25 @@ public class PlayerController : MonoBehaviour
         upgradeManager = FindFirstObjectByType<UpgradeManager>();
         soundManager = FindFirstObjectByType<SoundsManager>();
         dayNightManager = FindFirstObjectByType<DayNightManager>();
-        newGameScene = FindFirstObjectByType<NewGameScene>();
+        newGameScene = FindFirstObjectByType<NewGameScene>();        
         playerAnim = FindFirstObjectByType<PlayerAnimationHandler>();
+        
 
-        playerIdleState = new PlayerIdleState(playerAnim);
+        // Instantiate the states
+        playerIdleState = new PlayerIdleState(playerAnim, this);
         playerWalkState = new PlayerWalkState(playerAnim, this); 
         playerAttackState = new PlayerAttackState(this, playerAnim, soundManager); 
-        playerDeathState = new PlayerDeathState(playerAnim, this); 
+        playerDeathState = new PlayerDeathState(playerAnim, this);
+        playerHurtState = new PlayerHurtState(this, playerHealth, playerAnim, soundManager);
 
+        
     }
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        playerStateMachine.Initialize(playerIdleState);
         attackCooldown = 0.32f; 
         transform.position = initialPos;
         canMove = false;
@@ -113,10 +106,10 @@ public class PlayerController : MonoBehaviour
         canUseItem = false; 
         sword.gameObject.SetActive(false);
         body = GetComponent<Rigidbody2D>();
-        playerState = PlayerState.Still;
-        playerAnimator = GetComponent<Animator>();
+        //playerState = PlayerState.Still;        
         UpdatingSwordMight();
-        UpdatingSpeed();        
+        UpdatingSpeed();
+         
 
     }
 
@@ -136,18 +129,28 @@ public class PlayerController : MonoBehaviour
             newGameScene.isEnded = false;
         }
 
+        if (playerHealth.isHurt) 
+        {
+            playerStateMachine.ChangeState(playerHurtState); 
+        }
+
+        if(playerHealth.healthSystem.health <= 0) 
+        {
+            PlayerDeath();
+        }
+
+
         if (canMove)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
         }
 
-        if ((Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Mouse0)) && playerState != PlayerState.Attack) 
+        if ((Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.Mouse0)) && playerStateMachine.currentPlayerState != playerAttackState) 
         {
             if (canAttack)
             {
-                soundManager.PlaySoundFXClip("SlashSword");
-                playerState = PlayerState.Attack;                
+                playerStateMachine.ChangeState(playerAttackState);             
             }
         }
 
@@ -156,49 +159,25 @@ public class PlayerController : MonoBehaviour
             dayNightManager = FindFirstObjectByType<DayNightManager>();
         }
 
-        if (windSlash && playerState != PlayerState.Attack) 
+        if (windSlash && playerStateMachine.currentPlayerState != playerAttackState) 
         {
             if (canAttack)
             {
-                soundManager.PlaySoundFXClip("WindSlash");
-                playerState = PlayerState.Attack;
+                playerStateMachine.ChangeState(playerAttackState);
                 WindSlashAttack();
                 windSlash = false; 
             }
         }
-                  
+
+        playerStateMachine.currentPlayerState.StateUpdate(); 
+
     }
 
     private void FixedUpdate()
     {
-        HandleAction(playerState);                     
+        playerStateMachine.currentPlayerState.StateFixedUpdate();                     
     }
-
-    public void HandleAction(PlayerState playerState) 
-    {
-        // Action depens on the player state
-        switch (playerState) 
-        {
-            case PlayerState.Still:
-                PlayerMovement();                 
-                break;
-            case PlayerState.Walk:
-                PlayerMovement();
-                playerAnimator.SetBool("isWalking", true);
-                break;
-            case PlayerState.Attack:               
-                body.linearVelocity /= (1 + Time.fixedDeltaTime * 4);
-                Attack();
-                break;
-            case PlayerState.Idle:
-                break;
-            case PlayerState.Death:
-                RestrictPlayer(); 
-                playerAnimator.SetBool("isDead", false);
-                //playerAnimator.SetBool("isAttacking", false);                
-                break; 
-        }
-    }
+       
 
     public void PlayerMovement() 
     {
@@ -210,9 +189,9 @@ public class PlayerController : MonoBehaviour
         // If the velocity is greater than 0 the player moves, if not stay still
         if (body.linearVelocity.magnitude > 0)
         {
-            if (playerState != PlayerState.Attack)
+            if (playerStateMachine.currentPlayerState != playerAttackState)
             {              
-                playerState = PlayerState.Walk;                
+                playerStateMachine.ChangeState(playerWalkState);                
             }
 
             if (body.linearVelocityX > 0)
@@ -229,8 +208,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            playerState = PlayerState.Still;
-            playerAnimator.SetBool("isWalking", false);
+            playerStateMachine.ChangeState(playerIdleState); 
         }
     }
 
@@ -241,9 +219,17 @@ public class PlayerController : MonoBehaviour
             canAttack = false;
             sword.gameObject.SetActive(true);
             slashCollider.gameObject.SetActive(true);
-            playerAnimator.Play("FSkyAttackAnimation");            
+            //playerAnimator.Play("FSkyAttackAnimation");            
             Invoke("SaveSword", attackCooldown);
         }
+    }
+
+    public void Vulnerability() 
+    {
+        Debug.Log("Vulnerability"); 
+        playerHealth.invincibility = false;
+        _canAttack = true;
+        playerStateMachine.ChangeState(playerIdleState); 
     }
     
     public void RestrictPlayer() 
@@ -257,8 +243,8 @@ public class PlayerController : MonoBehaviour
     {        
         sword.gameObject.SetActive(false);
         slashCollider.gameObject.SetActive(false); 
-        canAttack = true;       
-        playerState = PlayerState.Walk; 
+        canAttack = true;
+        playerStateMachine.ChangeState(playerWalkState); 
     }
 
     public void UpdatingSwordMight() 
@@ -305,8 +291,8 @@ public class PlayerController : MonoBehaviour
    
     public void PlayerDeath() 
     {
-        playerAnimator.SetBool("isDead", true);        
-        playerState = PlayerState.Death;
+        //playerAnimator.SetBool("isDead", true);        
+        playerStateMachine.ChangeState(playerDeathState);
         
     }
 
@@ -348,7 +334,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        playerState = PlayerState.Still; 
+        playerStateMachine.ChangeState(playerIdleState); 
     }
 
 }

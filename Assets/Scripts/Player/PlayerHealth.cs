@@ -10,24 +10,24 @@ public class PlayerHealth : MonoBehaviour
     [Header("Player Health")]
     public HealthSystem healthSystem = new HealthSystem();
     [SerializeField] private int playerHealth;
-    [SerializeField] private bool invincibility = false;
-    [SerializeField] private float vulnerabilityCooldown = 0.5f; 
+    public bool invincibility = false;
+    public float vulnerabilityCooldown {  get; private set; }
     public TextMeshProUGUI healthText;
     public GameObject healthSlider;
     Slider hpSlider;
     public GameObject shieldSlider;
     Slider shieldBar;
-    [SerializeField] private int playerShield; 
-    
+    [SerializeField] private int playerShield;
+    public bool isHurt; 
 
 
 
     [Header("Reference")]
-    [SerializeField] private Enemy attackingEnemy = null;
+    public Enemy attackingEnemy = null;
     [SerializeField] private UpgradeManager upgradeManager;
     [SerializeField] private Animator playerHealthAnimator;
     [SerializeField] private CameraShaking cameraShaking;
-    public PlayerController _playerController; 
+    //public PlayerController _playerController; 
     public int upgradeHealhValue;
     private Coroutine myCoroutineReference;
 
@@ -39,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        vulnerabilityCooldown = 0.5f; 
         FindingSlides();
         SettingInitialStats();
     }
@@ -56,11 +57,11 @@ public class PlayerHealth : MonoBehaviour
 
         }       
 
-        if (healthSystem.health <= 0) 
+        /*if (healthSystem.health <= 0) 
         {
             _playerController.PlayerDeath(); 
             
-        }
+        }  */
                
         if(playerShield != healthSystem.shield) 
         {
@@ -109,15 +110,16 @@ public class PlayerHealth : MonoBehaviour
 
             if (attackingEnemy == null && !invincibility)
             {
-
+                Debug.Log("Receibing atk"); 
                 attackingEnemy = col.gameObject.GetComponent<Enemy>();
                 if ((attackingEnemy.alive || attackingEnemy.enemyType == EnemyType.DayEnemy) && attackingEnemy.enemyState != EnemyState.Collapse
                     && !attackingEnemy.isDefeat)
                 {
                     attackingEnemy.SetAttackAnimation();
                     healthSystem.TakeDamage(attackingEnemy.healthSystem.baseAttack);
-                    _playerController._canAttack = false;
-                    _playerController.soundManager.PlaySoundFXClip("PlayerHurt");
+                    isHurt = true;
+                    invincibility = true;
+
 
                     if (cameraShaking == null)
                     {
@@ -127,36 +129,16 @@ public class PlayerHealth : MonoBehaviour
                     if (cameraShaking != null)
                     {
                         myCoroutineReference = StartCoroutine(cameraShaking.Shake2(0.25f, 0.125f));
-                    }
-
-                    if (attackingEnemy.enemyType == EnemyType.DayEnemy && healthSystem.health <= 0 && _playerController.playerState != PlayerState.Death)
-                    {
-                        _playerController.soundManager.PlaySoundFXClip("WitchLaugh");
-                        invincibility = false; 
-                        Debug.Log(invincibility);
-                        return; 
-                    }
-
-                    playerHealthAnimator.SetBool("isDamaged", true);
-                    invincibility = true;
-                    attackingEnemy = null;
-                    Invoke("vulnerability", vulnerabilityCooldown);
+                    }                   
+                    
+                                       
                 }
-
-                if (attackingEnemy != null)
-                    attackingEnemy = null;
+                
             }
 
         }
     }
-
-    public void vulnerability() 
-    {
-        invincibility = false;
-        _playerController._canAttack = true; 
-        playerHealthAnimator.SetBool("isDamaged", false);
-    }
-
+      
 
     public void UpdatingHealthUpgrade() 
     {

@@ -5,6 +5,7 @@ public class PlayerAttackState : IPlayerState
     public PlayerController playerController;
     public PlayerAnimationHandler playerAnim;
     public SoundsManager soundManager;
+    
 
     public PlayerAttackState(PlayerController _playerController, PlayerAnimationHandler _playerAnim, SoundsManager _soundManager) 
     {
@@ -15,6 +16,7 @@ public class PlayerAttackState : IPlayerState
 
     public void StateEnter()
     {
+        playerController.Attack(); 
         soundManager.PlaySoundFXClip("SlashSword");
         playerController.canAttack = false;
         playerAnim.PlayPlayerAttackAnim();
@@ -24,7 +26,7 @@ public class PlayerAttackState : IPlayerState
 
     public void StateExit()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void StateFixedUpdate()
@@ -34,6 +36,6 @@ public class PlayerAttackState : IPlayerState
 
     public void StateUpdate()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

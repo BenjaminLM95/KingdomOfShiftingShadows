@@ -4,6 +4,7 @@ public class PlayerDeathState : IPlayerState
 {
     public PlayerAnimationHandler playerAnim;
     public PlayerController playerController;
+    
 
     public PlayerDeathState(PlayerAnimationHandler _playerAnim, PlayerController _playerController)
     {
@@ -24,11 +25,11 @@ public class PlayerDeathState : IPlayerState
 
     public void StateFixedUpdate()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public void StateUpdate()
     {
-        throw new System.NotImplementedException();
+       
     }
 }

@@ -187,8 +187,10 @@ GameObject:
   - component: {fileID: 3566994322049730366}
   - component: {fileID: 8776361553925642626}
   - component: {fileID: 4576890133481530474}
+  - component: {fileID: 7458534732326389500}
   - component: {fileID: 1186564037291499569}
   - component: {fileID: 1932960855457498605}
+  - component: {fileID: 3660051488230039163}
   - component: {fileID: 1590059684896537351}
   - component: {fileID: 5556061691710077905}
   - component: {fileID: 4769621267870279495}
@@ -283,7 +285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2738862d4bd8718409383e87f5381b52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerState: 0
   baseSpeedMove: 3
   speedMove: 0
   upgradeSpeedMove: 1
@@ -291,6 +292,7 @@ MonoBehaviour:
   baseknockbackForce: 1.5
   upgradeKnockback: 0
   knockBackForce: 1.5
+  body: {fileID: 1590059684896537351}
   sword: {fileID: 6757053921615204007}
   slashCollider: {fileID: 5705028957381102069}
   baseSwordPower: 3
@@ -308,8 +310,10 @@ MonoBehaviour:
   upgradeManager: {fileID: 0}
   playerHealth: {fileID: 4576890133481530474}
   soundManager: {fileID: 0}
+  playerAnim: {fileID: 0}
   dayNightManager: {fileID: 0}
   windSlashObj: {fileID: 9030822671878087379, guid: b38c929f80621804d81a71cddbcb78b6, type: 3}
+  playerStateMachine: {fileID: 7458534732326389500}
 --- !u!114 &4576890133481530474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +339,19 @@ MonoBehaviour:
   cameraShaking: {fileID: 0}
   _playerController: {fileID: 8776361553925642626}
   upgradeHealhValue: 0
+--- !u!114 &7458534732326389500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6768104230059079462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bec404176c7d664db3133a6ea976f13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStateString: 
 --- !u!114 &1186564037291499569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -363,6 +380,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 8776361553925642626}
   playerHealth: {fileID: 4576890133481530474}
+--- !u!114 &3660051488230039163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6768104230059079462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b002e27c4b5c0c24a9f91f3951fea68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &1590059684896537351
 Rigidbody2D:
   serializedVersion: 5

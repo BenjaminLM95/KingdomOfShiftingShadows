@@ -36,10 +36,10 @@ public class KingdomGate : MonoBehaviour
 
     private void Update()
     {
-        if(playerController.playerState == PlayerState.Death && !gameOver) 
+        if(playerController.playerStateMachine.currentPlayerState == playerController.playerDeathState && !gameOver) 
         {
             musicManager.ChangeSpeed(1); 
-            playerHealth.vulnerability();            
+            playerController.Vulnerability();            
             gameOver = true; 
             Invoke("SetGameOver", 1f);             
         }
@@ -58,8 +58,8 @@ public class KingdomGate : MonoBehaviour
             if (!gameOver)
             {
                 musicManager.ChangeSpeed(1);
-                playerController.playerState = PlayerState.Death;
-                playerHealth.vulnerability();                
+                playerController.playerStateMachine.ChangeState(playerController.playerDeathState);
+                playerController.Vulnerability();                
                 Invoke("SetGameOver", 0.25f);
             }
         }
